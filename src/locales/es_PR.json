@@ -165,11 +165,11 @@
       "proximity_tracing_header": "Avisos de exposición",
       "share": "Compartir {{applicationName}}",
       "share_message": "Pruebe esta aplicación {{applicationName}}, que puede ayudarnos a contener el COVID-19. {{appDownloadLink}}",
-      "tracing_off_header": "Detección de exposición apagada",
+      "tracing_off_header": "Inactivo",
       "tracing_off_subheader": "Habilite Bluetooth, rastreo de proximidad y localización para obtener información sobre posibles exposiciones",
-      "tracing_on_header": "Detección de exposición activada"
+      "tracing_on_header": "Activo"
     },
-    "call_emergency_services": "Llamar a Servicios de Emergencia",
+    "call_emergency_services": "Servicios de Emergencia",
     "check_if_your_symptoms": "Escribir síntomas y obtener una recomendación instantánea sobre cómo estar a salvo.",
     "did_you_test_positive": "¿Dio positivo en la prueba de COVID-19?",
     "fix": "Solucionar problemas con {{technology}}",

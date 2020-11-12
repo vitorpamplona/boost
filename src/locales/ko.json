@@ -19,11 +19,13 @@
     "close": "닫기",
     "continue": "계속",
     "done": "완료",
+    "learn_more": "배우다",
     "maybe_later": "나중에",
     "more": "더 많은",
     "next": "다음",
     "no_thanks": "아니오 괜찮습니다.",
     "save": "저장",
+    "select_language": "언어 선택",
     "settings": "설정 열기",
     "skip": "건너 뛰기",
     "something_went_wrong": "문제가 발생했습니다.",
@@ -46,6 +48,7 @@
   "export": {
     "code_input_body_bluetooth": "인증 코드를 입력하십시오.",
     "code_input_button_cancel": "취소",
+    "code_input_placeholder": "유형 코드",
     "code_input_title_bluetooth": "진단을 확인하십시오.",
     "complete_body_bluetooth": "귀하는 코로나19 확산을 방지하고, 지역사회를 보호하는데 도움이됩니다.",
     "complete_title": "지역사회를 안전하게 지켜주셔서 감사합니다!",
@@ -81,11 +84,13 @@
     "start_header_bluetooth": "바이러스 확산을 방지하고 지역 사회를 보호하는데 도움이됩니다."
   },
   "exposure_history": {
+    "check_for_exposures": "최신 정보",
     "exposure_detail": {
       "6ft_apart": "6피트 간격",
       "ha_guidance_header": "본인은 어떻게 해야합니까?",
       "header": "코로나19 확진자와 동선이 겹쳤을 수 있습니다.",
       "next_steps": "다음 단계",
+      "quarantine": "격리하려면",
       "schedule_callback": "{{healthAuthorityName}} 에서 이동경로 조사 담당자의 지원을 받으려면 전화를 예약하십시오.",
       "speak_with_contact_tracer": "이동경로 조사 담당자와 대화하기",
       "wash_your_hands": "손을 씻으십시오.",
@@ -117,6 +122,9 @@
     "why_did_i_get_an_en": "노출 알림을 받는 이유는 무엇입니까?",
     "why_did_i_get_an_en_para": "귀하의 주변에 코로나19 감염 확진자가 발생했을 경우, 해당 확진자가 다른사람에게 알리기를 선택하면 노출 알림을 받게 됩니다."
   },
+  "exposure_scanning_status": {
+    "learn_more": "배우다"
+  },
   "home": {
     "bluetooth_info_body": "휴대 전화는 블루투스 저 에너지를 사용하여 가까이에 있는 다른 휴대 전화를 감지합니다. 이 경우, 휴대 전화에서 앱을 열지 않아도 앱이 매일 로그를 익명으로 기록 할 수 있습니다.",
     "bluetooth": {
@@ -128,7 +136,7 @@
       "location_disabled_error_title": "설정에서 권한 부여",
       "location_header": "위치",
       "proximity_tracing_header": "근접 추적",
-      "share": "앱을 공유하고 귀하와 다른 사람을 보호하십시오.",
+      "share": "{{applicationName}} 공유",
       "share_message": "본 앱 {{applicationName}}을 확인하세요, 코로나19 확산을 방지하는데 도움이 될 수 있습니다! {{appDownloadLink}}",
       "tracing_off_header": "비활성",
       "tracing_off_subheader": "블루투스 및 근접 추적을 활성화하여 노출에 대한 정보를 얻을 수 있습니다.",
@@ -137,12 +145,16 @@
     "call_emergency_services": "응급 서비스 호출",
     "fix": "{{technology}}로 문제 해결",
     "get_more_info": "{{technology}}에 대한 자세한 정보 보기",
-    "location_info_body_1": "노출 알림 기술은 블루투스 스캔을 사용하여 서로 가까이있는 장치를 파악합니다.  블루투스 스캔을 사용하려면 안드로이드 6.0 이상을 실행하는 모든 휴대폰은 노출 알림 시스템이 내장된 앱뿐만 아니라 모든 앱에 위치 설정을 켜야합니다.",
-    "location_info_subheader_1": "내 위치를 켜야하는 이유는 무엇입니까?",
+    "have_a_positive_test": "테스트 결과 코드가 양성입니까",
+    "if_you_have_a_code": "지역 사회를 안전하게 지키기 위해 테스트를보고하십시오",
     "proximity_tracing_info_body_1": "본 앱이 설치된 스마트폰이 켜진 상태로 블루투스가 활성화되어 있고, 일정 시간 동안 서로 가까이 있으면 앱에 만남이 등록됩니다.",
     "proximity_tracing_info_body_2": "누군가와 만날 경우 데이터와 정보는 익명으로 남지만 본 앱은 개인 데이터를 저장하지 않습니다. 임의 ID만 교환되며, 해당 데이터는 14일 이내에 삭제됩니다.",
     "proximity_tracing_info_subheader_1": "근접 추적은 어떻게 작동됩니까?",
-    "proximity_tracing_info_subheader_2": "본인의 데이터는 안전합니까?"
+    "proximity_tracing_info_subheader_2": "본인의 데이터는 안전합니까?",
+    "proximity_tracing": {
+      "unauthorized_error_message_ios": "노출 알림을 활성화하려면 설정 및 공유 노출 정보의 노출 알림 섹션으로 이동하여 활성 영역을 {{applicationName}}으로 설정합니다."
+    },
+    "report_result": "진단 보내기"
   },
   "label": {
     "check": "체크 표시",
@@ -156,11 +168,11 @@
     "unchecked_checkbox": "체크되지 않은 확인란"
   },
   "navigation": {
-    "connect": "연결",
     "exposure": "노출",
     "exposure_history": "노출 이력",
     "home": "집",
-    "more_info": "더 많은 정보"
+    "more_info": "더 많은 정보",
+    "symptom_history": "증상 기록"
   },
   "onboarding": {
     "activation_header_title": "앱 설정",
@@ -173,9 +185,9 @@
     "eula_agree_terms_of_use": "이용 약관을 읽고 수락했음을 동의합니다.",
     "location_alert_body": "블루투스 스캔을 사용하려면 기기 위치 설정을 켜야합니다.",
     "location_alert_header": "\"{{applicationName}}\"에서 위치 액세스 활성화",
-    "location_body": "블루투스 스캔을 사용하려면 기기 위치 설정을 켜야합니다. 앱은 귀하의 위치 데이터를 사용하지 않으며, 귀하의 휴대 전화를 추적 할 수 없습니다.",
+    "location_body": "Google은 Android 10 이하를 실행하는 장치에 노출 탐지 기능을 사용할 수 있도록 위치 서비스를 설정해야 합니다. 하지만 {{applicationName}}은 사용자의 위치를 추적하거나 보관하지 않습니다.",
     "location_header": "위치 활성화",
-    "location_subheader": "휴대 전화의 위치 설정을 켜야하는 이유는 무엇입니까?",
+    "location_subheader": "{{applicationName}}는 위치 데이터에 접근하지 않으며, 귀하의 기기는 추적되지 않습니다.",
     "notification_body1": "코로나19 확진자와 동선이 겹쳤을 때 알림을 받게됩니다.",
     "notification_body2": "본 앱은 블루투스 저 에너지를 사용하여이 운영되며, 사용자가 누구인지 또는 어디에 있었는지에 대한 정보를 알지 못하고 임의 코드를 보호합니다. 언제든지 설정에서 이 기능을 끌 수 있습니다.",
     "notification_header": "귀하가 코로나19에 노출되었을 수 있는 경우 알림을 받으십시오.",
@@ -219,6 +231,11 @@
     "terms_header_title": "이용 약관",
     "welcome_image_label": "네트워크의 연결된 노드처럼 마스크를 착용한 사람들의 그림."
   },
+  "product_analytics": {
+    "i_understand_and_consent": "본인은 이해했으며, 동의합니다.",
+    "privacy_policy": "개인정보 정책",
+    "share_anonymized_data": "익명화된 데이터 공유"
+  },
   "screen_titles": {
     "bluetooth": "블루투스",
     "exposure_history": "노출 이력",
@@ -241,7 +258,8 @@
       "not_well": "좋지 않습니다."
     },
     "intro": {
-      "if_this_is": "긴급상황인 경우 {{emergencyPhoneNumber}}로 전화하십시오."
+      "if_this_is": "긴급상황인 경우 {{emergencyPhoneNumber}}로 전화하십시오.",
+      "this_is_based_on": "이것은 CDC의 최신 지침을 기반으로 바이러스가 어떻게 확산되며, 해당 바이러스가 일으키는 질병에 대해 업데이트되는 대로 점차적으로 업데이트 될 예정입니다."
     },
     "underlying_conditions": {
       "diabetes": "당뇨병",
@@ -250,6 +268,7 @@
       "high_blood_pressure": "고혈압",
       "kidney_disease": "만성 신장 질환",
       "liver_disease": "간 질환",
+      "lung_disease": "천식, COPD, 낭포성 섬유증 또는 폐섬유화증과 같은 만성 폐질환",
       "obesity": "비만",
       "pregnancy": "임신",
       "select_all_or_none": "해당하는 항목 모두 선택 (또는 해당하는 항목 없음)",
@@ -258,12 +277,10 @@
     }
   },
   "settings": {
-    "here": "여기",
-    "i_understand_and_consent": "본인은 이해했으며, 동의합니다.",
-    "please_view_privacy_policy": "개인 정보 보호 정책을 확인하십시오.",
-    "share_anonymized_data": "익명화된 데이터 공유",
-    "share_anonymized_data_disclaimer": "계속 진행하면 {{healthAuthorityName}}의 검사 질의에 익명의 답변을 공유하는데 동의합니다.",
-    "share_anonymized_data_para": "귀하의 익명 데이터는 {{healthAuthorityName}}이 코로나19의 확산을 분석, 추적 및 방지하는데 도움이 됩니다. 데이터 공유에 동의한 다른 사용자로부터 당신의 데이터가 공개될 것입니다.\n\n데이터는 설문 조사 응답과 우편 번호를 포함하지만 추가 정보나 개인 식별 정보는 포함하지 않습니다.\n\n{{healthAuthorityName}}은 일정 기간 동안 당신의 익명 데이터를 보관할 것입니다."
+    "delete_data_disclosure1": "아래의 \"내 데이터 삭제\" 버튼을 누르면 앱에서 휴대전화에 저장된 증상 기록 데이터가 삭제됩니다.",
+    "delete_data_disclosure2": "노출 알림을 위해 휴대전화에서 생성하거나 수집 한 데이터는 삭제되지 않습니다.\n\n기기설정에서 추가 데이터를 삭제할 수 있습니다.",
+    "delete_my_data": "내 데이터 삭제",
+    "share_anonymized_data": "익명화된 데이터 공유"
   },
   "symptom": {
     "cough": "기침",

@@ -54,6 +54,7 @@
   "export": {
     "code_input_body_bluetooth": "輸入您的驗證碼",
     "code_input_button_cancel": "取消",
+    "code_input_placeholder": "輸入驗證碼",
     "code_input_title_bluetooth": "驗證您的診斷結果",
     "complete_body_bluetooth": "您正在協助遏止病毒的傳播並保護您社區的其他人。",
     "complete_title": "感謝您保護社區安全！",
@@ -98,6 +99,7 @@
       "header": "您接觸的某個人在之後被檢測為COVID-19陽性反應。",
       "next_steps": "下一步",
       "personalize_my_guidance": "指引個人化",
+      "quarantine": "隔離",
       "schedule_callback": "安排與{{healthAuthorityName}}追蹤接觸者的人員的聯繫。",
       "speak_with_contact_tracer": "與接追蹤接觸者的人員通話",
       "wash_your_hands": "洗手",
@@ -160,8 +162,6 @@
     "get_more_info": "透過{{technology}}獲得更多資訊",
     "have_a_positive_test": "測試結果代碼是否為陽性？",
     "if_you_have_a_code": "回報您的結果，確保社區安全。",
-    "location_info_body_1": "接觸通知技術使用藍牙掃描來了解哪些設備相鄰。若要在具備Android 6.0及更高版本的所有手機上使用藍牙掃描，需要為所有應用程式打開設備定位，而不僅是使用“接觸通知系統”的應用程式。",
-    "location_info_subheader_1": "為什麼我需要打開我的定位？",
     "proximity_tracing_info_body_1": "如果安裝了應用程式的智慧手機為開機狀態、已啟用藍牙並在彼此附近達一段時間，則會在您的設備上紀錄一個接觸案例。",
     "proximity_tracing_info_body_2": "如果接觸到他人，您的數據和訊息將保持匿名。應用程式不存儲任何資料，僅交換隨機ID，而這些資訊將在14天內刪除。",
     "proximity_tracing_info_subheader_1": "接觸提醒如何運作？",
@@ -171,6 +171,7 @@
       "unauthorized_error_message_ios": "若要啟用接近追蹤和接觸通知，請到“接觸通知設定”中的“接觸通知”部分，並將“啟動區域”設置為{{applicationName}}",
       "unauthorized_error_title": "啟用接近追蹤"
     },
+    "report_result": "報告結果",
     "to_submit_your_test": "與防疫電話客服人員通話，以取得您的檢驗結果代碼。"
   },
   "label": {
@@ -185,11 +186,11 @@
     "unchecked_checkbox": "未選取的選項"
   },
   "navigation": {
-    "connect": "連接",
     "exposure": "接觸",
     "exposure_history": "接觸史",
     "home": "工作介面",
-    "more_info": "更多資訊"
+    "more_info": "更多資訊",
+    "symptom_history": "症狀紀錄"
   },
   "onboarding": {
     "activation_header_title": "應用程式設定",
@@ -247,6 +248,16 @@
     "screen4_image_label": "在手機上收到通知的人",
     "terms_header_title": "使用條款",
     "welcome_image_label": "人們戴著口罩，像在網路中相互連結的插圖"
+  },
+  "product_analytics": {
+    "i_understand_and_consent": "我了解並同意",
+    "not_sharing_anonymized_data": "不分享匿名數據",
+    "privacy_policy": "隱私政策",
+    "share_anonymized_data": "分享匿名資料",
+    "share_data_para_2": "該數據不包含任何個人識別信息。",
+    "sharing_anonymized_data": "分享匿名數據",
+    "stop_sharing_data": "停止分享數據",
+    "you_are_sharing_data": "您正在分享匿名數據"
   },
   "screen_titles": {
     "bluetooth": "藍牙",
@@ -353,16 +364,12 @@
     }
   },
   "settings": {
-    "here": "這裡",
-    "i_understand_and_consent": "我理解並同意",
+    "delete_data_disclosure1": "當您點擊下面的“刪除數據”時，該應用程序將刪除手機上儲存的症狀記錄資料。",
+    "delete_data_disclosure2": "這不會刪除您的手機為接觸通知所建立或收集的數據。 \n\n您可以在設備的設定中刪除此備用數據。",
+    "delete_my_data": "刪除我的數據",
     "not_sharing_anonymized_data": "不分享匿名數據",
-    "please_view_privacy_policy": "請查看他們的隱私政策",
     "share_anonymized_data": "分享匿名資料",
-    "share_anonymized_data_disclaimer": "若要繼續進行，您同意與{{healthAuthorityName}}分享篩查問題的匿名答案",
-    "share_anonymized_data_para": "您的匿名資料可幫助{{healthAuthorityName}}委員會的分析，追蹤和停止COVID-19的傳播。您的資料將匯總來自其他選擇共享的用戶的數據。\n\n您的資料包含您的調查回復和郵政編碼，但沒有其他或個人識別信息。\n\n {{healthAuthorityName}}將保留您的匿名資料一段時間。",
-    "sharing_anonymized_data": "分享匿名數據",
-    "stop_sharing_data": "停止分享數據",
-    "you_are_sharing_data": "您正在分享匿名數據"
+    "sharing_anonymized_data": "分享匿名數據"
   },
   "symptom_history": {
     "errors": {

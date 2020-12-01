@@ -99,15 +99,11 @@ const ExposureProvider: FunctionComponent = ({ children }) => {
   const detectExposures = async (): Promise<
     NativeModule.DetectExposuresResponse
   > => {
-    try {
-      const response = await detectExposures()
-      if (response.kind === "success") {
-        await refreshExposureInfo()
-      }
-      return response
-    } catch (e) {
-      return { kind: "failure", error: "Unknown" }
+    const response = await NativeModule.detectExposures()
+    if (response.kind === "success") {
+      await refreshExposureInfo()
     }
+    return response
   }
 
   return (

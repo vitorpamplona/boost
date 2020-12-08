@@ -178,6 +178,42 @@
     "why_did_i_get_an_en": "Why did I get an exposure notification?",
     "why_did_i_get_an_en_para": "You will receive an exposure notification when someone you have been in close proximity with later receives a positive test for COVID-19 and chooses to notify others."
   },
+  "vaccination_history": {
+    "errors": {
+      "updating_vaccinations": "Sorry, we could not update your vaccination history"
+    },
+    "review_guidance_from_ha": "Review guidance from {{healthAuthorityName}}",
+    "protect_yourself_and_others": "Protect yourself and others in your community",
+    "no_vaccination_reports": "No Vaccination Reports",
+    "no_vaccination_reports_over_past": "You haven't received any vaccination elegibility codes",
+    "subtitle": "Your vaccine certificates will show up here.",
+    "no_entry": "No entry",
+    "no_vaccinations": "No vaccinations",
+    "share_latest": "Share Latest Certificate",
+    "vaccination_history": "Vaccines",
+    "vaccination_detail": {
+      "2m_apart": "2m apart",
+      "6ft_apart": "6ft apart",
+      "general_guidance": "General Guidance",
+      "ha_guidance_header": "What should I do?",
+      "header": "You will receive a code when you are elegible for a vaccine",
+      "next_steps": "Next steps",
+      "personalize_my_guidance": "Personalize my guidance",
+      "quarantine": "Quarantine",
+      "schedule_callback": "Schedule a call to get support from a contact tracer from the {{healthAuthorityName}}.",
+      "speak_with_contact_tracer": "Speak with a contact tracer",
+      "wash_your_hands": "Wash your hands",
+      "wear_a_mask": "Wear a mask"
+    }, 
+    "health_guidelines": {
+      "six_feet_apart": "Stay 6 feet apart",
+      "stay_home": "Stay home when sick",
+      "title": "Health Guidelines",
+      "two_meters_apart": "Stay 2 meters apart",
+      "wash_your_hands": "Wash your hands often",
+      "wear_a_mask": "Wear a mask"
+    },
+  },
   "exposure_scanning_status": {
     "fix_this": "Fix this",
     "not_available": "GAEN API is not available for this phone",
@@ -240,6 +276,7 @@
   "navigation": {
     "exposure": "Exposure",
     "exposure_history": "Exposures",
+    "vaccination_history": "Vaccines",
     "home": "Dashboard",
     "more_info": "More Info",
     "settings": "Settings",

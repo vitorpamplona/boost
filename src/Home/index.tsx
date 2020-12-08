@@ -46,6 +46,7 @@ const Home: FunctionComponent = () => {
     displayCovidData,
     displaySelfAssessment,
     displaySymptomHistory,
+    displayVaccinationHistory,
     emergencyPhoneNumber,
   } = useConfigurationContext()
 

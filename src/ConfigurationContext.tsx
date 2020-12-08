@@ -12,6 +12,7 @@ export interface Configuration {
   displayCallEmergencyServices: boolean
   displayCovidData: boolean
   displaySymptomHistory: boolean
+  displayVaccinationHistory: boolean
   displaySelfAssessment: boolean
   displayAgeVerification: boolean
   enableProductAnalytics: boolean
@@ -38,6 +39,7 @@ const initialState: Configuration = {
   displayCallbackForm: false,
   displayCallEmergencyServices: false,
   displayCovidData: false,
+  displayVaccinationHistory: false, 
   displaySymptomHistory: false,
   displaySelfAssessment: false,
   displayAgeVerification: false,
@@ -83,6 +85,7 @@ const ConfigurationProvider: FunctionComponent = ({ children }) => {
     env.DISPLAY_CALL_EMERGENCY_SERVICES === "true"
   const displayCovidData = env.DISPLAY_COVID_DATA === "true"
   const displaySymptomHistory = env.DISPLAY_SYMPTOM_HISTORY === "true"
+  const displayVaccinationHistory = env.DISPLAY_VACCINATION_HISTORY === "true"
   const displaySelfAssessment = env.DISPLAY_SELF_ASSESSMENT === "true"
   const displayAgeVerification = env.DISPLAY_AGE_VERIFICATION === "true"
   const enableProductAnalytics = env.ENABLE_PRODUCT_ANALYTICS === "true"
@@ -113,6 +116,7 @@ const ConfigurationProvider: FunctionComponent = ({ children }) => {
         displayCallEmergencyServices,
         displayCovidData,
         displaySymptomHistory,
+        displayVaccinationHistory,
         displaySelfAssessment,
         displayAgeVerification,
         enableProductAnalytics,

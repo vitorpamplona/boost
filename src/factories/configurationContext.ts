@@ -9,6 +9,7 @@ export default Factory.define<Configuration>(() => ({
   displayCallEmergencyServices: false,
   displayCovidData: false,
   displaySymptomHistory: false,
+  displayVaccinationHistory: false,
   displaySelfAssessment: false,
   displayAgeVerification: false,
   enableProductAnalytics: false,

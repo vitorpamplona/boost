@@ -60,11 +60,16 @@ const ExposureNotificationsActivationStatus: FunctionComponent = () => {
     navigation.navigate(HomeStackScreens.ExposureNotificationsInfo)
   }
 
+  const handleOnPressNotAvailableInfo = () => {
+    navigation.navigate(HomeStackScreens.ExposureNotificationsInfo)
+  }
+
   return (
     <ActivationStatusView
       headerText={t("home.bluetooth.proximity_tracing_header")}
-      isActive={status === "Active"}
+      isActive={status === "Active" ? "Active" : status === "Unknown" ? "Not Available" : "Inactive"}
       infoAction={handleOnPressShowInfo}
+      notAvailableAction={handleOnPressNotAvailableInfo}
       fixAction={handleOnPressFix}
       testID={"exposure-notifications-status-container"}
     />
@@ -94,7 +99,7 @@ const LocationActivationStatus: FunctionComponent = () => {
       subheaderText={t("home.bluetooth.location_subheader", {
         applicationName,
       })}
-      isActive={isLocationOn}
+      isActive={isLocationOn ? "Active" : "Inactive"}
       infoAction={handleOnPressShowInfo}
       fixAction={handleOnPressFix}
       testID={"location-status-container"}

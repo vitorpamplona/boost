@@ -48,6 +48,15 @@ const ExposureDetectionStatusCard: FunctionComponent = () => {
     actionText: t("exposure_scanning_status.fix_this"),
   }
 
+  const notAvailableConfig = {
+    statusBackgroundColor: Colors.accent.danger25,
+    statusBorderColor: Colors.accent.danger100,
+    statusIcon: Icons.XInCircle,
+    statusIconFill: Colors.accent.danger100,
+    statusText: t("home.bluetooth.tracing_off_header"),
+    actionText: t("exposure_scanning_status.not_available"),
+  }
+
   const {
     statusBackgroundColor,
     statusBorderColor,
@@ -55,7 +64,8 @@ const ExposureDetectionStatusCard: FunctionComponent = () => {
     statusIconFill,
     statusText,
     actionText,
-  } = exposureDetectionStatus === "On" ? enabledConfig : disabledConfig
+  } = exposureDetectionStatus === "On" ? enabledConfig : 
+      exposureDetectionStatus === "Not Available" ? notAvailableConfig : disabledConfig;
 
   const statusContainerStyle = {
     ...style.statusContainer,

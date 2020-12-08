@@ -30,6 +30,7 @@
     "more": "More",
     "next": "Next",
     "no": "No",
+    "not_available": "Not Available",
     "no_thanks": "No thanks",
     "off": "OFF",
     "on": "ON",
@@ -179,6 +180,7 @@
   },
   "exposure_scanning_status": {
     "fix_this": "Fix this",
+    "not_available": "GAEN API is not available for this phone",
     "learn_more": "Learn more",
     "your_device_is_not": "Your device is not scanning for exposures. Fix the issues below to enable Exposure Detection.",
     "your_device_is_scanning": "Your device is scanning for exposures and will continue to do so even if you close the app."
@@ -212,7 +214,7 @@
     "location_info_body": "Google requires that devices running Android 10 or below have location services enabled to use Exposure Detection. {{applicationName}} does NOT track or keep a record of your location.",
     "location_info_subheader": "{{applicationName}} does not track or keep a record of your location",
     "not_feeling_well": "Not feeling well?",
-    "proximity_tracing_info_body_1": "If smartphones with the app installed are turned on, have Bluetooth enabled, and are near each other for a period of time, an encounter is registered on your device.",
+    "proximity_tracing_info_body_1": "If smartphones with the app installed are turned on, have Bluetooth enabled, support the Google/Apple Exposure Notification API, and are near each other for a period of time, an encounter is registered on your device.",
     "proximity_tracing_info_body_2": "In the event of an encounter, your data, and information remain anonymous. The app doesn’t store any personal data. Only random IDs are exchanged. These are deleted within 14 days.",
     "proximity_tracing_info_subheader_1": "How does Exposure Notifications work?",
     "proximity_tracing_info_subheader_2": "Is my data secure?",

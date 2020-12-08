@@ -29,8 +29,9 @@ type Content = {
 interface ActivationStatusProps {
   headerText: string
   subheaderText?: string
-  isActive: boolean
+  isActive: string
   infoAction: () => void
+  notAvailableAction: () => void
   fixAction: () => void
   testID: string
 }
@@ -40,6 +41,7 @@ const ActivationStatusView: FunctionComponent<ActivationStatusProps> = ({
   subheaderText,
   isActive,
   infoAction,
+  notAvailableAction,
   fixAction,
   testID,
 }) => {
@@ -67,6 +69,16 @@ const ActivationStatusView: FunctionComponent<ActivationStatusProps> = ({
     chevron: Icons.ChevronRight,
   }
 
+  const notAvailableContent: Content = {
+    backgroundColor: Colors.accent.danger25,
+    borderColor: Colors.accent.danger100,
+    bodyText: t("common.not_available"),
+    statusIcon: Icons.XInCircle,
+    actionText: t("exposure_scanning_status.learn_more"),
+    onPress: notAvailableAction,
+    chevron: Icons.ChevronRight,
+  }
+
   const {
     backgroundColor,
     borderColor,
@@ -76,7 +88,8 @@ const ActivationStatusView: FunctionComponent<ActivationStatusProps> = ({
     onPress,
     accessibilityLabel,
     chevron,
-  } = isActive ? activeContent : inactiveContent
+  } = isActive === "Active" ? activeContent : 
+      isActive === "Not Available" ? notAvailableContent : inactiveContent;
 
   const outerContainerStyle = {
     ...style.outerContainer,

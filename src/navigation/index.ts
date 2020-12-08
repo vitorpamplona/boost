@@ -92,6 +92,15 @@ export const ExposureHistoryStackScreens: {
   MoreInfo: "MoreInfo",
 }
 
+export type VaccinationHistoryStackScreen =
+  | "VaccinationHistory"
+
+export const VaccinationHistoryStackScreens: {
+  [key in VaccinationHistoryStackScreen]: VaccinationHistoryStackScreen
+} = {
+  VaccinationHistory: "VaccinationHistory"
+}
+
 export type ExposureHistoryStackParamList = {
   ExposureDetail: {
     exposureDatum: ExposureDatum
@@ -256,12 +265,14 @@ export const Stacks: { [key in Stack]: Stack } = {
 export type TabRoute =
   | "Home"
   | "ExposureHistory"
+  | "VaccinationHistory"
   | "SymptomHistory"
   | "Settings"
 
 export const TabRoutes: { [key in TabRoute]: TabRoute } = {
   Home: "Home",
   ExposureHistory: "ExposureHistory",
+  VaccinationHistory: "VaccinationHistory",
   SymptomHistory: "SymptomHistory",
   Settings: "Settings",
 }

@@ -9,6 +9,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { SvgXml } from "react-native-svg"
 
 import ExposureHistoryStack from "./ExposureHistoryStack"
+import VaccinationHistoryStack from "./VaccinationHistoryStack"
 import HomeStack from "./HomeStack"
 import SymptomHistoryStack from "./SymptomHistoryStack"
 import SettingsStack from "./SettingsStack"
@@ -25,7 +26,7 @@ type Tab = {
 }
 
 const MainTabNavigator: FunctionComponent = () => {
-  const { displaySymptomHistory } = useConfigurationContext()
+  const { displaySymptomHistory, displayVaccinationHistory } = useConfigurationContext()
 
   const homeTab = {
     name: TabRoutes.Home,
@@ -34,6 +35,10 @@ const MainTabNavigator: FunctionComponent = () => {
   const exposureHistoryTab = {
     name: TabRoutes.ExposureHistory,
     component: ExposureHistoryStack,
+  }
+  const vaccinationHistoryTab = {
+    name: TabRoutes.VaccinationHistory,
+    component: VaccinationHistoryStack,
   }
   const symptomHistoryTab = {
     name: TabRoutes.SymptomHistory,
@@ -44,9 +49,10 @@ const MainTabNavigator: FunctionComponent = () => {
     component: SettingsStack,
   }
 
-  const tabs: Tab[] = displaySymptomHistory
-    ? [homeTab, exposureHistoryTab, symptomHistoryTab, settingsTab]
-    : [homeTab, exposureHistoryTab, settingsTab]
+  const tabs: Tab[] = [homeTab, exposureHistoryTab, 
+      displayVaccinationHistory ? vaccinationHistoryTab : null, 
+      displaySymptomHistory ? symptomHistoryTab : null, 
+      settingsTab].filter(n => n)
 
   const TabNavigator = createBottomTabNavigator()
 
@@ -113,6 +119,12 @@ const TabBar: FunctionComponent<TabBarProps> = ({
               return {
                 label: t("navigation.exposure_history"),
                 icon: TabBarIcons.Exposure,
+              }
+            }
+            case "VaccinationHistory": {
+              return {
+                label: t("navigation.vaccination_history"),
+                icon: TabBarIcons.Vaccination,
               }
             }
             case "SymptomHistory": {

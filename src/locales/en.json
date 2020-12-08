@@ -183,7 +183,8 @@
       "updating_vaccinations": "Sorry, we could not update your vaccination history"
     },
     "review_guidance_from_ha": "Review guidance from {{healthAuthorityName}}",
-    "protect_yourself_and_others": "Protect yourself and others in your community",
+    "protect_yourself_and_others": "Next steps to get your vaccine",
+    "eligibility_code": "Insert new Eligibility Code",
     "no_vaccination_reports": "No Vaccination Reports",
     "no_vaccination_reports_over_past": "You haven't received any vaccination elegibility codes",
     "subtitle": "Your vaccine certificates will show up here.",
@@ -205,14 +206,13 @@
       "wash_your_hands": "Wash your hands",
       "wear_a_mask": "Wear a mask"
     }, 
-    "health_guidelines": {
-      "six_feet_apart": "Stay 6 feet apart",
-      "stay_home": "Stay home when sick",
-      "title": "Health Guidelines",
-      "two_meters_apart": "Stay 2 meters apart",
-      "wash_your_hands": "Wash your hands often",
-      "wear_a_mask": "Wear a mask"
-    },
+    "no_vaccine_next_step": {
+      "receive_eligibility_confirmation": "Wait until you receive your eligibility codes",
+      "record_vaccination": "Record a Vaccination",
+      "learn_more_about_vaccines": "Learn More About COVID-19 Vaccines",
+      "find_provider": "Find a Vaccination Provider",
+      "learn_more": "Learn More About COVID-19 Vaccines"
+    }
   },
   "exposure_scanning_status": {
     "fix_this": "Fix this",

@@ -70,25 +70,25 @@ const HealthGuidelines: FunctionComponent = () => {
             />
           </TouchableOpacity>
           <Text style={style.listHeading}>
-            {t("vaccination_history.health_guidelines.title")}
+            {t("vaccination_history.no_vaccine_next_step.title")}
           </Text>
         </>
       )}
       <HealthGuidelineItem
         icon={Icons.WashHands}
-        text={t("vaccination_history.health_guidelines.wash_your_hands")}
+        text={t("vaccination_history.no_vaccine_next_step.receive_eligibility_confirmation")}
+      />
+      <HealthGuidelineItem
+        icon={Icons.WashHands}
+        text={t("vaccination_history.no_vaccine_next_step.record_vaccination")}
       />
       <HealthGuidelineItem
         icon={Icons.House}
-        text={t("vaccination_history.health_guidelines.stay_home")}
+        text={t("vaccination_history.no_vaccine_next_step.find_provider")}
       />
       <HealthGuidelineItem
         icon={Icons.Mask}
-        text={t("vaccination_history.health_guidelines.wear_a_mask")}
-      />
-      <HealthGuidelineItem
-        icon={Icons.StayApart}
-        text={stayApartRecommendationText}
+        text={t("vaccination_history.no_vaccine_next_step.learn_more_about_vaccines")}
       />
     </View>
   )
@@ -118,7 +118,6 @@ const style = StyleSheet.create({
     backgroundColor: Colors.primary.shade125,
     borderColor: Colors.primary.shade125,
     marginBottom: Spacing.small,
-    marginHorizontal: Spacing.medium,
   },
   headerText: {
     ...Typography.header.x20,
@@ -131,7 +130,6 @@ const style = StyleSheet.create({
   },
   card: {
     ...Affordances.floatingContainer,
-    marginHorizontal: Spacing.medium,
   },
   cardHeaderText: {
     ...Typography.header.x40,

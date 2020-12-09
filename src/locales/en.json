@@ -229,9 +229,8 @@
     }, 
     "eligibility_completed": {
       "complete_body": "Prepare for the vaccination procedure by allowing yourself a day off. Some symptoms are slighly uncomfortable.",
-      "complete_title": "You have an appointment!",
+      "complete_title": "You have an appointment!"
     }
-
   },
   "exposure_scanning_status": {
     "fix_this": "Fix this",

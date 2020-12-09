@@ -12,6 +12,7 @@ import { SvgXml } from "react-native-svg"
 
 import {
   AffectedUserFlowStackScreens,
+  VaccineEligibilityFlowStackScreens,
   HomeStackScreens,
   ModalStackScreens,
   useStatusBarEffect,
@@ -60,6 +61,7 @@ const Home: FunctionComponent = () => {
         <Text style={style.headerText}>{t("screen_titles.home")}</Text>
         <ExposureDetectionStatusCard />
         {displayCovidData && <CovidDataCard />}
+        {displayVaccinationHistory && <NewEligibilityCode />}
         <ReportTestResult />
         <ShareLink />
         {displaySelfAssessment && <SelfAssessment />}
@@ -118,6 +120,55 @@ const ReportTestResult: FunctionComponent = () => {
         {t("home.have_a_positive_test")}
       </Text>
       <Text style={style.sectionBodyText}>{t("home.if_you_have_a_code")}</Text>
+      <SectionButton text={t("home.submit_code")} />
+    </TouchableOpacity>
+  )
+}
+
+const NewEligibilityCode: FunctionComponent = () => {
+  const navigation = useNavigation()
+  const { t } = useTranslation()
+
+  const handleOnPressNewElegibilityCode = () => {
+    navigation.navigate(HomeStackScreens.VaccineEligibilityStack)
+  }
+
+  const handleOnPressMoreInfo = () => {
+    navigation.navigate(HomeStackScreens.VaccineEligibilityStack, {
+      screen: VaccineEligibilityFlowStackScreens.VaccineEligibilityCodeInfo,
+    })
+  }
+
+  return (
+    <TouchableOpacity
+      onPress={handleOnPressNewElegibilityCode}
+      style={style.floatingContainer}
+    >
+      <View style={style.cardTopContainer}>
+        <Image
+          source={Images.ProtectPrivacySubmitKeys}
+          style={style.image}
+          width={130}
+          height={IMAGE_HEIGHT}
+        />
+        <TouchableOpacity
+          onPress={handleOnPressMoreInfo}
+          style={style.moreInfoButton}
+          accessibilityRole="button"
+          accessibilityLabel={t("home.verification_code_card.more_info")}
+        >
+          <SvgXml
+            xml={Icons.QuestionMark}
+            fill={Colors.primary.shade125}
+            width={Iconography.xxxSmall}
+            height={Iconography.xxxSmall}
+          />
+        </TouchableOpacity>
+      </View>
+      <Text style={style.sectionHeaderText}>
+        {t("home.have_an_eligibility_code")}
+      </Text>
+      <Text style={style.sectionBodyText}>{t("home.if_you_have_an_eligibility_code")}</Text>
       <SectionButton text={t("home.submit_code")} />
     </TouchableOpacity>
   )

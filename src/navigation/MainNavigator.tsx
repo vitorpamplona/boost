@@ -27,6 +27,7 @@ import AgeVerification from "../modals/AgeVerification"
 import LanguageSelection from "../modals/LanguageSelection"
 import ProtectPrivacy from "../modals/ProtectPrivacy"
 import AffectedUserStack from "./AffectedUserFlowStack"
+import VaccineEligibilityStack from "./VaccineEligibilityFlowStack"
 import SelfAssessmentStack from "./SelfAssessmentStack"
 import ExposureDetectionStatusScreen from "../Home/ExposureDetectionStatus/Screen"
 import BluetoothInfo from "../Home/BluetoothInfo"
@@ -63,6 +64,11 @@ const linking: LinkingOptions = {
       AffectedUserStack: {
         screens: {
           AffectedUserCodeInput: "v",
+        },
+      },
+      VaccineEligibilityStack: {
+        screens: {
+          VaccineEligibilityCodeInput: "v",
         },
       },
     },
@@ -167,6 +173,11 @@ const MainNavigator: FunctionComponent = () => {
         <Stack.Screen
           name={Stacks.AffectedUserStack}
           component={AffectedUserStack}
+          options={{ gestureEnabled: false }}
+        />
+        <Stack.Screen
+          name={Stacks.VaccineEligibilityStack}
+          component={VaccineEligibilityStack}
           options={{ gestureEnabled: false }}
         />
         <Stack.Screen name={ModalStackScreens.HowItWorksReviewFromSettings}>

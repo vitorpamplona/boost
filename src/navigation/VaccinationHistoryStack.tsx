@@ -31,7 +31,6 @@ const VaccinationHistoryStack: FunctionComponent = () => {
         component={VaccinationHistoryScreen}
         options={{ headerShown: false }}
       />
-      
     </Stack.Navigator>
   )
 }

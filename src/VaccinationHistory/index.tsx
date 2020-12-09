@@ -7,9 +7,16 @@ import {
   View,
 } from "react-native"
 import { useTranslation } from "react-i18next"
+import { useNavigation } from "@react-navigation/native"
 
 import { Text, StatusBar } from "../components"
 import { useStatusBarEffect } from "../navigation"
+
+import {
+  VaccineEligibilityFlowStackScreens,
+  VaccinationHistoryStackScreen,
+  HomeStackScreens,
+} from "../navigation"
 
 import { Buttons, Colors, Spacing, Typography } from "../styles"
 import NoVaccines from "./NoVaccines"
@@ -18,19 +25,11 @@ export const DATE_FORMAT = "ddd MMM D, YYYY"
 
 const VaccinationHistory: FunctionComponent = () => {
   useStatusBarEffect("dark-content", Colors.background.primaryLight)
+  const navigation = useNavigation()
   const { t } = useTranslation()
-  //const { vaccinationHistory } = useVaccinationHistoryContext()
 
-  const handleOnPressShareHistory = async () => {
-    //const message = VaccinationHistoryFormatter.forSharing(t, vaccinationHistory)
-
-    try {
-      //await Share.share({
-      //  message,
-      //})
-    } catch (error) {
-      throw new Error(error)
-    }
+  const handleOnPressNewEligibilityCode = () => {
+    navigation.navigate(HomeStackScreens.VaccineEligibilityStack)
   }
 
   return (
@@ -52,11 +51,11 @@ const VaccinationHistory: FunctionComponent = () => {
       </ScrollView>
       <TouchableOpacity
         style={style.shareButton}
-        onPress={handleOnPressShareHistory}
+        onPress={handleOnPressNewEligibilityCode}
         testID="shareButton"
       >
         <Text style={style.shareButtonText}>
-          {t("vaccination_history.share_latest")}
+          {t("vaccination_history.eligibility_code")}
         </Text>
       </TouchableOpacity>
     </View>

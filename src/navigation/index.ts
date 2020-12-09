@@ -37,6 +37,7 @@ export const ActivationStackScreens: {
 
 export type HomeStackScreen =
   | "AffectedUserStack"
+  | "VaccineEligibilityStack"
   | "BluetoothInfo"
   | "CovidDataDashboard"
   | "ExposureDetectionStatus"
@@ -51,6 +52,7 @@ export const HomeStackScreens: {
   [key in HomeStackScreen]: HomeStackScreen
 } = {
   AffectedUserStack: "AffectedUserStack",
+  VaccineEligibilityStack: "VaccineEligibilityStack",
   BluetoothInfo: "BluetoothInfo",
   CovidDataDashboard: "CovidDataDashboard",
   ExposureDetectionStatus: "ExposureDetectionStatus",
@@ -59,7 +61,7 @@ export const HomeStackScreens: {
   LocationInfo: "LocationInfo",
   EnterSymptoms: "EnterSymptoms",
   EmergencyRecommendation: "EmergencyRecommendation",
-  CovidRecommendation: "CovidRecommendation",
+  CovidRecommendation: "CovidRecommendation"
 }
 
 export type HowItWorksStackScreen =
@@ -94,11 +96,14 @@ export const ExposureHistoryStackScreens: {
 
 export type VaccinationHistoryStackScreen =
   | "VaccinationHistory"
+  | "VaccineEligibilityFlow"
+  
 
 export const VaccinationHistoryStackScreens: {
   [key in VaccinationHistoryStackScreen]: VaccinationHistoryStackScreen
 } = {
-  VaccinationHistory: "VaccinationHistory"
+  VaccinationHistory: "VaccinationHistory",
+  VaccineEligibilityFlow: "VaccineEligibilityFlow"
 }
 
 export type ExposureHistoryStackParamList = {
@@ -195,6 +200,27 @@ export const AffectedUserFlowStackScreens: {
   AffectedUserComplete: "AffectedUserComplete",
 }
 
+export type VaccineEligibilityFlowStackScreen =
+  | "VaccineEligibilityStart"
+  | "VaccineEligibilityCodeInfo"
+  | "VaccineEligibilityCodeInput"
+  | "VaccineEligibilityPublishConsent"
+  | "VaccineEligibilityConfirmUpload"
+  | "VaccineEligibilityExportDone"
+  | "VaccineEligibilityComplete"
+
+export const VaccineEligibilityFlowStackScreens: {
+  [key in VaccineEligibilityFlowStackScreen]: VaccineEligibilityFlowStackScreen
+} = {
+  VaccineEligibilityStart: "VaccineEligibilityStart",
+  VaccineEligibilityCodeInfo: "VaccineEligibilityCodeInfo",
+  VaccineEligibilityCodeInput: "VaccineEligibilityCodeInput",
+  VaccineEligibilityPublishConsent: "VaccineEligibilityPublishConsent",
+  VaccineEligibilityConfirmUpload: "VaccineEligibilityConfirmUpload",
+  VaccineEligibilityExportDone: "VaccineEligibilityExportDone",
+  VaccineEligibilityComplete: "VaccineEligibilityComplete",
+}
+
 export type WelcomeStackScreen = "Welcome"
 
 export const WelcomeStackScreens: {
@@ -244,6 +270,7 @@ export const SelfAssessmentStackScreens: {
 export type Stack =
   | "Activation"
   | "AffectedUserStack"
+  | "VaccineEligibilityStack"
   | "Connect"
   | "ExposureHistoryFlow"
   | "HowItWorks"
@@ -254,6 +281,7 @@ export type Stack =
 export const Stacks: { [key in Stack]: Stack } = {
   Activation: "Activation",
   AffectedUserStack: "AffectedUserStack",
+  VaccineEligibilityStack: "VaccineEligibilityStack",
   Connect: "Connect",
   ExposureHistoryFlow: "ExposureHistoryFlow",
   HowItWorks: "HowItWorks",

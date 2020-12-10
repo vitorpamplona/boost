@@ -17,7 +17,7 @@ export interface VaccinationContextState {
   setVaccinationStageHasAppointment: () => Promise<void>
   setVaccinationStageHasDose1: () => Promise<void>
   setVaccinationStageHasDose2: () => Promise<void>
-  resetVaccination: () => void
+  resetVaccination:  () => Promise<void>
 }
 
 export const VaccinationContextProvider: FunctionComponent = ({
@@ -52,7 +52,7 @@ export const VaccinationContextProvider: FunctionComponent = ({
   const resetVaccination = async () => {
     await StorageUtils.removeVaccinationStage();
     let stage = await StorageUtils.getVaccinationStage();
-    setVaccinationStage("");
+    setVaccinationStage(stage);
   }
 
   return (

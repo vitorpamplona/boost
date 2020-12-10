@@ -17,6 +17,7 @@ import NewEligibilityCode from "./Cards/NewEligibilityCode"
 import {SimpleVerificationFlowButton, EscrowVerificationFlowButton} from "./Cards/ReportTestResult"
 import SelfAssessment from "./Cards/SelfAssessment"
 import SymptomReport from "./Cards/SymptomReport"
+import VaccineCard from "./Cards/VaccineCard"
 
 import { Outlines, Spacing, Colors, Typography } from "../styles"
 
@@ -42,6 +43,7 @@ const Home: FunctionComponent = () => {
       >
         <Text style={style.headerText}>{t("screen_titles.home")}</Text>
         <ExposureDetectionStatusCard />
+        <VaccineCard />
         {displayCovidData && <CovidDataCard />}
         {displayVaccinationHistory && <NewEligibilityCode />}
         {verificationStrategy === "Simple" ? (

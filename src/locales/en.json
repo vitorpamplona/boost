@@ -591,5 +591,8 @@
     "timeout_body": "It took to long to submit the verificaiton code. Please try again later.",
     "unknown_title": "Something Went Wrong",
     "unknown_body": "An unexpected error occured. Please try again."
+  },
+  "vaccine_card": {
+    "fda_approved": "This is an FDA Approved Vaccine"
   }
 }

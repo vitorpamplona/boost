@@ -13,6 +13,7 @@ import { applyModalHeader } from "./ModalHeader"
 import { useSymptomHistoryContext } from "../SymptomHistory/SymptomHistoryContext"
 import CovidRecommendation from "../CovidRecommendation"
 import CallEmergencyServices from "../CallEmergencyServices"
+import QRReaderScreen from "../VaccinationHistory/QRReaderScreen"
 
 const Stack = createStackNavigator()
 
@@ -34,6 +35,13 @@ const HomeStack: FunctionComponent = () => {
           ...TransitionPresets.ModalTransition,
           gestureEnabled: false,
           header: applyModalHeader(t("screen_titles.select_symptoms")),
+        }}
+      />
+      <Stack.Screen
+        name={HomeStackScreens.QRReaderScreen}
+        component={QRReaderScreen}
+        options={{
+          gestureEnabled: false
         }}
       />
       <Stack.Screen

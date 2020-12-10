@@ -594,5 +594,8 @@
   },
   "vaccine_card": {
     "fda_approved": "This is an FDA Approved Vaccine"
+  },
+  "appointment_card": {
+    "record_vaccination": "Record Vaccination"
   }
 }

@@ -162,6 +162,7 @@ android {
 
         //Fix problem in bt where .env.bt is not recognized
         resValue "string", "build_config_package", "org.pathcheck.covidsafepaths"
+        missingDimensionStrategy 'react-native-camera', 'general'
     }
     splits {
         abi {

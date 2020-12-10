@@ -12,6 +12,9 @@ import { useNavigation } from "@react-navigation/native"
 import { Text, StatusBar } from "../components"
 import { useStatusBarEffect } from "../navigation"
 
+import VaccineCard from "../Home/Cards/VaccineCard"
+import AppointmentCard from "../Home/Cards/AppointmentCard"
+
 import {
   VaccineEligibilityFlowStackScreens,
   VaccinationHistoryStackScreen,
@@ -47,7 +50,9 @@ const VaccinationHistory: FunctionComponent = () => {
           {t("vaccination_history.subtitle")}
         </Text>
         
+        <VaccineCard />
         <NoVaccines />   
+        
       </ScrollView>
       <TouchableOpacity
         style={style.shareButton}

@@ -32,6 +32,7 @@ import {
   Iconography,
 } from "../../styles"
 import { Icons } from "../../assets"
+import { useVaccinationContext } from "../../VaccinationContext"
 
 const defaultErrorMessage = ""
 
@@ -44,6 +45,7 @@ const CodeInputForm: FunctionComponent<CodeInputFormProps> = ({ linkCode }) => {
   const { t } = useTranslation()
   const navigation = useNavigation()
   const { trackEvent } = useProductAnalyticsContext()
+  const { setVaccinationStageHasAppointment } = useVaccinationContext()
 
   const [code, setCode] = useState(linkCode || "")
   const [isLoading, setIsLoading] = useState(false)
@@ -73,6 +75,7 @@ const CodeInputForm: FunctionComponent<CodeInputFormProps> = ({ linkCode }) => {
     trackEvent("product_analytics", "elegibility_code_submitted")
     try {
       // TODO: Do something with the code.
+      setVaccinationStageHasAppointment();
   
       navigation.navigate(VaccineEligibilityFlowStackScreens.VaccineEligibilityComplete)
 

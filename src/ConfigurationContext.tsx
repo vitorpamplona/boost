@@ -30,6 +30,7 @@ export interface Configuration {
   minimumPhoneDigits: number
   regionCodes: string[]
   stateAbbreviation: string | null
+  verificationStrategy: VerificationStrategy
 }
 
 const initialState: Configuration = {
@@ -58,6 +59,20 @@ const initialState: Configuration = {
   minimumPhoneDigits: 0,
   regionCodes: [],
   stateAbbreviation: "",
+  verificationStrategy: "Simple",
+}
+
+type VerificationStrategy = "Simple" | "Escrow"
+
+const toVerificationStrategy = (strategy: string): VerificationStrategy => {
+  switch (strategy) {
+    case "simple":
+      return "Simple"
+    case "escrow":
+      return "Escrow"
+    default:
+      return "Simple"
+  }
 }
 
 const ConfigurationContext = createContext<Configuration>(initialState)
@@ -88,7 +103,12 @@ const ConfigurationProvider: FunctionComponent = ({ children }) => {
   const displayVaccinationHistory = env.DISPLAY_VACCINATION_HISTORY === "true"
   const displaySelfAssessment = env.DISPLAY_SELF_ASSESSMENT === "true"
   const displayAgeVerification = env.DISPLAY_AGE_VERIFICATION === "true"
+
   const enableProductAnalytics = env.ENABLE_PRODUCT_ANALYTICS === "true"
+
+  const verificationStrategy: VerificationStrategy = toVerificationStrategy(
+    env.VERIFICATION_STRATEGY,
+  )
 
   const measurementSystem =
     env.MEASUREMENT_SYSTEM === "metric" ? "Metric" : "Imperial"
@@ -134,6 +154,7 @@ const ConfigurationProvider: FunctionComponent = ({ children }) => {
         minimumPhoneDigits,
         regionCodes,
         stateAbbreviation,
+        verificationStrategy,
       }}
     >
       {children}

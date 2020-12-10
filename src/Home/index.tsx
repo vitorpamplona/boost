@@ -14,13 +14,11 @@ import ShareLink from "./ShareLink"
 import CallEmergencyServices from "./CallEmergencyServices"
 
 import NewEligibilityCode from "./Cards/NewEligibilityCode"
-import ReportTestResult from "./Cards/ReportTestResult"
+import {SimpleVerificationFlowButton, EscrowVerificationFlowButton} from "./Cards/ReportTestResult"
 import SelfAssessment from "./Cards/SelfAssessment"
 import SymptomReport from "./Cards/SymptomReport"
 
 import { Outlines, Spacing, Colors, Typography } from "../styles"
-
-const IMAGE_HEIGHT = 170
 
 const Home: FunctionComponent = () => {
   useStatusBarEffect("dark-content", Colors.background.primaryLight)
@@ -32,6 +30,7 @@ const Home: FunctionComponent = () => {
     displaySymptomHistory,
     displayVaccinationHistory,
     emergencyPhoneNumber,
+    verificationStrategy,
   } = useConfigurationContext()
 
   return (
@@ -45,7 +44,11 @@ const Home: FunctionComponent = () => {
         <ExposureDetectionStatusCard />
         {displayCovidData && <CovidDataCard />}
         {displayVaccinationHistory && <NewEligibilityCode />}
-        <ReportTestResult />
+        {verificationStrategy === "Simple" ? (
+          <SimpleVerificationFlowButton />
+        ) : (
+          <EscrowVerificationFlowButton />
+        )}
         <ShareLink />
         {displaySelfAssessment && <SelfAssessment />}
         {displaySymptomHistory && <SymptomReport />}

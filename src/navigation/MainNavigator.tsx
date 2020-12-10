@@ -28,6 +28,7 @@ import LanguageSelection from "../modals/LanguageSelection"
 import ProtectPrivacy from "../modals/ProtectPrivacy"
 import AffectedUserStack from "./AffectedUserFlowStack"
 import VaccineEligibilityStack from "./VaccineEligibilityFlowStack"
+import EscrowVerificationStack from "./EscrowVerification"
 import SelfAssessmentStack from "./SelfAssessmentStack"
 import ExposureDetectionStatusScreen from "../Home/ExposureDetectionStatus/Screen"
 import BluetoothInfo from "../Home/BluetoothInfo"
@@ -178,6 +179,11 @@ const MainNavigator: FunctionComponent = () => {
         <Stack.Screen
           name={Stacks.VaccineEligibilityStack}
           component={VaccineEligibilityStack}
+          options={{ gestureEnabled: false }}
+        />
+        <Stack.Screen
+          name={Stacks.EscrowVerificationStack}
+          component={EscrowVerificationStack}
           options={{ gestureEnabled: false }}
         />
         <Stack.Screen name={ModalStackScreens.HowItWorksReviewFromSettings}>

@@ -40,6 +40,7 @@ export type HomeStackScreen =
   | "VaccineEligibilityStack"
   | "BluetoothInfo"
   | "CovidDataDashboard"
+  | "EscrowVerificationStack"
   | "ExposureDetectionStatus"
   | "ExposureNotificationsInfo"
   | "Home"
@@ -48,13 +49,12 @@ export type HomeStackScreen =
   | "EmergencyRecommendation"
   | "CovidRecommendation"
 
-export const HomeStackScreens: {
-  [key in HomeStackScreen]: HomeStackScreen
-} = {
+export const HomeStackScreens: Record<HomeStackScreen, HomeStackScreen> = {
   AffectedUserStack: "AffectedUserStack",
   VaccineEligibilityStack: "VaccineEligibilityStack",
   BluetoothInfo: "BluetoothInfo",
   CovidDataDashboard: "CovidDataDashboard",
+  EscrowVerificationStack: "EscrowVerificationStack",
   ExposureDetectionStatus: "ExposureDetectionStatus",
   ExposureNotificationsInfo: "ExposureNotificationsInfo",
   Home: "Home",
@@ -218,7 +218,25 @@ export const VaccineEligibilityFlowStackScreens: {
   VaccineEligibilityPublishConsent: "VaccineEligibilityPublishConsent",
   VaccineEligibilityConfirmUpload: "VaccineEligibilityConfirmUpload",
   VaccineEligibilityExportDone: "VaccineEligibilityExportDone",
-  VaccineEligibilityComplete: "VaccineEligibilityComplete",
+  VaccineEligibilityComplete: "VaccineEligibilityComplete"
+}
+
+export type EscrowVerificationRoute =
+  | "EscrowVerificationStart"
+  | "EscrowVerificationMoreInfo"
+  | "EscrowVerificationUserDetailsForm"
+  | "EscrowVerificationCodeForm"
+  | "EscrowVerificationComplete"
+
+export const EscrowVerificationRoutes: Record<
+  EscrowVerificationRoute,
+  EscrowVerificationRoute
+> = {
+  EscrowVerificationStart: "EscrowVerificationStart",
+  EscrowVerificationMoreInfo: "EscrowVerificationMoreInfo",
+  EscrowVerificationUserDetailsForm: "EscrowVerificationUserDetailsForm",
+  EscrowVerificationCodeForm: "EscrowVerificationCodeForm",
+  EscrowVerificationComplete: "EscrowVerificationComplete",
 }
 
 export type WelcomeStackScreen = "Welcome"
@@ -272,18 +290,20 @@ export type Stack =
   | "AffectedUserStack"
   | "VaccineEligibilityStack"
   | "Connect"
+  | "EscrowVerificationStack"
   | "ExposureHistoryFlow"
   | "HowItWorks"
   | "Settings"
   | "Home"
   | "SymptomHistory"
 
-export const Stacks: { [key in Stack]: Stack } = {
+export const Stacks: Record<Stack, Stack> = {
   Activation: "Activation",
   AffectedUserStack: "AffectedUserStack",
   VaccineEligibilityStack: "VaccineEligibilityStack",
   Connect: "Connect",
   ExposureHistoryFlow: "ExposureHistoryFlow",
+  EscrowVerificationStack: "EscrowVerificationStack",
   HowItWorks: "HowItWorks",
   Settings: "Settings",
   Home: "Home",

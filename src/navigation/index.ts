@@ -49,6 +49,7 @@ export type HomeStackScreen =
   | "EmergencyRecommendation"
   | "CovidRecommendation"
   | "QRReaderScreen"
+  | "QRViewerScreen"
 
 export const HomeStackScreens: Record<HomeStackScreen, HomeStackScreen> = {
   AffectedUserStack: "AffectedUserStack",
@@ -63,7 +64,8 @@ export const HomeStackScreens: Record<HomeStackScreen, HomeStackScreen> = {
   EnterSymptoms: "EnterSymptoms",
   EmergencyRecommendation: "EmergencyRecommendation",
   CovidRecommendation: "CovidRecommendation",
-  QRReaderScreen: "QRReaderScreen"
+  QRReaderScreen: "QRReaderScreen", 
+  QRViewerScreen: "QRViewerScreen"
 }
 
 export type HowItWorksStackScreen =
@@ -100,6 +102,7 @@ export type VaccinationHistoryStackScreen =
   | "VaccinationHistory"
   | "VaccineEligibilityFlow"
   | "QRReaderScreen"
+  | "QRViewerScreen"
   
 
 export const VaccinationHistoryStackScreens: {
@@ -107,7 +110,8 @@ export const VaccinationHistoryStackScreens: {
 } = {
   VaccinationHistory: "VaccinationHistory",
   VaccineEligibilityFlow: "VaccineEligibilityFlow",
-  QRReaderScreen: "QRReaderScreen"
+  QRReaderScreen: "QRReaderScreen",
+  QRViewerScreen: "QRViewerScreen"
 }
 
 export type ExposureHistoryStackParamList = {

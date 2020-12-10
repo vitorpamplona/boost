@@ -6,6 +6,7 @@ import { SvgXml } from "react-native-svg"
 
 import {
   ModalStackScreens,
+  VaccinationHistoryStackScreens,
   useStatusBarEffect,
 } from "../../navigation"
 
@@ -28,7 +29,7 @@ const VaccineCard: FunctionComponent = () => {
   const { t } = useTranslation()
 
   const handleOnPressShowQRCode = () => {
-    navigation.navigate(ModalStackScreens.SelfAssessmentFromHome)
+    navigation.navigate(VaccinationHistoryStackScreens.QRViewerScreen)
   }
 
   return (

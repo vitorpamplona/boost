@@ -14,6 +14,7 @@ import { useSymptomHistoryContext } from "../SymptomHistory/SymptomHistoryContex
 import CovidRecommendation from "../CovidRecommendation"
 import CallEmergencyServices from "../CallEmergencyServices"
 import QRReaderScreen from "../VaccinationHistory/QRReaderScreen"
+import QRViewerScreen from "../VaccinationHistory/QRViewerScreen"
 
 const Stack = createStackNavigator()
 
@@ -41,7 +42,16 @@ const HomeStack: FunctionComponent = () => {
         name={HomeStackScreens.QRReaderScreen}
         component={QRReaderScreen}
         options={{
-          gestureEnabled: false
+          gestureEnabled: false,
+          header: applyModalHeader(t("screen_titles.qr_reader")),
+        }}
+      />
+      <Stack.Screen
+        name={HomeStackScreens.QRViewerScreen}
+        component={QRViewerScreen}
+        options={{
+          gestureEnabled: false,
+          header: applyModalHeader(t("screen_titles.qr_viewer")),
         }}
       />
       <Stack.Screen

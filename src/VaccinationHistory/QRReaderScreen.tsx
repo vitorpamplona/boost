@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect } from "react"
+import React, { FunctionComponent } from "react"
 import {
   Dimensions, View, StyleSheet
 } from "react-native"
@@ -102,10 +102,6 @@ const QRReaderScreen: FunctionComponent = () => {
       showErrorMessage("QR Code Server Unavailable");
     }
   }
-
-  useEffect(() => {
-    navigation.setOptions({ headerTitle: 'Point Camera to the QR Code' })
-  });
 
   return (
     <View style={style.outerContainer}>

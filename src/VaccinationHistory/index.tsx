@@ -53,10 +53,10 @@ const VaccinationHistory: FunctionComponent = () => {
         </Text>
 
         {!vaccinationStage && <NoVaccines /> }
-        {vaccinationStage == "HAS_DOSE_1" && <VaccineCard dose={1} date="Dec 8, 2020" nextDose="Dec 22, 2020" location="Parship Health"> </VaccineCard>}
-        {vaccinationStage == "HAS_DOSE_2" && <VaccineCard dose={2} date="Dec 22, 2020" location="Parship Health"> </VaccineCard>}
-        {vaccinationStage == "HAS_APPOINTMENT" && <AppointmentCard dose="1st" date="Dec 8, 2020" location="Parship Health, Cambridge, MA." />}
-        {vaccinationStage == "HAS_DOSE_1" && <AppointmentCard dose="2nd" date="Dec 22, 2020" location="Parship Health, Cambridge, MA." />}
+        {vaccinationStage == "HAS_DOSE_1" && <VaccineCard dose={1} date="Dec 12, 2020" nextDose="Dec 26, 2020" location="Parship Health"> </VaccineCard>}
+        {vaccinationStage == "HAS_DOSE_2" && <VaccineCard dose={2} date="Dec 26, 2020" location="Parship Health"> </VaccineCard>}
+        {vaccinationStage == "HAS_APPOINTMENT" && <AppointmentCard dose="1st" date="Dec 12, 2020 at 11am" location="Parship Health, Cambridge, MA." />}
+        {vaccinationStage == "HAS_DOSE_1" && <AppointmentCard dose="2nd" date="Dec 26, 2020 at 14pm" location="Parship Health, Cambridge, MA." />}
       </ScrollView>
       {!vaccinationStage && 
         <TouchableOpacity

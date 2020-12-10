@@ -24,7 +24,7 @@ import {
 
 const IMAGE_HEIGHT = 170
 
-const VaccineCard: FunctionComponent = () => {
+const VaccineCard: FunctionComponent = (props) => {
   const navigation = useNavigation()
   const { t } = useTranslation()
 
@@ -47,10 +47,11 @@ const VaccineCard: FunctionComponent = () => {
         />
       </View>
       
-      <Text style={style.sectionSubHeaderText}>DOSE 1 OF 2</Text>
-      <Text style={style.sectionBodyText}>Vaccinated: <Text style={style.bold}>Dec 4, 2020</Text></Text>
-      <Text style={style.sectionBodyText}>Location: <Text style={style.bold}>Parship Health</Text></Text>
-      <Text style={style.sectionBodyText}>Next Dose on: <Text style={style.bold}>Dec 30, 2020</Text></Text>
+      <Text style={style.sectionSubHeaderText}>DOSE {props.dose} OF 2</Text>
+      <Text style={style.sectionBodyText}>Vaccinated: <Text style={style.bold}>{props.date}</Text></Text>
+      <Text style={style.sectionBodyText}>Location: <Text style={style.bold}>{props.location}</Text></Text>
+      {props.nextDose ? <Text style={style.sectionBodyText}>Next Dose on: <Text style={style.bold}>{props.nextDose}</Text></Text> 
+                      : <Text style={style.sectionBodyText}>All Doses <Text style={style.bold}>Completed!</Text></Text>}
       
       <View style={style.cardBottomContainer}>
         <SvgXml

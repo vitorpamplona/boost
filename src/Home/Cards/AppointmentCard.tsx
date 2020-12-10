@@ -24,7 +24,7 @@ import {
 
 const IMAGE_HEIGHT = 170
 
-const VaccineCard: FunctionComponent = () => {
+const VaccineCard: FunctionComponent = (props) => {
   const navigation = useNavigation()
   const { t } = useTranslation()
 
@@ -47,9 +47,9 @@ const VaccineCard: FunctionComponent = () => {
         />
       </View>
       
-      <Text style={style.sectionSubHeaderText}>CVS in Cambridge, MA</Text>
-      <Text style={style.sectionBodyText}>Spot: <Text style={style.bold}>Dec 30, 2020 at 13pm</Text></Text>
-      <Text style={style.sectionBodyText}>Vaccine: <Text style={style.bold}>Moderna, 1st dose</Text></Text>
+      <Text style={style.sectionSubHeaderText}>{props.location}</Text>
+      <Text style={style.sectionBodyText}>Spot: <Text style={style.bold}>{props.date}</Text></Text>
+      <Text style={style.sectionBodyText}>Vaccine: <Text style={style.bold}>Moderna, {props.dose} dose</Text></Text>
       <View style={style.cardBottomContainer}>
         <SvgXml
             xml={Icons.CheckmarkCircle}
@@ -58,7 +58,7 @@ const VaccineCard: FunctionComponent = () => {
             height={Iconography.xSmall}
         />
         <Text style={style.sectionBodyText}>   </Text>
-        <Text style={style.sectionBodyText}>CVS has confirmed your appointment</Text>
+        <Text style={style.sectionBodyText}>Appointment has been confirmed</Text>
       </View>
       <SectionButton text={t("appointment_card.record_vaccination")} />
     </TouchableOpacity>

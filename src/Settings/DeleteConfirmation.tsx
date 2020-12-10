@@ -17,6 +17,7 @@ import { Text } from "../components"
 import { useStatusBarEffect } from "../navigation"
 import * as Storage from "../utils/storage"
 import { useConfigurationContext } from "../ConfigurationContext"
+import { useVaccinationContext } from "../VaccinationContext"
 import { OperationResponse } from "../OperationResponse"
 import { useApplicationName } from "../Device/useApplicationInfo"
 
@@ -28,6 +29,7 @@ const DeleteConfirmation: FunctionComponent = () => {
   const { resetOnboarding } = useOnboardingContext()
   const { resetUserConsent } = useProductAnalyticsContext()
   const { deleteAllEntries } = useSymptomHistoryContext()
+  const { resetVaccinationStage } = useVaccinationContext()
   const { applicationName } = useApplicationName()
   const {
     displaySymptomHistory,
@@ -41,6 +43,7 @@ const DeleteConfirmation: FunctionComponent = () => {
   const deleteAllData = async (): Promise<OperationResponse> => {
     resetOnboarding()
     resetUserConsent()
+    resetVaccination()
     Storage.removeAll()
     const deleteAllEntriesResult = await deleteAllEntries()
     return deleteAllEntriesResult

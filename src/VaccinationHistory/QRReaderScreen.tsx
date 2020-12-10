@@ -15,6 +15,12 @@ import { Stacks } from "../navigation"
 import { Buttons, Colors, Spacing, Typography } from "../styles"
 
 import { useStatusBarEffect } from "../navigation"
+import {
+  VaccineEligibilityFlowStackScreens,
+  VaccinationHistoryStackScreens,
+  HomeStackScreens,
+} from "../navigation"
+
 import { Text } from "../components"
 
 const screenHeight = Math.round(Dimensions.get('window').height);
@@ -30,11 +36,11 @@ const QRReaderScreen: FunctionComponent = () => {
 
   const showErrorMessage = (message) => {
     navigation.setOptions({ headerTitle: message, 
-                            headerTitleStyle: {color: colors.error} });
+                            headerTitleStyle: {color: Colors.text.error} });
     // Start counting when the page is loaded
     const timeoutHandle = setTimeout(()=>{
       navigation.setOptions({ headerTitle: 'Point Camera to the QR Code', 
-                            headerTitleStyle: {color: colors.text} });
+                              headerTitleStyle: {color: Colors.header.text} });
     }, 5000);
   }
 
@@ -82,7 +88,7 @@ const QRReaderScreen: FunctionComponent = () => {
 
           // TODO: Save this record somehow. 
 
-          navigation.navigate(Stacks.Home)
+          navigation.goBack();
         } else {
           showErrorMessage("Invalid Certificate");
         }

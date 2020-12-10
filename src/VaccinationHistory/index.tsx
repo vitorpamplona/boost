@@ -51,6 +51,7 @@ const VaccinationHistory: FunctionComponent = () => {
         </Text>
         
         <VaccineCard />
+        <AppointmentCard />
         <NoVaccines />   
         
       </ScrollView>

@@ -40,7 +40,7 @@ const VaccineCard: FunctionComponent = () => {
       <View style={style.cardTopContainer}>
         <Text style={style.sectionHeaderText}>Vaccine Appointment</Text>
         <SvgXml
-            xml={Icons.Syringe}
+            xml={Icons.DoctorAppointment}
             fill={Colors.primary.shade125}
             width={Iconography.xSmall}
             height={Iconography.xSmall}

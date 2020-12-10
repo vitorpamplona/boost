@@ -48,6 +48,7 @@ import Share from "./share"
 import StateNoContact from "./stateNoContact"
 import StateUnknown from "./stateUnknown"
 import StayApart from "./stayApart"
+import Syringe from "./syringe"
 import Trash from "./trash"
 import Upload from "./upload"
 import WashHands from "./WashHands"
@@ -106,6 +107,7 @@ export const Icons = {
   StateNoContact,
   StateUnknown,
   StayApart,
+  Syringe,
   Trash,
   Upload,
   WashHands,

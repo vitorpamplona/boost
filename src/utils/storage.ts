@@ -1,10 +1,18 @@
 import AsyncStorage from "@react-native-community/async-storage"
 
-type StorageKey = "LANG_OVERRIDE" | "ONBOARDING_COMPLETE" | "ANALYTICS_CONSENT"
+type StorageKey = "LANG_OVERRIDE" | "ONBOARDING_COMPLETE" | "ANALYTICS_CONSENT" | "VACCINATION_STAGE"
 
 const LANG_OVERRIDE: StorageKey = "LANG_OVERRIDE"
 const ONBOARDING_COMPLETE: StorageKey = "ONBOARDING_COMPLETE"
 const ANALYTICS_CONSENT: StorageKey = "ANALYTICS_CONSENT"
+const VACCINATION_STAGE: StorageKey = "VACCINATION_STAGE"
+
+type VaccinationStage = "HAS_APPOINTMENT" | "HAS_DOSE_1" | "HAS_DOSE_2"
+
+const VACCINATION_STAGE_HAS_APPOINTMENT: VaccinationStage = "HAS_APPOINTMENT"
+const VACCINATION_STAGE_HAS_DOSE_1: VaccinationStage = "HAS_DOSE_1"
+const VACCINATION_STAGE_HAS_DOSE_2: VaccinationStage = "HAS_DOSE_2"
+
 
 async function getStoreData(key: StorageKey): Promise<string | null> {
   try {
@@ -35,6 +43,7 @@ export const removeAll = async (): Promise<void> => {
   removeUserLocaleOverride()
   removeIsOnboardingComplete()
   removeAnalyticsConsent()
+  removeVaccinationStage()
 }
 
 // Language Override
@@ -62,6 +71,27 @@ export async function setIsOnboardingComplete(): Promise<void> {
 
 export async function removeIsOnboardingComplete(): Promise<void> {
   return removeStoreData(ONBOARDING_COMPLETE)
+}
+
+// Vaccination Stages
+export async function getVaccinationStage(): Promise<boolean> {
+  return await getStoreData(VACCINATION_STAGE)
+}
+
+export async function setVaccinationStageHasAppointment(): Promise<void> {
+  return await setStoreData(VACCINATION_STAGE, VACCINATION_STAGE_HAS_APPOINTMENT)
+}
+
+export async function setVaccinationStageHasDose1(): Promise<void> {
+  return await setStoreData(VACCINATION_STAGE, VACCINATION_STAGE_HAS_DOSE_1)
+}
+
+export async function setVaccinationStageHasDose2(): Promise<void> {
+  return await setStoreData(VACCINATION_STAGE, VACCINATION_STAGE_HAS_DOSE_2)
+}
+
+export async function removeVaccinationStage(): Promise<void> {
+  return await removeStoreData(VACCINATION_STAGE)
 }
 
 // Consented to Product Analytics

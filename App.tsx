@@ -22,6 +22,7 @@ import {
 } from "./src/ProductAnalytics/Context"
 import { SymptomHistoryProvider } from "./src/SymptomHistory/SymptomHistoryContext"
 import { CovidDataContextProvider } from "./src/CovidData/Context"
+import { VaccinationContextProvider } from "./src/VaccinationContext"
 
 Logger.start()
 
@@ -96,8 +97,10 @@ const App: FunctionComponent = () => {
                   <PermissionsProvider>
                     <SymptomHistoryProvider>
                       <CovidDataContextProvider>
-                        <MainNavigator />
-                        <FlashMessage />
+                        <VaccinationContextProvider>
+                          <MainNavigator />
+                          <FlashMessage />
+                        </VaccinationContextProvider>
                       </CovidDataContextProvider>
                     </SymptomHistoryProvider>
                   </PermissionsProvider>

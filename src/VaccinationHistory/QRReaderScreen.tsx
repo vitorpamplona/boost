@@ -20,6 +20,7 @@ import {
   VaccinationHistoryStackScreens,
   HomeStackScreens,
 } from "../navigation"
+import { useVaccinationContext } from "../VaccinationContext"
 
 import { Text } from "../components"
 
@@ -29,6 +30,7 @@ const QRReaderScreen: FunctionComponent = () => {
   useStatusBarEffect("dark-content", Colors.background.primaryLight)
   const { t } = useTranslation()
   const navigation = useNavigation()
+  const { vaccinationStage, setVaccinationStageHasDose1, setVaccinationStageHasDose2 } = useVaccinationContext()
   
   const myDecode = (uriComponent) => {
     return uriComponent ? decodeURIComponent(uriComponent).replace(/\+/g, ' ') : undefined;
@@ -87,6 +89,10 @@ const QRReaderScreen: FunctionComponent = () => {
                     verified: validSignature2 ? "Valid" : "Not Valid" };
 
           // TODO: Save this record somehow. 
+          if (vaccinationStage === "HAS_DOSE_1")
+            setVaccinationStageHasDose2();
+          else
+            setVaccinationStageHasDose1();
 
           navigation.goBack();
         } else {

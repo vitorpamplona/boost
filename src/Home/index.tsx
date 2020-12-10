@@ -6,6 +6,7 @@ import { SvgXml } from "react-native-svg"
 
 import { useStatusBarEffect } from "../navigation"
 import { useConfigurationContext } from "../ConfigurationContext"
+import { useVaccinationContext } from "../VaccinationContext"
 import { StatusBar, Text } from "../components"
 
 import CovidDataCard from "../CovidData/Card"
@@ -34,6 +35,9 @@ const Home: FunctionComponent = () => {
     emergencyPhoneNumber,
     verificationStrategy,
   } = useConfigurationContext()
+  const {
+    vaccinationStage,
+  } = useVaccinationContext()
 
   return (
     <>
@@ -42,13 +46,15 @@ const Home: FunctionComponent = () => {
         style={style.container}
         contentContainerStyle={style.contentContainer}
       >
-        <Text style={style.headerText}>{t("screen_titles.home")}</Text>
+        <Text style={style.headerText}>{vaccinationStage}{t("screen_titles.home")}</Text>
         <ExposureDetectionStatusCard />
-        <VaccineCard />
-        <AppointmentCard />
-        
+        {displayVaccinationHistory && vaccinationStage == "HAS_DOSE_1" && <VaccineCard dose={1} date="Dec 8, 2020" nextDose="Dec 22, 2020" location="Parship Health"> </VaccineCard>}
+        {displayVaccinationHistory && vaccinationStage == "HAS_DOSE_2" && <VaccineCard dose={2} date="Dec 22, 2020" location="Parship Health"> </VaccineCard>}
+        {displayVaccinationHistory && vaccinationStage == "HAS_APPOINTMENT" && <AppointmentCard dose="1st" date="Dec 8, 2020" location="Parship Health, Cambridge, MA." />}
+        {displayVaccinationHistory && vaccinationStage == "HAS_DOSE_1" && <AppointmentCard dose="2nd" date="Dec 22, 2020" location="Parship Health, Cambridge, MA." />}
+
         {displayCovidData && <CovidDataCard />}
-        {displayVaccinationHistory && <NewEligibilityCode />}
+        {displayVaccinationHistory && !vaccinationStage && <NewEligibilityCode />}
         {verificationStrategy === "Simple" ? (
           <SimpleVerificationFlowButton />
         ) : (

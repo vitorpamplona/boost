@@ -46,7 +46,7 @@ const Home: FunctionComponent = () => {
         style={style.container}
         contentContainerStyle={style.contentContainer}
       >
-        <Text style={style.headerText}>{vaccinationStage}{t("screen_titles.home")}</Text>
+        <Text style={style.headerText}>{t("screen_titles.home")}</Text>
         <ExposureDetectionStatusCard />
         {displayVaccinationHistory && vaccinationStage == "HAS_DOSE_1" && <VaccineCard dose={1} date="Dec 8, 2020" nextDose="Dec 22, 2020" location="Parship Health"> </VaccineCard>}
         {displayVaccinationHistory && vaccinationStage == "HAS_DOSE_2" && <VaccineCard dose={2} date="Dec 22, 2020" location="Parship Health"> </VaccineCard>}

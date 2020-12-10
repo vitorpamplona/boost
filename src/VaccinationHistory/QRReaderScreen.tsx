@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react"
+import React, { FunctionComponent, useEffect } from "react"
 import {
   Dimensions, View, StyleSheet
 } from "react-native"
@@ -8,6 +8,8 @@ import { SvgXml } from "react-native-svg"
 import { StatusBar } from "../components"
 
 import QRCodeScanner from 'react-native-qrcode-scanner';
+import RNSimpleCrypto from "react-native-simple-crypto";
+
 import { Stacks } from "../navigation"
 
 import { Buttons, Colors, Spacing, Typography } from "../styles"
@@ -22,9 +24,82 @@ const QRReaderScreen: FunctionComponent = () => {
   const { t } = useTranslation()
   const navigation = useNavigation()
   
-  const onVaccineRead = () => {
-    navigation.navigate(Stacks.Home)
+  const myDecode = (uriComponent) => {
+    return uriComponent ? decodeURIComponent(uriComponent).replace(/\+/g, ' ') : undefined;
   }
+
+  const showErrorMessage = (message) => {
+    navigation.setOptions({ headerTitle: message, 
+                            headerTitleStyle: {color: colors.error} });
+    // Start counting when the page is loaded
+    const timeoutHandle = setTimeout(()=>{
+      navigation.setOptions({ headerTitle: 'Point Camera to the QR Code', 
+                            headerTitleStyle: {color: colors.text} });
+    }, 5000);
+  }
+
+  const onVaccineRead = async (e) => {
+    if (!e.data.startsWith("healthpass:")) {
+      showErrorMessage("Not a Health Passport");
+      return;
+    }
+
+    const queryString = require('query-string');
+
+    let [verification, message] = e.data.substring("healthpass:".length).split("?");
+    let [signatureFormat, pub_key_url] = verification.split("@");
+    let [hashType, signature] = signatureFormat.split("\\");
+    const params = queryString.parse(message, {decode:false});
+    
+    try {
+      let pub_key_response = await fetch("https://"+pub_key_url);
+      let pub_key = await pub_key_response.text();
+
+      try {
+        const signedCert = decodeURIComponent(signature).replace(/\n/g, '');
+        const validSignature2 = await RNSimpleCrypto.RSA.verify(
+          signedCert,
+          message,
+          pub_key,
+          hashType
+        );
+        
+        if (validSignature2) {
+          const vaccine = { type: "vaccine",
+                    date: params.date, 
+                    name: myDecode(params.name), 
+                    manufacturer: myDecode(params.manuf), 
+                    lot: myDecode(params.lot),
+                    route: myDecode(params.route),
+                    site: myDecode(params.site),
+                    dose: myDecode(params.dose),
+                    vaccinee: myDecode(params.vaccinee), 
+                    vaccinator: myDecode(params.vaccinator),
+                    vaccinator_pub_key: params.vaccinator_pub_key,
+                    signature: signedCert, 
+                    scanDate: new Date().toJSON(),
+                    verified: validSignature2 ? "Valid" : "Not Valid" };
+
+          // TODO: Save this record somehow. 
+
+          navigation.navigate(Stacks.Home)
+        } else {
+          showErrorMessage("Invalid Certificate");
+        }
+      } catch (error) {
+        console.error(error);
+        showErrorMessage("Could not load: " + error);
+      }
+    } catch (error) {
+      console.log(error);
+      console.error(error);
+      showErrorMessage("QR Code Server Unavailable");
+    }
+  }
+
+  useEffect(() => {
+    navigation.setOptions({ headerTitle: 'Point Camera to the QR Code' })
+  });
 
   return (
     <View style={style.outerContainer}>

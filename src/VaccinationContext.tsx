@@ -13,7 +13,6 @@ export const VaccinationContext = createContext<
 
 export interface VaccinationContextState {
   vaccinationStage: string
-  setVaccinationStageNoEligibility: () => Promise<void>
   setVaccinationStageHasAppointment: () => Promise<void>
   setVaccinationStageHasDose1: () => Promise<void>
   setVaccinationStageHasDose2: () => Promise<void>
@@ -25,11 +24,6 @@ export const VaccinationContextProvider: FunctionComponent = ({
 }) => {
   const [vaccinationStage, setVaccinationStage] = useState<string>()
 
-  const setVaccinationStageNoEligibility = async () => {
-    await StorageUtils.setVaccinationStageNoEligibility();
-    let stage = await StorageUtils.getVaccinationStage();
-    setVaccinationStage(stage);
-  }
 
   const setVaccinationStageHasAppointment = async () => {
     await StorageUtils.setVaccinationStageHasAppointment();
@@ -59,7 +53,6 @@ export const VaccinationContextProvider: FunctionComponent = ({
     <VaccinationContext.Provider
       value={{
         vaccinationStage,
-        setVaccinationStageNoEligibility,
         setVaccinationStageHasAppointment,
         setVaccinationStageHasDose1,
         setVaccinationStageHasDose2,

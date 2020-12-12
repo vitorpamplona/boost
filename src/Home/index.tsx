@@ -36,7 +36,7 @@ const Home: FunctionComponent = () => {
     verificationStrategy,
   } = useConfigurationContext()
   const {
-    vaccinationStage,
+    vaccinationStage
   } = useVaccinationContext()
 
   return (

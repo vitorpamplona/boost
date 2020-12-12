@@ -29,7 +29,7 @@ const DeleteConfirmation: FunctionComponent = () => {
   const { resetOnboarding } = useOnboardingContext()
   const { resetUserConsent } = useProductAnalyticsContext()
   const { deleteAllEntries } = useSymptomHistoryContext()
-  const { resetVaccinationStage } = useVaccinationContext()
+  const { resetVaccination } = useVaccinationContext()
   const { applicationName } = useApplicationName()
   const {
     displaySymptomHistory,

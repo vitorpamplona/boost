@@ -22,7 +22,7 @@ import {
 } from "./src/ProductAnalytics/Context"
 import { SymptomHistoryProvider } from "./src/SymptomHistory/SymptomHistoryContext"
 import { CovidDataContextProvider } from "./src/CovidData/Context"
-import { VaccinationContextProvider } from "./src/VaccinationContext"
+import { VaccinationContextProvider, determineVaccinationStage } from "./src/VaccinationContext"
 
 Logger.start()
 

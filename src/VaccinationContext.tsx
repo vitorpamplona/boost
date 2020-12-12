@@ -7,6 +7,10 @@ import React, {
 
 import { StorageUtils } from "./utils"
 
+export const determineVaccinationStage = async (): Promise<string> => {
+  return await StorageUtils.getVaccinationStage();
+}
+
 export const VaccinationContext = createContext<
   VaccinationContextState | undefined
 >(undefined)
@@ -24,6 +28,10 @@ export const VaccinationContextProvider: FunctionComponent = ({
 }) => {
   const [vaccinationStage, setVaccinationStage] = useState<string>()
 
+  determineVaccinationStage()
+  .then((result) => {
+    setVaccinationStage(result)
+  })
 
   const setVaccinationStageHasAppointment = async () => {
     await StorageUtils.setVaccinationStageHasAppointment();

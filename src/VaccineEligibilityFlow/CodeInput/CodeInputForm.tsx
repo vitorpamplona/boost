@@ -45,7 +45,7 @@ const CodeInputForm: FunctionComponent<CodeInputFormProps> = ({ linkCode }) => {
   const { t } = useTranslation()
   const navigation = useNavigation()
   const { trackEvent } = useProductAnalyticsContext()
-  const { setVaccinationStageHasAppointment } = useVaccinationContext()
+  const { addAppointment } = useVaccinationContext()
 
   const [code, setCode] = useState(linkCode || "")
   const [isLoading, setIsLoading] = useState(false)
@@ -75,11 +75,18 @@ const CodeInputForm: FunctionComponent<CodeInputFormProps> = ({ linkCode }) => {
     trackEvent("product_analytics", "eligibility_code_submitted")
     try {
       // TODO: Do something with the code.
-      setVaccinationStageHasAppointment();
+      let appt = {
+          eligibilityCode: code, 
+          date: "Dec 12, 2020 at 11am", 
+          location: "CVS, Cambridge, MA", 
+          manufacturer: "Moderna", 
+          doseSequence: 1
+        }
+      addAppointment(appt);
   
       navigation.navigate(VaccineEligibilityFlowStackScreens.VaccineEligibilityComplete)
 
-      setIsLoading(false)
+      setIsLoading(false);
     } catch (e) {
       Alert.alert(t("common.something_went_wrong"), e.message)
       setIsLoading(false)

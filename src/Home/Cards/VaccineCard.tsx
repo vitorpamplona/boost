@@ -29,7 +29,8 @@ const VaccineCard: FunctionComponent = (props) => {
   const { t } = useTranslation()
 
   const handleOnPressShowQRCode = () => {
-    navigation.navigate(VaccinationHistoryStackScreens.QRViewerScreen)
+    console.log(props);
+    navigation.navigate(VaccinationHistoryStackScreens.QRViewerScreen, {qr_code:props.qr_code} )
   }
 
   return (
@@ -38,7 +39,7 @@ const VaccineCard: FunctionComponent = (props) => {
       style={style.floatingContainer}
     >
       <View style={style.cardTopContainer}>
-        <Text style={style.sectionHeaderText}>Moderna Vaccine</Text>
+        <Text style={style.sectionHeaderText}>{props.manufacturer} Vaccine</Text>
         <SvgXml
             xml={Icons.Syringe}
             fill={Colors.primary.shade125}
@@ -47,9 +48,9 @@ const VaccineCard: FunctionComponent = (props) => {
         />
       </View>
       
-      <Text style={style.sectionSubHeaderText}>DOSE {props.dose} OF 2</Text>
+      <Text style={style.sectionSubHeaderText}>DOSE {props.doseSequence} OF 2</Text>
       <Text style={style.sectionBodyText}>Vaccinated: <Text style={style.bold}>{props.date}</Text></Text>
-      <Text style={style.sectionBodyText}>Location: <Text style={style.bold}>{props.location}</Text></Text>
+      <Text style={style.sectionBodyText}>Location: <Text style={style.bold}>{props.vaccinator}</Text></Text>
       {props.nextDose ? <Text style={style.sectionBodyText}>Next Dose on: <Text style={style.bold}>{props.nextDose}</Text></Text> 
                       : <Text style={style.sectionBodyText}>All Doses <Text style={style.bold}>Completed!</Text></Text>}
       

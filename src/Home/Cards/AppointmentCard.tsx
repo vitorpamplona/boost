@@ -29,8 +29,10 @@ const VaccineCard: FunctionComponent = (props) => {
   const { t } = useTranslation()
 
   const handleOnPressShowQRCode = () => {
-    navigation.navigate(VaccinationHistoryStackScreens.QRReaderScreen)
+    navigation.navigate(VaccinationHistoryStackScreens.QRReaderScreen, {eligibilityCode:props.eligibilityCode})
   }
+
+  function nth(n){return n+["st","nd","rd"][((n+90)%100-10)%10-1]||"th"}
 
   return (
     <TouchableOpacity
@@ -48,8 +50,9 @@ const VaccineCard: FunctionComponent = (props) => {
       </View>
       
       <Text style={style.sectionSubHeaderText}>{props.location}</Text>
-      <Text style={style.sectionBodyText}>Spot: <Text style={style.bold}>{props.date}</Text></Text>
-      <Text style={style.sectionBodyText}>Vaccine: <Text style={style.bold}>Moderna, {props.dose} dose</Text></Text>
+      <Text style={style.sectionBodyText}>Date: <Text style={style.bold}>{props.date}</Text></Text>
+      <Text style={style.sectionBodyText}>Vaccine: <Text style={style.bold}>{props.manufacturer}, {nth(props.doseSequence)} dose</Text></Text>
+      
       <View style={style.cardBottomContainer}>
         <SvgXml
             xml={Icons.CheckmarkCircle}

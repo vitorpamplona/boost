@@ -36,7 +36,7 @@ const Home: FunctionComponent = () => {
     verificationStrategy,
   } = useConfigurationContext()
   const {
-    vaccinationStage
+    vaccines, appointments
   } = useVaccinationContext()
 
   return (
@@ -46,15 +46,31 @@ const Home: FunctionComponent = () => {
         style={style.container}
         contentContainerStyle={style.contentContainer}
       >
+
         <Text style={style.headerText}>{t("screen_titles.home")}</Text>
         <ExposureDetectionStatusCard />
-        {displayVaccinationHistory && vaccinationStage == "HAS_DOSE_1" && <VaccineCard dose={1} date="Dec 12, 2020" nextDose="Dec 26, 2020" location="Parship Health"> </VaccineCard>}
-        {displayVaccinationHistory && vaccinationStage == "HAS_DOSE_2" && <VaccineCard dose={2} date="Dec 26, 2020" location="Parship Health"> </VaccineCard>}
-        {displayVaccinationHistory && vaccinationStage == "HAS_APPOINTMENT" && <AppointmentCard dose="1st" date="Dec 12, 2020 at 11am" location="Parship Health, Cambridge, MA." />}
-        {displayVaccinationHistory && vaccinationStage == "HAS_DOSE_1" && <AppointmentCard dose="2nd" date="Dec 26, 2020 at 14pm" location="Parship Health, Cambridge, MA." />}
+        {vaccines.map((entry, i) => {
+          return <VaccineCard key={i} 
+              manufacturer={entry.manufacturer} 
+              doseSequence={entry.doseSequence} 
+              date={entry.date} 
+              vaccinator={entry.vaccinator} 
+              eligibilityCode={entry.eligibilityCode} 
+              qr_code={entry.qr_code}
+              nextDose={entry.nextDose} />
+        })}
+
+        {appointments.map((entry, i) => {
+          return <AppointmentCard key={i} 
+                  manufacturer={entry.manufacturer} 
+                  doseSequence={entry.doseSequence} 
+                  eligibilityCode={entry.eligibilityCode} 
+                  date={entry.date} 
+                  location={entry.location} />
+        })}
 
         {displayCovidData && <CovidDataCard />}
-        {displayVaccinationHistory && !vaccinationStage && <NewEligibilityCode />}
+        {displayVaccinationHistory && vaccines.length === 0 && appointments.length === 0 && <NewEligibilityCode />}
         {verificationStrategy === "Simple" ? (
           <SimpleVerificationFlowButton />
         ) : (

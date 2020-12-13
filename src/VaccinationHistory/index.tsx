@@ -31,11 +31,14 @@ const VaccinationHistory: FunctionComponent = () => {
   useStatusBarEffect("dark-content", Colors.background.primaryLight)
   const navigation = useNavigation()
   const { t } = useTranslation()
-  const { vaccinationStage } = useVaccinationContext()
+  const { appointments, vaccines } = useVaccinationContext()
 
   const handleOnPressNewEligibilityCode = () => {
     navigation.navigate(HomeStackScreens.VaccineEligibilityStack)
   }
+
+  console.log(vaccines);
+  console.log(appointments);
 
   return (
     <View style={style.outerContainer}>
@@ -51,14 +54,33 @@ const VaccinationHistory: FunctionComponent = () => {
         <Text style={style.subHeaderText}>
           {t("vaccination_history.subtitle")}
         </Text>
+        
+        {vaccines.length === 0 && appointments.length === 0 && <NoVaccines /> }
 
-        {!vaccinationStage && <NoVaccines /> }
-        {vaccinationStage == "HAS_DOSE_2" && <VaccineCard dose={2} date="Dec 26, 2020" location="Parship Health"> </VaccineCard>}
-        {(vaccinationStage == "HAS_DOSE_1" || vaccinationStage == "HAS_DOSE_2") && <VaccineCard dose={1} date="Dec 12, 2020" nextDose="Dec 26, 2020" location="Parship Health"> </VaccineCard>}
-        {vaccinationStage == "HAS_APPOINTMENT" && <AppointmentCard dose="1st" date="Dec 12, 2020 at 11am" location="Parship Health, Cambridge, MA." />}
-        {vaccinationStage == "HAS_DOSE_1" && <AppointmentCard dose="2nd" date="Dec 26, 2020 at 14pm" location="Parship Health, Cambridge, MA." />}
+        {vaccines.map((entry, i) => {
+          return <VaccineCard 
+                  key={i} 
+                  name={entry.name} 
+                  doseSequence={entry.doseSequence} 
+                  date={entry.date} 
+                  eligibilityCode={entry.eligibilityCode} 
+                  vaccinator={entry.vaccinator} 
+                  manufacturer={entry.manufacturer}
+                  qr_code={entry.qr_code}
+                  nextDose={entry.nextDose} />
+        })}
+
+        {appointments.map((entry, i) => {
+          return <AppointmentCard key={i} 
+                manufacturer={entry.manufacturer} 
+                doseSequence={entry.doseSequence} 
+                date={entry.date} 
+                eligibilityCode={entry.eligibilityCode} 
+                location={entry.location} />
+        })}
+
       </ScrollView>
-      {!vaccinationStage && 
+      {vaccines.length === 0 && appointments.length === 0 && 
         <TouchableOpacity
           style={style.shareButton}
           onPress={handleOnPressNewEligibilityCode}

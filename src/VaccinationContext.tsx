@@ -3,67 +3,111 @@ import React, {
   useState,
   useContext,
   FunctionComponent,
+  useEffect
 } from "react"
+import { Posix } from "../utils/dateTime"
 
 import { StorageUtils } from "./utils"
 
-export const determineVaccinationStage = async (): Promise<string> => {
-  return await StorageUtils.getVaccinationStage();
+export const determineVaccines = async (): Promise<string> => {
+  const vaccs = await StorageUtils.getVaccines();
+  console.log("DetermineVaccines", vaccs);
+  return vaccs;
+}
+
+export const determineAppointments = async (): Promise<string> => {
+  console.log("DetermineAppointments");
+  return await StorageUtils.getAppointments();
 }
 
 export const VaccinationContext = createContext<
   VaccinationContextState | undefined
 >(undefined)
 
+export interface VaccineItem {
+    eligibilityCode: string;
+    date: Posix; 
+    name: string; 
+    doseSequence: int;
+    nextDose: Posix;
+    manufacturer: string, 
+    route: string,
+    dose: string;  
+    lot: string, 
+    site: string, 
+    vacinee: string,
+    vaccinator: string,  
+    vaccinator_pub_key: string, 
+    signature: string, 
+    scanDate: string, 
+    verified: boolean,         
+    qr_code: string
+}
+
+export interface AppointmentItem {
+    eligibilityCode: string; date: Posix; location: string; name: string; dose: int; 
+}
+
 export interface VaccinationContextState {
-  vaccinationStage: string
-  setVaccinationStageHasAppointment: () => Promise<void>
-  setVaccinationStageHasDose1: () => Promise<void>
-  setVaccinationStageHasDose2: () => Promise<void>
-  resetVaccination:  () => Promise<void>
+  vaccines: Array<VaccineItem>
+  appointments: Array<AppointmentItem>
+  addVaccine: (VaccineItem) => Promise<void>
+  addAppointment: (AppointmentItem) => Promise<void>
+  resetVaccination: () => Promise<void>
 }
 
 export const VaccinationContextProvider: FunctionComponent = ({
   children
 }) => {
-  const [vaccinationStage, setVaccinationStage] = useState<string>()
+  const [appointments, setAppointments] = useState<Array>([]);
+  const [vaccines, setVaccines] = useState<Array>([]);
 
-  determineVaccinationStage()
-  .then((result) => {
-    setVaccinationStage(result)
-  })
+  console.log ("Loading Vaccination Provicer")
 
-  const setVaccinationStageHasAppointment = async () => {
-    await StorageUtils.setVaccinationStageHasAppointment();
-    let stage = await StorageUtils.getVaccinationStage();
-    setVaccinationStage(stage);
+  const fetchEntries = async () => {
+    determineVaccines()
+    .then((result) => {
+      setVaccines(result);
+    });
+    determineAppointments()
+    .then((result) => {
+      setAppointments(result);
+    });
   }
 
-  const setVaccinationStageHasDose1 = async () => {
-    await StorageUtils.setVaccinationStageHasDose1();
-    let stage = await StorageUtils.getVaccinationStage();
-    setVaccinationStage(stage);
+  const cleanupStaleData = async () => {
+
   }
 
-  const setVaccinationStageHasDose2 = async () => {
-    await StorageUtils.setVaccinationStageHasDose2();
-    let stage = await StorageUtils.getVaccinationStage();
-    setVaccinationStage(stage);
+  useEffect(() => {
+    cleanupStaleData()
+    fetchEntries()
+  }, [])
+
+  const addVaccine = async (vac: VaccineItem) => {
+    seq = vaccines.filter(entry => entry.manufacturer===vac.manufacturer).length;
+    vac.doseSequence = seq+1;
+    setVaccines(await StorageUtils.addVaccine(vac));
+    setAppointments(await StorageUtils.removeAppt(vac.eligibilityCode))
+  }
+
+  const addAppointment = async (appt: AppointmentItem) => {
+    setAppointments(await StorageUtils.addAppointment(appt));
   }
 
   const resetVaccination = async () => {
-    await StorageUtils.removeVaccinationStage();
-    let stage = await StorageUtils.getVaccinationStage();
-    setVaccinationStage(stage);
+    await StorageUtils.removeVaccines();
+    await StorageUtils.removeAppointments();
+    fetchEntries();
   }
 
   return (
     <VaccinationContext.Provider
       value={{
-        vaccinationStage,
-        setVaccinationStageHasAppointment,
-        setVaccinationStageHasDose1,
-        setVaccinationStageHasDose2,
+        vaccines, 
+        appointments, 
+        addVaccine,
+        addAppointment,
         resetVaccination,
       }}
     >

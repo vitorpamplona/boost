@@ -1,18 +1,12 @@
 import AsyncStorage from "@react-native-community/async-storage"
 
-type StorageKey = "LANG_OVERRIDE" | "ONBOARDING_COMPLETE" | "ANALYTICS_CONSENT" | "VACCINATION_STAGE"
+type StorageKey = "LANG_OVERRIDE" | "ONBOARDING_COMPLETE" | "ANALYTICS_CONSENT" | "VACCINES" | "APPOINTMENTS"
 
 const LANG_OVERRIDE: StorageKey = "LANG_OVERRIDE"
 const ONBOARDING_COMPLETE: StorageKey = "ONBOARDING_COMPLETE"
 const ANALYTICS_CONSENT: StorageKey = "ANALYTICS_CONSENT"
-const VACCINATION_STAGE: StorageKey = "VACCINATION_STAGE"
-
-type VaccinationStage = "HAS_APPOINTMENT" | "HAS_DOSE_1" | "HAS_DOSE_2"
-
-const VACCINATION_STAGE_HAS_APPOINTMENT: VaccinationStage = "HAS_APPOINTMENT"
-const VACCINATION_STAGE_HAS_DOSE_1: VaccinationStage = "HAS_DOSE_1"
-const VACCINATION_STAGE_HAS_DOSE_2: VaccinationStage = "HAS_DOSE_2"
-
+const VACCINES: StorageKey = "VACCINES"
+const APPOINTMENTS: StorageKey = "APPOINTMENTS"
 
 async function getStoreData(key: StorageKey): Promise<string | null> {
   try {
@@ -31,6 +25,24 @@ async function setStoreData(key: StorageKey, item: string): Promise<void> {
   }
 }
 
+async function getStoreJSON(key: StorageKey, nullValue): Promise<string | null> {
+  try {
+    item = await AsyncStorage.getItem(key);
+    return item ? JSON.parse(item) : nullValue
+  } catch (error) {
+    console.log(error.message)
+    return nullValue
+  }
+}
+
+async function setStoreJSON(key: StorageKey, item: string): Promise<void> {
+  try {
+    return await AsyncStorage.setItem(key, JSON.stringify(item))
+  } catch (error) {
+    console.log(error.message)
+  }
+}
+
 async function removeStoreData(key: StorageKey): Promise<void> {
   try {
     return await AsyncStorage.removeItem(key)
@@ -43,7 +55,8 @@ export const removeAll = async (): Promise<void> => {
   removeUserLocaleOverride()
   removeIsOnboardingComplete()
   removeAnalyticsConsent()
-  removeVaccinationStage()
+  removeVaccines()
+  removeAppointments()
 }
 
 // Language Override
@@ -73,25 +86,42 @@ export async function removeIsOnboardingComplete(): Promise<void> {
   return removeStoreData(ONBOARDING_COMPLETE)
 }
 
-// Vaccination Stages
-export async function getVaccinationStage(): Promise<boolean> {
-  return await getStoreData(VACCINATION_STAGE)
+// Vaccinations 
+export async function getVaccines(): Promise<Array> {
+  return await getStoreJSON(VACCINES, []);
 }
 
-export async function setVaccinationStageHasAppointment(): Promise<void> {
-  return await setStoreData(VACCINATION_STAGE, VACCINATION_STAGE_HAS_APPOINTMENT)
+export async function getAppointments(): Promise<Array> {
+  return await getStoreJSON(APPOINTMENTS, []);
 }
 
-export async function setVaccinationStageHasDose1(): Promise<void> {
-  return await setStoreData(VACCINATION_STAGE, VACCINATION_STAGE_HAS_DOSE_1)
+export async function addVaccine(vac): Promise<Array> {
+  let vacs = await getVaccines();
+  vacs.push(vac);
+  await setStoreJSON(VACCINES, vacs);
+  return await getVaccines();
 }
 
-export async function setVaccinationStageHasDose2(): Promise<void> {
-  return await setStoreData(VACCINATION_STAGE, VACCINATION_STAGE_HAS_DOSE_2)
+export async function addAppointment(appt): Promise<Array> {
+  let appts = await getAppointments();
+  appts.push(appt);
+  await setStoreJSON(APPOINTMENTS, appts);
+  return await getAppointments();
 }
 
-export async function removeVaccinationStage(): Promise<void> {
-  return await removeStoreData(VACCINATION_STAGE)
+export async function removeAppt(eligibilityCode): Promise<void> {
+  let appts = await getAppointments()
+  noAppt = appts.filter(entry => entry.eligibilityCode!==eligibilityCode);
+  await setStoreJSON(APPOINTMENTS, noAppt);
+  return await getAppointments();
+}
+
+export async function removeVaccines(): Promise<void> {
+  return await removeStoreData(VACCINES)
+}
+
+export async function removeAppointments(): Promise<void> {
+  return await removeStoreData(APPOINTMENTS)
 }
 
 // Consented to Product Analytics

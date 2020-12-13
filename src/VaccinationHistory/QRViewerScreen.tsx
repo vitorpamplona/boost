@@ -18,13 +18,8 @@ import { useStatusBarEffect } from "../navigation"
 import { Text } from "../components"
 
 const size = Math.min(Math.round(Dimensions.get('window').height), Math.round(Dimensions.get('window').width)) - 40;
-const demoValue = "healthpass:SHA256\c6u5mY6KTFDc8apt+7GUHvYOKgsn/4dvT8ME3quubFEgUvzkwLyjktM0I9ec\n" +
-                  "YlIwkhP9D8UzOXlGdoN4G7L3lD9i1Z/ewOUR0+mhtcJfg2E7tvnJs7LlyB4q\n" +
-                  "LPGmJZZamfj1XD0PPbbFuCSc8oNiAZJyk5WgmfSpT1rI1cssVuI=\n" +
-                  "@healthpassport-api.vitorpamplona.com/u/7/pub_key?date=2020-12-10&vaccinee=Vitor+Pamplona&vaccinator=CVS+Minute+Clinics+Station&manuf=Moderna+Vaccine&name=COVID19&route=Intramuscular&lot=&dose=1"
-  
 
-const QRViewerScreen: FunctionComponent = () => {
+const QRViewerScreen: FunctionComponent = (props) => {
   useStatusBarEffect("dark-content", Colors.background.primaryLight)
   const { t } = useTranslation()
   const navigation = useNavigation()
@@ -45,7 +40,7 @@ const QRViewerScreen: FunctionComponent = () => {
       <QRCode
         size={size}
         color={Colors.primary.shade100}
-        value={demoValue}
+        value={props.route.params.qr_code}
         logo={logoFromFile}
       />
     </View>

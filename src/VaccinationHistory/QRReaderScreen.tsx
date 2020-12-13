@@ -26,11 +26,11 @@ import { Text } from "../components"
 
 const screenHeight = Math.round(Dimensions.get('window').height);
 
-const QRReaderScreen: FunctionComponent = () => {
+const QRReaderScreen: FunctionComponent = (props) => {
   useStatusBarEffect("dark-content", Colors.background.primaryLight)
   const { t } = useTranslation()
   const navigation = useNavigation()
-  const { vaccinationStage, setVaccinationStageHasDose1, setVaccinationStageHasDose2 } = useVaccinationContext()
+  const { addVaccine } = useVaccinationContext()
   
   const myDecode = (uriComponent) => {
     return uriComponent ? decodeURIComponent(uriComponent).replace(/\+/g, ' ') : undefined;
@@ -73,7 +73,8 @@ const QRReaderScreen: FunctionComponent = () => {
         );
         
         if (validSignature2) {
-          const vaccine = { type: "vaccine",
+          const vaccine = { 
+                    eligibilityCode: props.route.params.eligibilityCode,
                     date: params.date, 
                     name: myDecode(params.name), 
                     manufacturer: myDecode(params.manuf), 
@@ -86,13 +87,10 @@ const QRReaderScreen: FunctionComponent = () => {
                     vaccinator_pub_key: params.vaccinator_pub_key,
                     signature: signedCert, 
                     scanDate: new Date().toJSON(),
-                    verified: validSignature2 ? "Valid" : "Not Valid" };
+                    verified: validSignature2 ? "Valid" : "Not Valid", 
+                    qr_code: e.data };
 
-          // TODO: Save this record somehow. 
-          if (vaccinationStage === "HAS_DOSE_1")
-            setVaccinationStageHasDose2();
-          else
-            setVaccinationStageHasDose1();
+          addVaccine(vaccine);
 
           navigation.goBack();
         } else {

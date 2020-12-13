@@ -49,7 +49,7 @@ const Home: FunctionComponent = () => {
 
         <Text style={style.headerText}>{t("screen_titles.home")}</Text>
         <ExposureDetectionStatusCard />
-        {vaccines.map((entry, i) => {
+        {vaccines.sort((a, b) => b.scanDate - a.scanDate).map((entry, i) => {
           return <VaccineCard key={i} 
               name={entry.name}
               manufacturer={entry.manufacturer} 

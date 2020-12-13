@@ -57,7 +57,7 @@ const VaccinationHistory: FunctionComponent = () => {
         
         {vaccines.length === 0 && appointments.length === 0 && <NoVaccines /> }
 
-        {vaccines.map((entry, i) => {
+        {vaccines.sort((a, b) => b.scanDate - a.scanDate).map((entry, i) => {
           return <VaccineCard 
                   key={i} 
                   name={entry.name} 

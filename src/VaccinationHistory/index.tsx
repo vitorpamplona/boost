@@ -67,7 +67,8 @@ const VaccinationHistory: FunctionComponent = () => {
                   vaccinator={entry.vaccinator} 
                   manufacturer={entry.manufacturer}
                   qr_code={entry.qr_code}
-                  nextDose={entry.nextDose} />
+                  nextDose={entry.nextDose}
+                  requiredDoses={entry.requiredDoses} />
         })}
 
         {appointments.map((entry, i) => {

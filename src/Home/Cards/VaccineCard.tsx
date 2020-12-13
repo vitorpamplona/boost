@@ -11,6 +11,7 @@ import {
 } from "../../navigation"
 
 import SectionButton from "./../SectionButton"
+import { posixToDayjs } from "../../utils/dateTime"
 
 import { Icons, Images } from "../../assets"
 import {
@@ -33,13 +34,19 @@ const VaccineCard: FunctionComponent = (props) => {
     navigation.navigate(VaccinationHistoryStackScreens.QRViewerScreen, {qr_code:props.qr_code} )
   }
 
+  const dayJsDate = posixToDayjs(props.date);
+  const dateText = dayJsDate?.local().format("MMM D, YYYY");
+
+  const dayJsDateNext = posixToDayjs(props.nextDose);
+  const dateNextText = dayJsDateNext?.local().format("MMM D, YYYY");
+
   return (
     <TouchableOpacity
       onPress={handleOnPressShowQRCode}
       style={style.floatingContainer}
     >
       <View style={style.cardTopContainer}>
-        <Text style={style.sectionHeaderText}>{props.manufacturer} Vaccine</Text>
+        <Text style={style.sectionHeaderText}>{props.manufacturer} {props.name}</Text>
         <SvgXml
             xml={Icons.Syringe}
             fill={Colors.primary.shade125}
@@ -48,10 +55,10 @@ const VaccineCard: FunctionComponent = (props) => {
         />
       </View>
       
-      <Text style={style.sectionSubHeaderText}>DOSE {props.doseSequence} OF 2</Text>
-      <Text style={style.sectionBodyText}>Vaccinated: <Text style={style.bold}>{props.date}</Text></Text>
+      <Text style={style.sectionSubHeaderText}>DOSE {props.doseSequence} OF {props.requiredDoses}</Text>
+      <Text style={style.sectionBodyText}>Vaccinated: <Text style={style.bold}>{dateText}</Text></Text>
       <Text style={style.sectionBodyText}>Location: <Text style={style.bold}>{props.vaccinator}</Text></Text>
-      {props.nextDose ? <Text style={style.sectionBodyText}>Next Dose on: <Text style={style.bold}>{props.nextDose}</Text></Text> 
+      {props.nextDose ? <Text style={style.sectionBodyText}>Next Dose on: <Text style={style.bold}>{dateNextText}</Text></Text> 
                       : <Text style={style.sectionBodyText}>All Doses <Text style={style.bold}>Completed!</Text></Text>}
       
       <View style={style.cardBottomContainer}>

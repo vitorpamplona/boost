@@ -71,22 +71,35 @@ const QRReaderScreen: FunctionComponent = (props) => {
           pub_key,
           hashType
         );
+
+        console.log(params.date);
         
+        const nextDoseInDays = myDecode(params.next_dose_in_days);
+        const vaccineDate = new Date(params.date);
+        const nextDoseDay = new Date(vaccineDate.getTime() + 86400000 * nextDoseInDays);
+
+        console.log(nextDoseInDays);
+        console.log(params.date);
+        console.log(nextDoseDay);
+
         if (validSignature2) {
           const vaccine = { 
                     eligibilityCode: props.route.params.eligibilityCode,
-                    date: params.date, 
+                    nextDose: nextDoseDay.getTime(),
+                    date: vaccineDate.getTime(), 
                     name: myDecode(params.name), 
                     manufacturer: myDecode(params.manuf), 
                     lot: myDecode(params.lot),
                     route: myDecode(params.route),
                     site: myDecode(params.site),
                     dose: myDecode(params.dose),
+                    requiredDoses: myDecode(params.required_doses),
+                    nextDoseInDays: myDecode(params.next_dose_in_days),
                     vaccinee: myDecode(params.vaccinee), 
                     vaccinator: myDecode(params.vaccinator),
                     vaccinator_pub_key: params.vaccinator_pub_key,
                     signature: signedCert, 
-                    scanDate: new Date().toJSON(),
+                    scanDate: new Date().getTime(),
                     verified: validSignature2 ? "Valid" : "Not Valid", 
                     qr_code: e.data };
 

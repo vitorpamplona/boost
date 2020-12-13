@@ -88,7 +88,20 @@ export const VaccinationContextProvider: FunctionComponent = ({
     seq = vaccines.filter(entry => entry.manufacturer===vac.manufacturer).length;
     vac.doseSequence = seq+1;
     setVaccines(await StorageUtils.addVaccine(vac));
+    // Delete current appointment
     setAppointments(await StorageUtils.removeAppt(vac.eligibilityCode))
+    
+    // Make a new Appointment for the next dose if needed. 
+    if (vac.doseSequence < vac.requiredDoses) {
+      let appt = {
+        eligibilityCode: vac.code, 
+        date: vac.nextDose, 
+        location: vac.vaccinator, 
+        manufacturer: vac.manufacturer, 
+        doseSequence: vac.doseSequence+1
+      }
+      setAppointments(await StorageUtils.addAppointment(appt));
+    }
   }
 
   const addAppointment = async (appt: AppointmentItem) => {

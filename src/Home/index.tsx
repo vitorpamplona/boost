@@ -51,13 +51,15 @@ const Home: FunctionComponent = () => {
         <ExposureDetectionStatusCard />
         {vaccines.map((entry, i) => {
           return <VaccineCard key={i} 
+              name={entry.name}
               manufacturer={entry.manufacturer} 
               doseSequence={entry.doseSequence} 
               date={entry.date} 
               vaccinator={entry.vaccinator} 
               eligibilityCode={entry.eligibilityCode} 
               qr_code={entry.qr_code}
-              nextDose={entry.nextDose} />
+              nextDose={entry.nextDose}
+              requiredDoses={entry.requiredDoses} />
         })}
 
         {appointments.map((entry, i) => {

@@ -11,6 +11,7 @@ import {
 } from "../../navigation"
 
 import SectionButton from "./../SectionButton"
+import { posixToDayjs } from "../../utils/dateTime"
 
 import { Icons, Images } from "../../assets"
 import {
@@ -34,6 +35,9 @@ const VaccineCard: FunctionComponent = (props) => {
 
   function nth(n){return n+["st","nd","rd"][((n+90)%100-10)%10-1]||"th"}
 
+  const dayJsDate = posixToDayjs(props.date);
+  const dateText = dayJsDate?.local().format("MMM D, YYYY h:mma");
+
   return (
     <TouchableOpacity
       onPress={handleOnPressShowQRCode}
@@ -50,7 +54,7 @@ const VaccineCard: FunctionComponent = (props) => {
       </View>
       
       <Text style={style.sectionSubHeaderText}>{props.location}</Text>
-      <Text style={style.sectionBodyText}>Date: <Text style={style.bold}>{props.date}</Text></Text>
+      <Text style={style.sectionBodyText}>Date: <Text style={style.bold}>{dateText}</Text></Text>
       <Text style={style.sectionBodyText}>Vaccine: <Text style={style.bold}>{props.manufacturer}, {nth(props.doseSequence)} dose</Text></Text>
       
       <View style={style.cardBottomContainer}>

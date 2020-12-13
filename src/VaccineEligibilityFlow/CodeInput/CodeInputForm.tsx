@@ -72,7 +72,7 @@ const CodeInputForm: FunctionComponent<CodeInputFormProps> = ({ linkCode }) => {
   const handleOnPressSubmit = async () => {
     setIsLoading(true)
     setErrorMessage(defaultErrorMessage)
-    trackEvent("product_analytics", "elegibility_code_submitted")
+    trackEvent("product_analytics", "eligibility_code_submitted")
     try {
       // TODO: Do something with the code.
       setVaccinationStageHasAppointment();

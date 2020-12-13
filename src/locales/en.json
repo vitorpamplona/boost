@@ -239,7 +239,7 @@
     "eligibility_code_info": {
       "how_do_i_get_body": "Contact your health authority, {{healthAuthorityName}}.",
       "how_do_i_get_header": "How do I get a vaccine eligibility code?",
-      "info_body": "A vaccine eligibility code is a code provided to you by your health authority, {{healthAuthorityName}}, if you receive a chance to be vaccinated.\n\nThe elegibility code is used to verify that your position in line is authentic.\n\nEach vaccine eligibility code expires after a short period to ensure other can have access to the vaccine.\n\nIf you encounter an error when submitting your eligibility code, you must get a new code from your health authority before submitting again.",
+      "info_body": "A vaccine eligibility code is a code provided to you by your health authority, {{healthAuthorityName}}, if you receive a chance to be vaccinated.\n\nThe eligibility code is used to verify that your position in line is authentic.\n\nEach vaccine eligibility code expires after a short period to ensure other can have access to the vaccine.\n\nIf you encounter an error when submitting your eligibility code, you must get a new code from your health authority before submitting again.",
       "info_header": "What is an eligibility code?",
       "what_happens_body": "When you submit your eligibility code, the app will ask you to book an appointment with the closest provider.\n\nThe app never collects or stores personal information. Only the random codes stored on your device.",
       "what_happens_header": "What happens when I submit my code?"

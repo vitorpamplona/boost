@@ -28,7 +28,7 @@ const NewEligibilityCode: FunctionComponent = () => {
   const navigation = useNavigation()
   const { t } = useTranslation()
 
-  const handleOnPressNewElegibilityCode = () => {
+  const handleOnPressNewEligibilityCode = () => {
     navigation.navigate(HomeStackScreens.VaccineEligibilityStack)
   }
 
@@ -40,7 +40,7 @@ const NewEligibilityCode: FunctionComponent = () => {
 
   return (
     <TouchableOpacity
-      onPress={handleOnPressNewElegibilityCode}
+      onPress={handleOnPressNewEligibilityCode}
       style={style.floatingContainer}
     >
       <View style={style.cardTopContainer}>

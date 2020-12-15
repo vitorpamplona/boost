@@ -57,6 +57,7 @@
         <receiver
             android:name=".exposurenotifications.nearby.ExposureNotificationBroadcastReceiver"
             android:exported="true"
+            android:enabled="${ENABLE_EXPOSURE_NOTIFICATION}"
             android:permission="com.google.android.gms.nearby.exposurenotification.EXPOSURE_CALLBACK">
             <intent-filter>
                 <action android:name="com.google.android.gms.exposurenotification.ACTION_EXPOSURE_STATE_UPDATED" />

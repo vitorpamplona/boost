@@ -125,4 +125,5 @@ const style = StyleSheet.create({
   }
 })
 
+
 export default NotificationsOff

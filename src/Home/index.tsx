@@ -77,11 +77,14 @@ const Home: FunctionComponent = () => {
 
         {displayCovidData && <CovidDataCard />}
         {displayVaccinationHistory && vaccines.length === 0 && appointments.length === 0 && <NewEligibilityCode />}
-        {verificationStrategy === "Simple" ? (
-          <SimpleVerificationFlowButton />
-        ) : (
-          <EscrowVerificationFlowButton />
-        )}
+        {enableExposureNotification && 
+          ( verificationStrategy === "Simple" ? (
+              <SimpleVerificationFlowButton />
+            ) : (
+             <EscrowVerificationFlowButton />
+            )
+          )
+        } 
         <ShareLink />
         {displaySelfAssessment && <SelfAssessment />}
         {displaySymptomHistory && <SymptomReport />}

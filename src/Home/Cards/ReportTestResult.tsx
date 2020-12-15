@@ -131,6 +131,7 @@ const VerificationFlowButton: FunctionComponent<VerificationFlowButtonProps> = (
   )
 }
 
+
 const style = StyleSheet.create({
   floatingContainer: {
     ...Affordances.floatingContainer,

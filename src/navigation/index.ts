@@ -85,16 +85,12 @@ export const HowItWorksStackScreens: {
   ValueProposition: "ValueProposition",
 }
 
-export type ExposureHistoryStackScreen =
-  | "ExposureHistory"
-  | "ExposureDetail"
-  | "MoreInfo"
+export type ExposureHistoryStackScreen = "ExposureHistory" | "MoreInfo"
 
 export const ExposureHistoryStackScreens: {
   [key in ExposureHistoryStackScreen]: ExposureHistoryStackScreen
 } = {
   ExposureHistory: "ExposureHistory",
-  ExposureDetail: "ExposureDetail",
   MoreInfo: "MoreInfo",
 }
 

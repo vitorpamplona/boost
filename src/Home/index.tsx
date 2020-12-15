@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from "react"
 import { View, ScrollView, StyleSheet } from "react-native"
+
 import { useTranslation } from "react-i18next"
 import { useNavigation } from "@react-navigation/native"
 import { SvgXml } from "react-native-svg"
@@ -13,6 +14,7 @@ import CovidDataCard from "../CovidData/Card"
 import ExposureDetectionStatusCard from "./ExposureDetectionStatus/Card"
 import ShareLink from "./ShareLink"
 import CallEmergencyServices from "./CallEmergencyServices"
+import { usePermissionsContext } from "../Device/PermissionsContext"
 
 import NewEligibilityCode from "./Cards/NewEligibilityCode"
 import {SimpleVerificationFlowButton, EscrowVerificationFlowButton} from "./Cards/ReportTestResult"
@@ -20,6 +22,7 @@ import SelfAssessment from "./Cards/SelfAssessment"
 import SymptomReport from "./Cards/SymptomReport"
 import VaccineCard from "./Cards/VaccineCard"
 import AppointmentCard from "./Cards/AppointmentCard"
+import NotificationsOff from "./Cards/NotificationsOff"
 
 import { Outlines, Spacing, Colors, Typography } from "../styles"
 
@@ -48,6 +51,7 @@ const Home: FunctionComponent = () => {
       >
 
         <Text style={style.headerText}>{t("screen_titles.home")}</Text>
+        <NotificationsOff />
         <ExposureDetectionStatusCard />
         {vaccines.sort((a, b) => b.scanDate - a.scanDate).map((entry, i) => {
           return <VaccineCard key={i} 

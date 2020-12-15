@@ -12,6 +12,7 @@ export default Factory.define<Configuration>(() => ({
   displayVaccinationHistory: false,
   displaySelfAssessment: false,
   displayAgeVerification: false,
+  enableExposureNotification: true,
   enableProductAnalytics: false,
   emergencyPhoneNumber: "emergencyPhoneNumber",
   findATestCenterUrl: "findATestCenterUrl",

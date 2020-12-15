@@ -15,6 +15,7 @@ export interface Configuration {
   displayVaccinationHistory: boolean
   displaySelfAssessment: boolean
   displayAgeVerification: boolean
+  enableExposureNotification: boolean
   enableProductAnalytics: boolean
   emergencyPhoneNumber: string
   findATestCenterUrl: string | null
@@ -45,6 +46,7 @@ const initialState: Configuration = {
   displaySelfAssessment: false,
   displayAgeVerification: false,
   emergencyPhoneNumber: "",
+  enableExposureNotification: true,
   enableProductAnalytics: false,
   findATestCenterUrl: null,
   healthAuthorityAdviceUrl: "",
@@ -104,6 +106,7 @@ const ConfigurationProvider: FunctionComponent = ({ children }) => {
   const displaySelfAssessment = env.DISPLAY_SELF_ASSESSMENT === "true"
   const displayAgeVerification = env.DISPLAY_AGE_VERIFICATION === "true"
 
+  const enableExposureNotification = env.ENABLE_EXPOSURE_NOTIFICATION === "true"
   const enableProductAnalytics = env.ENABLE_PRODUCT_ANALYTICS === "true"
 
   const verificationStrategy: VerificationStrategy = toVerificationStrategy(

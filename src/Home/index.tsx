@@ -34,6 +34,7 @@ const Home: FunctionComponent = () => {
     displaySelfAssessment,
     displaySymptomHistory,
     displayVaccinationHistory,
+    enableExposureNotification,
     emergencyPhoneNumber,
     verificationStrategy,
   } = useConfigurationContext()
@@ -51,8 +52,8 @@ const Home: FunctionComponent = () => {
 
         <Text style={style.headerText}>{t("screen_titles.home")}</Text>
         <NotificationsOff />
-        <ExposureDetectionStatusCard />
-        {vaccines.sort((a, b) => b.scanDate - a.scanDate).map((entry, i) => {
+        {enableExposureNotification && <ExposureDetectionStatusCard />} 
+        {displayVaccinationHistory && vaccines.sort((a, b) => b.scanDate - a.scanDate).map((entry, i) => {
           return <VaccineCard key={i} 
               name={entry.name}
               manufacturer={entry.manufacturer} 
@@ -65,7 +66,7 @@ const Home: FunctionComponent = () => {
               requiredDoses={entry.requiredDoses} />
         })}
 
-        {appointments.map((entry, i) => {
+        {displayVaccinationHistory && appointments.map((entry, i) => {
           return <AppointmentCard key={i} 
                   manufacturer={entry.manufacturer} 
                   doseSequence={entry.doseSequence} 

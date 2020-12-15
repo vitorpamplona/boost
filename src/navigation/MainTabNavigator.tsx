@@ -26,7 +26,7 @@ type Tab = {
 }
 
 const MainTabNavigator: FunctionComponent = () => {
-  const { displaySymptomHistory, displayVaccinationHistory } = useConfigurationContext()
+  const { displaySymptomHistory, displayVaccinationHistory, enableExposureNotification } = useConfigurationContext()
 
   const homeTab = {
     name: TabRoutes.Home,
@@ -49,7 +49,8 @@ const MainTabNavigator: FunctionComponent = () => {
     component: SettingsStack,
   }
 
-  const tabs: Tab[] = [homeTab, exposureHistoryTab, 
+  const tabs: Tab[] = [homeTab, 
+      enableExposureNotification ? exposureHistoryTab : null, 
       displayVaccinationHistory ? vaccinationHistoryTab : null, 
       displaySymptomHistory ? symptomHistoryTab : null, 
       settingsTab].filter(n => n)

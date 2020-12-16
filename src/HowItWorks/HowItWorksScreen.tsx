@@ -19,6 +19,8 @@ import { Text } from "../components"
 import { Colors, Spacing, Typography, Buttons } from "../styles"
 import { Icons } from "../assets"
 
+import { useConfigurationContext } from "../ConfigurationContext"
+
 type HowItWorksScreenContent = {
   image: ImageSourcePropType
   imageLabel: string
@@ -45,6 +47,9 @@ const HowItWorksScreen: FunctionComponent<HowItWorksScreenProps> = ({
   const navigation = useNavigation()
   const insets = useSafeAreaInsets()
   const style = createStyle(insets)
+  const {
+    enableExposureNotification
+  } = useConfigurationContext()
 
   const handleOnPressProtectPrivacy = () => {
     navigation.navigate(ModalStackScreens.ProtectPrivacy)
@@ -78,14 +83,15 @@ const HowItWorksScreen: FunctionComponent<HowItWorksScreenProps> = ({
             <Text style={style.buttonText}>{primaryButtonLabel}</Text>
             <SvgXml xml={Icons.Arrow} fill={Colors.background.primaryLight} />
           </TouchableOpacity>
-          <TouchableOpacity
+          { enableExposureNotification && (<TouchableOpacity
             onPress={handleOnPressProtectPrivacy}
             accessibilityRole="button"
           >
             <Text style={style.bottomButtonText}>
               {t("onboarding.protect_privacy_button")}
             </Text>
-          </TouchableOpacity>
+          </TouchableOpacity>)
+          }
         </>
       </View>
     </>

@@ -555,6 +555,20 @@
     "timeout_title": "Submission Took Too Long",
     "timeout_body": "It took to long to submit the verificaiton code. Please try again later."
   },
+  "vaccine_onboarding": {
+    "screen1_button": "How does it work?",
+    "screen1_header": "Together, we can slow the spread of COVID-19.",
+    "screen1_image_label": "Two people high fiving each other",
+    "screen2_button": "Is my privacy protected?",
+    "screen2_header": "This app helps you keep track of your vaccination, testing and symptoms.",
+    "screen2_image_label": "Two people on their phones",
+    "screen3_button": "Even to receive a vaccine?",
+    "screen3_header": "Your personally identifiable information never leaves your phone.",
+    "screen3_image_label": "A person in front of a locked phone",
+    "screen4_button": "Get started",
+    "screen4_header": "Yes, our vaccine certificates are imported and exposed without your personal information",
+    "screen4_image_label": "A person getting a notification on their phone",
+  }, 
   "vaccine_card": {
     "fda_approved": "This is an FDA Approved Vaccine"
   },

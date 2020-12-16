@@ -19,6 +19,7 @@ import {
 } from "../navigation/index"
 import HowItWorksScreen from "../HowItWorks/HowItWorksScreen"
 import { applyHeaderLeftBackButton } from "./HeaderLeftBackButton"
+import { useConfigurationContext } from "../ConfigurationContext"
 
 import { Images } from "../assets"
 import { Colors, Spacing, Typography } from "../styles"
@@ -43,6 +44,9 @@ const HowItWorksStack: FunctionComponent<HowItWorksStackProps> = ({
 }) => {
   const { t } = useTranslation()
   const navigation = useNavigation()
+  const {
+    enableExposureNotification
+  } = useConfigurationContext()
 
   const handleOnNavigateOutOfStack = () => {
     switch (mountLocation) {
@@ -95,11 +99,54 @@ const HowItWorksStack: FunctionComponent<HowItWorksStackProps> = ({
     primaryButtonOnPress: handleOnPressNextOnGetNotified,
   }
 
+  const introductionVaccineApp: HowItWorksScreenDatum = {
+    name: HowItWorksStackScreens.Introduction,
+    image: Images.HowItWorksIntroduction,
+    imageLabel: t("vaccine_onboarding.screen1_image_label"),
+    header: t("vaccine_onboarding.screen1_header"),
+    primaryButtonLabel: t("vaccine_onboarding.screen1_button"),
+    primaryButtonOnPress: () =>
+      navigation.navigate(HowItWorksStackScreens.PhoneRemembersDevices),
+  }
+  const phoneRemembersDevicesVaccineApp: HowItWorksScreenDatum = {
+    name: HowItWorksStackScreens.PhoneRemembersDevices,
+    image: Images.HowItWorksPhoneRemembersDevice,
+    imageLabel: t("vaccine_onboarding.screen2_image_label"),
+    header: t("vaccine_onboarding.screen2_header"),
+    primaryButtonLabel: t("vaccine_onboarding.screen2_button"),
+    primaryButtonOnPress: () =>
+      navigation.navigate(HowItWorksStackScreens.PersonalPrivacy),
+  }
+  const personalPrivacyVaccineApp: HowItWorksScreenDatum = {
+    name: HowItWorksStackScreens.PersonalPrivacy,
+    image: Images.HowItWorksPersonalPrivacy,
+    imageLabel: t("vaccine_onboarding.screen3_image_label"),
+    header: t("vaccine_onboarding.screen3_header"),
+    primaryButtonLabel: t("vaccine_onboarding.screen3_button"),
+    primaryButtonOnPress: () =>
+      navigation.navigate(HowItWorksStackScreens.GetNotified),
+  }
+  const getNotifiedVaccineApp: HowItWorksScreenDatum = {
+    name: HowItWorksStackScreens.GetNotified,
+    image: Images.HowItWorksGetNotified,
+    imageLabel: t("vaccine_onboarding.screen4_image_label"),
+    header: t("vaccine_onboarding.screen4_header"),
+    primaryButtonLabel: t("vaccine_onboarding.screen4_button"),
+    primaryButtonOnPress: handleOnPressNextOnGetNotified,
+  }
+
   const howItWorksScreenData: HowItWorksScreenDatum[] = [
     introduction,
     phoneRemembersDevices,
     personalPrivacy,
     getNotified,
+  ]
+
+  const howItWorksScreenDataVaccineFocus: HowItWorksScreenDatum[] = [
+    introductionVaccineApp,
+    phoneRemembersDevicesVaccineApp,
+    personalPrivacyVaccineApp,
+    getNotifiedVaccineApp,
   ]
 
   const toStackScreen = (datum: HowItWorksScreenDatum) => {
@@ -133,7 +180,10 @@ const HowItWorksStack: FunctionComponent<HowItWorksStackProps> = ({
         headerStyleInterpolator: HeaderStyleInterpolators.forNoAnimation,
       }}
     >
-      {howItWorksScreenData.map(toStackScreen)}
+      {enableExposureNotification ? 
+        howItWorksScreenData.map(toStackScreen) : 
+        howItWorksScreenDataVaccineFocus.map(toStackScreen) 
+      }
     </Stack.Navigator>
   )
 }

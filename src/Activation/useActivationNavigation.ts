@@ -19,6 +19,7 @@ type ActivationStep =
   | "ActivateExposureNotifications"
   | "NotificationPermissions"
   | "ActivationSummary"
+  
 
 export const toScreen = (step: ActivationStep): ActivationStackScreen => {
   switch (step) {
@@ -48,6 +49,7 @@ export const useActivationNavigation = (): ActivationNavigation => {
   const {
     displayAcceptTermsOfService,
     enableProductAnalytics,
+    enableExposureNotification,
   } = useConfigurationContext()
   const navigation = useNavigation()
   const { locationPermissions } = usePermissionsContext()
@@ -56,6 +58,7 @@ export const useActivationNavigation = (): ActivationNavigation => {
   const environment = {
     displayAcceptTermsOfService,
     enableProductAnalytics,
+    enableExposureNotification,
     locationPermissions,
   }
 
@@ -83,11 +86,13 @@ export type Environment = {
   locationPermissions: LocationPermissions
   displayAcceptTermsOfService: boolean
   enableProductAnalytics: boolean
+  enableExposureNotification: boolean
 }
 
 export const determineActivationSteps = ({
   displayAcceptTermsOfService,
   enableProductAnalytics,
+  enableExposureNotification,
   locationPermissions,
 }: Environment): ActivationStep[] => {
   const isLocationRequiredAndOff = locationPermissions === "RequiredOff"
@@ -96,10 +101,10 @@ export const determineActivationSteps = ({
 
   displayAcceptTermsOfService && activationSteps.push("AcceptTermsOfService")
   enableProductAnalytics && activationSteps.push("ProductAnalyticsConsent")
-  isLocationRequiredAndOff && activationSteps.push("ActivateLocation")
-  activationSteps.push("ActivateExposureNotifications")
-  Platform.OS === "ios" && activationSteps.push("NotificationPermissions")
-  activationSteps.push("ActivationSummary")
+  enableExposureNotification && isLocationRequiredAndOff && activationSteps.push("ActivateLocation")
+  enableExposureNotification && activationSteps.push("ActivateExposureNotifications")
+  enableExposureNotification && Platform.OS === "ios" && activationSteps.push("NotificationPermissions")
+  enableExposureNotification && activationSteps.push("ActivationSummary")
 
   return activationSteps
 }

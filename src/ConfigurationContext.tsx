@@ -142,6 +142,7 @@ const ConfigurationProvider: FunctionComponent = ({ children }) => {
         displayVaccinationHistory,
         displaySelfAssessment,
         displayAgeVerification,
+        enableExposureNotification,
         enableProductAnalytics,
         emergencyPhoneNumber,
         findATestCenterUrl,

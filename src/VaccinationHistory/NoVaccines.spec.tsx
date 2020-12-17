@@ -10,7 +10,7 @@ describe("NoVaccines", () => {
   it("reports when a user has no exposures", () => {
     expect.assertions(2)
     const { queryByText } = render(<NoVaccines />)
-    expect(queryByText("No Exposure Reports")).not.toBeNull()
+    expect(queryByText("No Vaccination Reports")).not.toBeNull()
     expect(
       queryByText(
         "You haven't received any exposure reports over the past 14-days",
@@ -21,7 +21,7 @@ describe("NoVaccines", () => {
   it("displays generic health guidance", () => {
     expect.assertions(1)
     const { queryByText } = render(<NoVaccines />)
-    expect(queryByText("Wash your hands often")).not.toBeNull()
+    expect(queryByText("Wait until you receive your eligibility codes")).not.toBeNull()
   })
 
   describe("clicking the Learn more link", () => {

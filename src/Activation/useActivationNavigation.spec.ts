@@ -10,6 +10,7 @@ describe("determineActivationSteps", () => {
         locationPermissions: "RequiredOff",
         displayAcceptTermsOfService: true,
         enableProductAnalytics: true,
+        enableExposureNotification: true,
       }
 
       const activationSteps = determineActivationSteps(environment)
@@ -23,6 +24,7 @@ describe("determineActivationSteps", () => {
         locationPermissions: "RequiredOff",
         displayAcceptTermsOfService: true,
         enableProductAnalytics: true,
+        enableExposureNotification: true,
       }
 
       const activationSteps = determineActivationSteps(environment)
@@ -36,6 +38,7 @@ describe("determineActivationSteps", () => {
         locationPermissions: "RequiredOff",
         displayAcceptTermsOfService: true,
         enableProductAnalytics: true,
+        enableExposureNotification: true,
       }
 
       const activationSteps = determineActivationSteps(environment)

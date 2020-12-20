@@ -29,51 +29,13 @@ const NoVaccines: FunctionComponent = () => {
 
 const HealthGuidelines: FunctionComponent = () => {
   const { t } = useTranslation()
-  const {
-    healthAuthorityLearnMoreUrl,
-    measurementSystem,
-  } = useConfigurationContext()
-  const { healthAuthorityName } = useCustomCopy()
-
-  const handleOnPressHALink = () => {
-    Linking.openURL(healthAuthorityLearnMoreUrl)
-  }
-
-  const stayApartRecommendationText =
-    measurementSystem === "Imperial"
-      ? t("vaccination_history.health_guidelines.six_feet_apart")
-      : t("vaccination_history.health_guidelines.two_meters_apart")
 
   return (
     <View style={style.card}>
       <Text style={style.cardHeaderText}>
         {t("vaccination_history.protect_yourself_and_others")}
       </Text>
-      {Boolean(healthAuthorityLearnMoreUrl) && (
-        <>
-          <Text style={style.cardSubheaderText}>
-            {t("vaccination_history.review_guidance_from_ha", {
-              healthAuthorityName,
-            })}
-          </Text>
-          <TouchableOpacity
-            onPress={handleOnPressHALink}
-            style={style.learnMoreCtaContainer}
-          >
-            <Text style={style.learnMoreCta}>
-              {t("vaccination_history.learn_more")}
-            </Text>
-            <SvgXml
-              xml={Icons.Arrow}
-              fill={Colors.primary.shade125}
-              style={style.ctaArrow}
-            />
-          </TouchableOpacity>
-          <Text style={style.listHeading}>
-            {t("vaccination_history.no_vaccine_next_step.title")}
-          </Text>
-        </>
-      )}
+      
       <HealthGuidelineItem
         icon={Icons.WashHands}
         text={t("vaccination_history.no_vaccine_next_step.receive_eligibility_confirmation")}

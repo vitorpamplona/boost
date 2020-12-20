@@ -4,11 +4,10 @@ import { useTranslation } from "react-i18next"
 import { useNavigation } from "@react-navigation/native"
 import { SvgXml } from "react-native-svg"
 
-import { useExposureDetectionStatus } from "../../Device/useExposureDetectionStatus"
 import AnimatedCircle from "./AnimatedCircle"
-
 import { HomeStackScreens } from "../../navigation"
 import { Text } from "../../components"
+import { usePermissionsContext } from "../../Device/PermissionsContext"
 
 import { Icons } from "../../assets"
 import {
@@ -24,7 +23,7 @@ import {
 const ExposureDetectionStatusCard: FunctionComponent = () => {
   const navigation = useNavigation()
   const { t } = useTranslation()
-  const exposureDetectionStatus = useExposureDetectionStatus()
+  const { exposureNotifications } = usePermissionsContext()
 
   const handleOnPressExposureDetectionStatus = () => {
     navigation.navigate(HomeStackScreens.ExposureDetectionStatus)
@@ -64,8 +63,8 @@ const ExposureDetectionStatusCard: FunctionComponent = () => {
     statusIconFill,
     statusText,
     actionText,
-  } = exposureDetectionStatus === "On" ? enabledConfig : 
-      exposureDetectionStatus === "Not Available" ? notAvailableConfig : disabledConfig;
+  } = exposureNotifications.status === "Active" ? enabledConfig : 
+      exposureNotifications.status === "Unknown" ? notAvailableConfig : disabledConfig;
 
   const statusContainerStyle = {
     ...style.statusContainer,
@@ -74,6 +73,11 @@ const ExposureDetectionStatusCard: FunctionComponent = () => {
   }
 
   const iconSize = Iconography.small
+
+  const animatedCircleContainerStyle = {
+    ...style.animatedCircleContainer,
+    right: iconSize / 2,
+  }
 
   return (
     <TouchableOpacity
@@ -96,8 +100,10 @@ const ExposureDetectionStatusCard: FunctionComponent = () => {
             fill={statusIconFill}
             style={style.statusIcon}
           />
-          {exposureDetectionStatus === "On" && (
-            <AnimatedCircle iconSize={iconSize} />
+          {exposureNotifications.status === "Active" && (
+            <View style={animatedCircleContainerStyle}>
+              <AnimatedCircle iconSize={iconSize} />
+            </View>
           )}
         </View>
       </View>
@@ -135,6 +141,9 @@ const style = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-start",
     alignItems: "flex-end",
+  },
+  animatedCircleContainer: {
+    position: "absolute",
   },
   statusIcon: {
     zIndex: Layout.zLevel1,

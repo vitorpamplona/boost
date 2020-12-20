@@ -5,9 +5,10 @@ import env from "react-native-config"
 type MeasurementSystem = "Imperial" | "Metric"
 
 export interface Configuration {
-  appDownloadLink: string
+  appDownloadUrl: string | null
   appPackageName: string
   displayAcceptTermsOfService: boolean
+  displayAppTransition: boolean
   displayCallbackForm: boolean
   displayCallEmergencyServices: boolean
   displayCovidData: boolean
@@ -24,8 +25,10 @@ export interface Configuration {
   healthAuthorityEulaUrl: string | null
   healthAuthorityLearnMoreUrl: string
   healthAuthorityLegalPrivacyPolicyUrl: string | null
+  healthAuthorityHealthCheckUrl: string | null
   healthAuthorityPrivacyPolicyUrl: string
   healthAuthorityVerificationCodeInfoUrl: string | null
+  includeSymptomOnsetDate: boolean
   measurementSystem: MeasurementSystem
   minimumAge: string
   minimumPhoneDigits: number
@@ -35,9 +38,10 @@ export interface Configuration {
 }
 
 const initialState: Configuration = {
-  appDownloadLink: "",
+  appDownloadUrl: null,
   appPackageName: "",
   displayAcceptTermsOfService: false,
+  displayAppTransition: false,
   displayCallbackForm: false,
   displayCallEmergencyServices: false,
   displayCovidData: false,
@@ -52,10 +56,12 @@ const initialState: Configuration = {
   healthAuthorityAdviceUrl: "",
   healthAuthorityCovidDataUrl: null,
   healthAuthorityEulaUrl: null,
+  healthAuthorityHealthCheckUrl: null,
   healthAuthorityLearnMoreUrl: "",
   healthAuthorityLegalPrivacyPolicyUrl: "",
   healthAuthorityPrivacyPolicyUrl: "",
   healthAuthorityVerificationCodeInfoUrl: null,
+  includeSymptomOnsetDate: false,
   measurementSystem: "Imperial" as const,
   minimumAge: "18",
   minimumPhoneDigits: 0,
@@ -88,8 +94,10 @@ const ConfigurationProvider: FunctionComponent = ({ children }) => {
     PRIVACY_POLICY_URL: healthAuthorityPrivacyPolicyUrl,
   } = env
 
+  const appDownloadUrl = env.SHARE_APP_LINK || null
   const healthAuthorityCovidDataUrl = env.AUTHORITY_COVID_DATA_URL || null
   const healthAuthorityEulaUrl = env.EULA_URL || null
+  const healthAuthorityHealthCheckUrl = env.HEALTHCHECK_URL || null
   const healthAuthorityLegalPrivacyPolicyUrl =
     env.LEGAL_PRIVACY_POLICY_URL || null
   const healthAuthorityVerificationCodeInfoUrl =
@@ -97,6 +105,7 @@ const ConfigurationProvider: FunctionComponent = ({ children }) => {
 
   const displayAcceptTermsOfService =
     env.DISPLAY_ACCEPT_TERMS_OF_SERVICE === "true"
+  const displayAppTransition = env.DISPLAY_APP_TRANSITION === "true"
   const displayCallbackForm = env.DISPLAY_CALLBACK_FORM === "true"
   const displayCallEmergencyServices =
     env.DISPLAY_CALL_EMERGENCY_SERVICES === "true"
@@ -109,9 +118,7 @@ const ConfigurationProvider: FunctionComponent = ({ children }) => {
   const enableExposureNotification = env.ENABLE_EXPOSURE_NOTIFICATION === "true"
   const enableProductAnalytics = env.ENABLE_PRODUCT_ANALYTICS === "true"
 
-  const verificationStrategy: VerificationStrategy = toVerificationStrategy(
-    env.VERIFICATION_STRATEGY,
-  )
+  const includeSymptomOnsetDate = env.INCLUDE_SYMPTOM_ONSET_DATE === "true"
 
   const measurementSystem =
     env.MEASUREMENT_SYSTEM === "metric" ? "Metric" : "Imperial"
@@ -119,7 +126,6 @@ const ConfigurationProvider: FunctionComponent = ({ children }) => {
   const minimumAge = env.MINIMUM_AGE
   const minimumPhoneDigits = parseInt(env.MINIMUM_PHONE_DIGITS) || 0
 
-  const appDownloadLink = env.SHARE_APP_LINK
   const appPackageName = Platform.select({
     ios: env.IOS_BUNDLE_ID,
     android: env.ANDROID_APPLICATION_ID,
@@ -129,12 +135,17 @@ const ConfigurationProvider: FunctionComponent = ({ children }) => {
   const stateAbbreviation =
     env.STATE_ABBREVIATION?.length > 0 ? env.STATE_ABBREVIATION : null
 
+  const verificationStrategy: VerificationStrategy = toVerificationStrategy(
+    env.VERIFICATION_STRATEGY,
+  )
+
   return (
     <ConfigurationContext.Provider
       value={{
-        appDownloadLink,
+        appDownloadUrl,
         appPackageName,
         displayAcceptTermsOfService,
+        displayAppTransition,
         displayCallbackForm,
         displayCallEmergencyServices,
         displayCovidData,
@@ -149,10 +160,12 @@ const ConfigurationProvider: FunctionComponent = ({ children }) => {
         healthAuthorityAdviceUrl,
         healthAuthorityCovidDataUrl,
         healthAuthorityEulaUrl,
+        healthAuthorityHealthCheckUrl,
         healthAuthorityLearnMoreUrl,
         healthAuthorityLegalPrivacyPolicyUrl,
         healthAuthorityPrivacyPolicyUrl,
         healthAuthorityVerificationCodeInfoUrl,
+        includeSymptomOnsetDate,
         measurementSystem,
         minimumAge,
         minimumPhoneDigits,

@@ -1,11 +1,18 @@
 import React, { FunctionComponent } from "react"
-import { TouchableOpacity, Image, View, Share, StyleSheet } from "react-native"
+import {
+  Alert,
+  TouchableOpacity,
+  Image,
+  View,
+  Share,
+  StyleSheet,
+} from "react-native"
 import { useTranslation } from "react-i18next"
 import { SvgXml } from "react-native-svg"
 
-import { useConfigurationContext } from "../ConfigurationContext"
 import { Text } from "../components"
 import { useApplicationName } from "../Device/useApplicationInfo"
+import Logger from "../logger"
 
 import { Icons, Images } from "../assets"
 import {
@@ -17,28 +24,29 @@ import {
   Affordances,
 } from "../styles"
 
-const ShareLink: FunctionComponent = () => {
+interface ShareLinkProps {
+  appDownloadUrl: string
+}
+
+const ShareLink: FunctionComponent<ShareLinkProps> = ({ appDownloadUrl }) => {
   const { applicationName } = useApplicationName()
   const { t } = useTranslation()
-  const configuration = useConfigurationContext()
-
-  const showShareLink = Boolean(configuration.appDownloadLink)
 
   const handleOnPressShare = async () => {
     try {
       await Share.share({
         message: t("home.bluetooth.share_message", {
           applicationName,
-          appDownloadLink: configuration.appDownloadLink,
+          appDownloadUrl,
         }),
       })
     } catch (error) {
-      throw new Error(error)
+      Logger.error("Dashboard: Share link did not work", {
+        appDownloadUrl,
+        error: error.message,
+      })
+      Alert.alert(t("home.error.share_link_failed"))
     }
-  }
-
-  if (!showShareLink) {
-    return null
   }
 
   return (

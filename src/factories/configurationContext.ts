@@ -2,9 +2,10 @@ import { Factory } from "fishery"
 import { Configuration } from "../ConfigurationContext"
 
 export default Factory.define<Configuration>(() => ({
-  appDownloadLink: "appDownloadLink",
+  appDownloadUrl: "appDownloadUrl",
   appPackageName: "appPackageName",
   displayAcceptTermsOfService: false,
+  displayAppTransition: false,
   displayCallbackForm: false,
   displayCallEmergencyServices: false,
   displayCovidData: false,
@@ -18,11 +19,13 @@ export default Factory.define<Configuration>(() => ({
   findATestCenterUrl: "findATestCenterUrl",
   healthAuthorityAdviceUrl: "authorityAdviceUrl",
   healthAuthorityCovidDataUrl: "authorityCovidDataUrl",
+  healthAuthorityHealthCheckUrl: "healthAuthorityHealthCheckUrl",
   healthAuthorityLearnMoreUrl: "authorityLearnMoreUrl",
   healthAuthorityEulaUrl: "healthAuthorityEulaUrl",
   healthAuthorityPrivacyPolicyUrl: "authorityPrivacyPolicyUrl",
   healthAuthorityLegalPrivacyPolicyUrl: "authorityLegalPrivacyPolicyUrl",
   healthAuthorityVerificationCodeInfoUrl: "authorityVerificationCodeInfoUrl",
+  includeSymptomOnsetDate: false,
   measurementSystem: "Imperial",
   minimumAge: "18",
   minimumPhoneDigits: 0,

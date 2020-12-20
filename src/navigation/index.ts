@@ -187,6 +187,7 @@ export type AffectedUserFlowStackScreen =
   | "AffectedUserStart"
   | "VerificationCodeInfo"
   | "AffectedUserCodeInput"
+  | "SymptomOnsetDate"
   | "AffectedUserPublishConsent"
   | "AffectedUserConfirmUpload"
   | "AffectedUserExportDone"
@@ -198,6 +199,7 @@ export const AffectedUserFlowStackScreens: {
   AffectedUserStart: "AffectedUserStart",
   VerificationCodeInfo: "VerificationCodeInfo",
   AffectedUserCodeInput: "AffectedUserCodeInput",
+  SymptomOnsetDate: "SymptomOnsetDate",
   AffectedUserPublishConsent: "AffectedUserPublishConsent",
   AffectedUserConfirmUpload: "AffectedUserConfirmUpload",
   AffectedUserExportDone: "AffectedUserExportDone",
@@ -243,12 +245,13 @@ export const EscrowVerificationRoutes: Record<
   EscrowVerificationComplete: "EscrowVerificationComplete",
 }
 
-export type WelcomeStackScreen = "Welcome"
+export type OnboardingRoute = "Welcome" | "AppTransition"
 
-export const WelcomeStackScreens: {
-  [key in WelcomeStackScreen]: WelcomeStackScreen
+export const OnboardingRoutes: {
+  [key in OnboardingRoute]: OnboardingRoute
 } = {
   Welcome: "Welcome",
+  AppTransition: "AppTransition",
 }
 
 export type SymptomHistoryStackScreen =

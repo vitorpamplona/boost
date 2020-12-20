@@ -13,6 +13,7 @@ import { StatusBar, Text } from "../components"
 import CovidDataCard from "../CovidData/Card"
 import ExposureDetectionStatusCard from "./ExposureDetectionStatus/Card"
 import ShareLink from "./ShareLink"
+import HealthCheckLink from "./HealthCheckLink"
 import CallEmergencyServices from "./CallEmergencyServices"
 
 import NewEligibilityCode from "./Cards/NewEligibilityCode"
@@ -29,6 +30,7 @@ const Home: FunctionComponent = () => {
   useStatusBarEffect("dark-content", Colors.background.primaryLight)
   const { t } = useTranslation()
   const {
+    appDownloadUrl,
     displayCallEmergencyServices,
     displayCovidData,
     displaySelfAssessment,
@@ -36,6 +38,7 @@ const Home: FunctionComponent = () => {
     displayVaccinationHistory,
     enableExposureNotification,
     emergencyPhoneNumber,
+    healthAuthorityHealthCheckUrl,
     verificationStrategy,
   } = useConfigurationContext()
   const {
@@ -85,7 +88,10 @@ const Home: FunctionComponent = () => {
             )
           )
         } 
-        <ShareLink />
+        {healthAuthorityHealthCheckUrl && (
+          <HealthCheckLink healthCheckUrl={healthAuthorityHealthCheckUrl} />
+        )}
+        {appDownloadUrl && <ShareLink appDownloadUrl={appDownloadUrl} />}
         {displaySelfAssessment && <SelfAssessment />}
         {displaySymptomHistory && <SymptomReport />}
         {displayCallEmergencyServices && (

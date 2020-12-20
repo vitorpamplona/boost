@@ -72,15 +72,9 @@ const QRReaderScreen: FunctionComponent = (props) => {
           hashType
         );
 
-        console.log(params.date);
-        
         const nextDoseInDays = myDecode(params.next_dose_in_days);
         const vaccineDate = new Date(params.date);
         const nextDoseDay = new Date(vaccineDate.getTime() + 86400000 * nextDoseInDays);
-
-        console.log(nextDoseInDays);
-        console.log(params.date);
-        console.log(nextDoseDay);
 
         if (validSignature2) {
           const vaccine = { 

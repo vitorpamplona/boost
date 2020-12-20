@@ -10,13 +10,10 @@ import { Posix } from "../utils/dateTime"
 import { StorageUtils } from "./utils"
 
 export const determineVaccines = async (): Promise<string> => {
-  const vaccs = await StorageUtils.getVaccines();
-  console.log("DetermineVaccines", vaccs);
-  return vaccs;
+  return await StorageUtils.getVaccines();
 }
 
 export const determineAppointments = async (): Promise<string> => {
-  console.log("DetermineAppointments");
   return await StorageUtils.getAppointments();
 }
 

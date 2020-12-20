@@ -3,7 +3,7 @@ import { Alert } from "react-native"
 import { fireEvent, render } from "@testing-library/react-native"
 
 import { OnboardingProvider } from "../OnboardingContext"
-import { VaccinationProvider } from "../VaccinationContext"
+import { VaccinationContextProvider } from "../VaccinationContext"
 import DeleteConfirmation from "./DeleteConfirmation"
 
 jest.mock("@react-navigation/native")

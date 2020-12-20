@@ -4,6 +4,8 @@ import "@testing-library/jest-native/extend-expect"
 
 import CodeInputScreen from "./CodeInputScreen"
 import { VaccineEligibilityProvider } from "../VaccineEligibilityContext"
+import { VaccinationContextProvider } from "../../VaccinationContext"
+
 import {
   PermissionsContext,
   ENPermissionStatus,
@@ -18,9 +20,11 @@ describe("CodeInputScreen", () => {
 
       const { getByTestId, queryByTestId } = render(
         <PermissionsContext.Provider value={permissionProviderValue}>
-          <VaccineEligibilityProvider isOnboardingComplete>
-            <CodeInputScreen />
-          </VaccineEligibilityProvider>
+          <VaccinationContextProvider>
+            <VaccineEligibilityProvider isOnboardingComplete>
+              <CodeInputScreen />
+            </VaccineEligibilityProvider>
+          </VaccinationContextProvider>
         </PermissionsContext.Provider>,
       )
 
@@ -37,16 +41,18 @@ describe("CodeInputScreen", () => {
 
       const { getByTestId, queryByTestId } = render(
         <PermissionsContext.Provider value={permissionProviderValue}>
-          <VaccineEligibilityProvider isOnboardingComplete>
-            <CodeInputScreen />
-          </VaccineEligibilityProvider>
+          <VaccinationContextProvider>
+            <VaccineEligibilityProvider isOnboardingComplete>
+              <CodeInputScreen />
+            </VaccineEligibilityProvider>
+          </VaccinationContextProvider>
         </PermissionsContext.Provider>,
       )
 
-      expect(queryByTestId("affected-user-code-input-form")).toBeNull()
+      expect(getByTestId("affected-user-code-input-form")).not.toBeNull()
       expect(
-        getByTestId("affected-user-enable-exposure-notifications-screen"),
-      ).not.toBeNull()
+        queryByTestId("affected-user-enable-expsosure-notifications-screen"),
+      ).toBeNull()
     })
   })
 })

@@ -15,10 +15,10 @@ describe("Complete", () => {
         <Complete />
       </VaccineEligibilityContext.Provider>,
     )
-    expect(getByText("Thanks for keeping your community safe!")).toBeDefined()
+    expect(getByText("You have an appointment!")).toBeDefined()
     expect(
       getByText(
-        "You’re helping contain the spread of the virus and protect others in your community.",
+        "Prepare for the vaccination procedure by allowing yourself a day off. Some symptoms are slighly uncomfortable.",
       ),
     ).toBeDefined()
   })

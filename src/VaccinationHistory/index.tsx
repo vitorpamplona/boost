@@ -20,6 +20,8 @@ import {
   VaccinationHistoryStackScreen,
   HomeStackScreens,
 } from "../navigation"
+
+import { useConfigurationContext } from "../ConfigurationContext"
 import { useVaccinationContext } from "../VaccinationContext"
 
 import { Buttons, Colors, Spacing, Typography } from "../styles"
@@ -31,7 +33,8 @@ const VaccinationHistory: FunctionComponent = () => {
   useStatusBarEffect("dark-content", Colors.background.primaryLight)
   const navigation = useNavigation()
   const { t } = useTranslation()
-  const { appointments, vaccines } = useVaccinationContext()
+  const { displayVaccinationHistory } = useConfigurationContext()
+  const { appointments, vaccines } = displayVaccinationHistory && useVaccinationContext()
 
   const handleOnPressNewEligibilityCode = () => {
     navigation.navigate(HomeStackScreens.VaccineEligibilityStack)

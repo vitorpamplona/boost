@@ -1,6 +1,6 @@
 import React from "react"
 import { Alert } from "react-native"
-import { fireEvent, render } from "@testing-library/react-native"
+import { fireEvent, render, act } from "@testing-library/react-native"
 
 import { OnboardingProvider } from "../OnboardingContext"
 import { VaccinationContextProvider } from "../VaccinationContext"
@@ -14,7 +14,7 @@ describe("DeleteConfirmation", () => {
 
     const { getByLabelText } = render(
       <OnboardingProvider userHasCompletedOnboarding>
-        <VaccinationContextProvider>
+        <VaccinationContextProvider preloadedVaccines={[]} preloadedAppointments={[]} >
           <DeleteConfirmation />
         </VaccinationContextProvider>
       </OnboardingProvider>,

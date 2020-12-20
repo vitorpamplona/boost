@@ -53,13 +53,18 @@ export interface VaccinationContextState {
   resetVaccination: () => Promise<void>
 }
 
-export const VaccinationContextProvider: FunctionComponent = ({
-  children
-}) => {
-  const [appointments, setAppointments] = useState<Array>([]);
-  const [vaccines, setVaccines] = useState<Array>([]);
+interface VaccinationContextProviderProps {
+  vaccines: Array<VaccineItem>,
+  appointments: Array<AppointmentItem>
+}
 
-  console.log ("Loading Vaccination Provicer")
+export const VaccinationContextProvider: FunctionComponent = ({
+  children, 
+  preloadedVaccines,
+  preloadedAppointments
+}) => {
+  const [appointments, setAppointments] = useState<Array>(preloadedAppointments);
+  const [vaccines, setVaccines] = useState<Array>(preloadedVaccines);
 
   const fetchEntries = async () => {
     determineVaccines()
@@ -72,13 +77,9 @@ export const VaccinationContextProvider: FunctionComponent = ({
     });
   }
 
-  const cleanupStaleData = async () => {
-
-  }
-
   useEffect(() => {
-    cleanupStaleData()
-    fetchEntries()
+    if (!preloadedVaccines || !preloadedAppointments)
+      fetchEntries()
   }, [])
 
   const addVaccine = async (vac: VaccineItem) => {

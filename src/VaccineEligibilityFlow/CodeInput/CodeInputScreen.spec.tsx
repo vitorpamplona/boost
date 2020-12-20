@@ -20,7 +20,7 @@ describe("CodeInputScreen", () => {
 
       const { getByTestId, queryByTestId } = render(
         <PermissionsContext.Provider value={permissionProviderValue}>
-          <VaccinationContextProvider>
+          <VaccinationContextProvider preloadedVaccines={[]} preloadedAppointments={[]} >
             <VaccineEligibilityProvider isOnboardingComplete>
               <CodeInputScreen />
             </VaccineEligibilityProvider>
@@ -41,7 +41,7 @@ describe("CodeInputScreen", () => {
 
       const { getByTestId, queryByTestId } = render(
         <PermissionsContext.Provider value={permissionProviderValue}>
-          <VaccinationContextProvider>
+          <VaccinationContextProvider preloadedVaccines={[]} preloadedAppointments={[]} >
             <VaccineEligibilityProvider isOnboardingComplete>
               <CodeInputScreen />
             </VaccineEligibilityProvider>

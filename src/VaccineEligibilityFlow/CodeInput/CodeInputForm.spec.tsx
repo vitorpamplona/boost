@@ -17,7 +17,7 @@ jest.mock("@react-navigation/native")
 describe("CodeInputForm", () => {
   it("initializes with an empty code form", () => {
     const { getByTestId } = render(
-      <VaccinationContextProvider>
+      <VaccinationContextProvider preloadedVaccines={[]} preloadedAppointments={[]} >
         <VaccineEligibilityProvider isOnboardingComplete>
           <CodeInputForm linkCode="linkCode" />
         </VaccineEligibilityProvider>

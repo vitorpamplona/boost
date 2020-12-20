@@ -23,6 +23,8 @@ import {
 } from "../../navigation"
 import Logger from "../../logger"
 
+import dayjs from "dayjs"
+
 import {
   Spacing,
   Forms,
@@ -77,7 +79,7 @@ const CodeInputForm: FunctionComponent<CodeInputFormProps> = ({ linkCode }) => {
       // TODO: Do something with the code.
       let appt = {
           eligibilityCode: code, 
-          date: "Dec 12, 2020 at 11am", 
+          date: dayjs().add(4, "week").toDate(), 
           location: "CVS, Cambridge, MA", 
           manufacturer: "Moderna", 
           doseSequence: 1

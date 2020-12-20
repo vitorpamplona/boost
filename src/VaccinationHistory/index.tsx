@@ -37,9 +37,6 @@ const VaccinationHistory: FunctionComponent = () => {
     navigation.navigate(HomeStackScreens.VaccineEligibilityStack)
   }
 
-  console.log(vaccines);
-  console.log(appointments);
-
   return (
     <View style={style.outerContainer}>
       <StatusBar backgroundColor={Colors.background.primaryLight} />

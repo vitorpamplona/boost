@@ -114,7 +114,6 @@ const QRReaderScreen: FunctionComponent = (props) => {
         showErrorMessage("Could not load: " + error);
       }
     } catch (error) {
-      console.log(error);
       console.error(error);
       showErrorMessage("QR Code Server Unavailable");
     }

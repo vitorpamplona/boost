@@ -30,7 +30,6 @@ const VaccineCard: FunctionComponent = (props) => {
   const { t } = useTranslation()
 
   const handleOnPressShowQRCode = () => {
-    console.log(props);
     navigation.navigate(VaccinationHistoryStackScreens.QRViewerScreen, {qr_code:props.qr_code} )
   }
 

@@ -28,6 +28,8 @@ jest.mock("../../Device/useApplicationInfo", () => {
   }
 })
 
+// This mock is only called when fireEvent.press(getByTestId("exposure-notifications-status-container"))
+// This is not called on the start of the test (Tests run over custom Providers or default initial states)
 let mockedRequestAuthorizationResponse: RequestAuthorizationResponse = {
   kind: "success",
   status: "Active",
@@ -41,24 +43,24 @@ jest.mock("../../gaen/nativeModule", () => {
 })
 
 describe("ExposureDetectionStatusScreen", () => {
-  beforeEach(() => {
-    jest.resetAllMocks()
-  })
-
   describe("When the app is not authorized", () => {
     it("shows a disabled message for Exposure Notifications and a general disabled message", () => {
-      mockedRequestAuthorizationResponse = {
-        kind: "success",
-        status: "Unauthorized",
-      }
+      const permissionsState = factories.permissionsContext.build({
+        exposureNotifications: {
+          status: "Unauthorized",
+        },
+      })
 
       const { getByTestId, getByText } = render(
-        <ExposureDetectionStatusScreen />,
+        <PermissionsContext.Provider value={permissionsState}>
+          <ExposureDetectionStatusScreen />
+        </PermissionsContext.Provider>
       )
 
       const exposureNotificationsStatusContainer = getByTestId(
         "exposure-notifications-status-container",
       )
+
       const exposureNotificationsDisabledText = within(
         exposureNotificationsStatusContainer,
       ).getByText("OFF")
@@ -73,11 +75,21 @@ describe("ExposureDetectionStatusScreen", () => {
 
     it("allows the user to get info on how to fix exposure notifications and shows a not authorized alert", async () => {
       mockedRequestAuthorizationResponse = {
-        kind: "success",
+        kind: "failure",
         status: "Unauthorized",
       }
 
-      const { getByTestId } = render(<ExposureDetectionStatusScreen />)
+      const permissionsState = factories.permissionsContext.build({
+        exposureNotifications: {
+          status: "Unauthorized",
+        },
+      })
+
+      const { getByTestId, getByText } = render(
+        <PermissionsContext.Provider value={permissionsState}>
+          <ExposureDetectionStatusScreen />
+        </PermissionsContext.Provider>
+      )
 
       const alertSpy = jest.spyOn(Alert, "alert")
 

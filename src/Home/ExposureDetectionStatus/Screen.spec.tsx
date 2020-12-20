@@ -98,6 +98,41 @@ describe("ExposureDetectionStatusScreen", () => {
     })
   })
 
+  describe("When the phone does not support EN", () => {
+    it("shows a not available message for Exposure Notifications and a general disabled message", () => {
+      mockedRequestAuthorizationResponse = {
+        kind: "failure",
+        status: "Unknown",
+      }
+
+      const permissionsState = factories.permissionsContext.build({
+        exposureNotifications: {
+          status: "Unknown",
+        },
+      })
+
+      const { getByTestId, getByText } = render(
+        <PermissionsContext.Provider value={permissionsState}>
+          <ExposureDetectionStatusScreen />
+        </PermissionsContext.Provider>
+      )
+
+      const exposureNotificationsStatusContainer = getByTestId(
+        "exposure-notifications-status-container",
+      )
+      const exposureNotificationsNotAvailableText = within(
+        exposureNotificationsStatusContainer,
+      ).getByText("Not Available")
+
+      expect(
+        getByText(
+          "Your device is not scanning for exposures. Fix the issues below to enable Exposure Detection.",
+        ),
+      ).toBeDefined()
+      expect(exposureNotificationsNotAvailableText).toBeDefined()
+    })
+  })
+
   describe("When exposure notification permissions are authorized and the app is enabled", () => {
     it("allows the user to get more info about Exposure Notifications", async () => {
       const navigateSpy = jest.fn()

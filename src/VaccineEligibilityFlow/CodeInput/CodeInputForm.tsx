@@ -21,7 +21,6 @@ import {
   useStatusBarEffect,
   VaccineEligibilityFlowStackScreens,
 } from "../../navigation"
-import Logger from "../../logger"
 
 import dayjs from "dayjs"
 

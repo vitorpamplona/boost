@@ -12,7 +12,7 @@ async function getStoreData(key: StorageKey): Promise<string | null> {
   try {
     return await AsyncStorage.getItem(key)
   } catch (error) {
-    console.log(error.message)
+    console.error(error.message)
     return null
   }
 }
@@ -21,7 +21,7 @@ async function setStoreData(key: StorageKey, item: string): Promise<void> {
   try {
     return await AsyncStorage.setItem(key, item)
   } catch (error) {
-    console.log(error.message)
+    console.error(error.message)
   }
 }
 
@@ -30,7 +30,7 @@ async function getStoreJSON(key: StorageKey, nullValue): Promise<string | null> 
     item = await AsyncStorage.getItem(key);
     return item ? JSON.parse(item) : nullValue
   } catch (error) {
-    console.log(error.message)
+    console.error(error.message)
     return nullValue
   }
 }
@@ -39,7 +39,7 @@ async function setStoreJSON(key: StorageKey, item: string): Promise<void> {
   try {
     return await AsyncStorage.setItem(key, JSON.stringify(item))
   } catch (error) {
-    console.log(error.message)
+    console.error(error.message)
   }
 }
 
@@ -47,7 +47,7 @@ async function removeStoreData(key: StorageKey): Promise<void> {
   try {
     return await AsyncStorage.removeItem(key)
   } catch (error) {
-    console.log(error.message)
+    console.error(error.message)
   }
 }
 

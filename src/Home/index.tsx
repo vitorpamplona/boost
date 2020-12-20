@@ -40,7 +40,7 @@ const Home: FunctionComponent = () => {
   } = useConfigurationContext()
   const {
     vaccines, appointments
-  } = useVaccinationContext()
+  } = displayVaccinationHistory && useVaccinationContext();
 
   return (
     <>

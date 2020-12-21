@@ -151,7 +151,7 @@ const useENPermissions = () => {
   console.log("useENPermissions");
 
   const checkENPermission = () => {
-    if (env.ENABLE_EXPOSURE_NOTIFICATION) return;
+    if (!env.ENABLE_EXPOSURE_NOTIFICATION) return;
     const handleNativeResponse = (status: ENPermissionStatus) => {
       setEnPermissionStatus(status)
     }
@@ -159,7 +159,7 @@ const useENPermissions = () => {
   }
 
   useEffect(() => {
-    if (env.ENABLE_EXPOSURE_NOTIFICATION) return;
+    if (!env.ENABLE_EXPOSURE_NOTIFICATION) return;
     
     checkENPermission()
   }, [])

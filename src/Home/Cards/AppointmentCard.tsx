@@ -38,13 +38,15 @@ const VaccineCard: FunctionComponent = (props) => {
   const dayJsDate = posixToDayjs(props.date);
   const dateText = dayJsDate?.local().format("MMM D, YYYY h:mma");
 
+  // Date: <Text style={style.bold}>{dateText}</Text>
+
   return (
     <TouchableOpacity
       onPress={handleOnPressShowQRCode}
       style={style.floatingContainer}
     >
       <View style={style.cardTopContainer}>
-        <Text style={style.sectionHeaderText}>Vaccine Appointment</Text>
+        <Text style={style.sectionHeaderText}>Vaccine Elegibility</Text>
         <SvgXml
             xml={Icons.DoctorAppointment}
             fill={Colors.primary.shade125}
@@ -53,8 +55,8 @@ const VaccineCard: FunctionComponent = (props) => {
         />
       </View>
       
-      <Text style={style.sectionSubHeaderText}>{props.location}</Text>
-      <Text style={style.sectionBodyText}>Date: <Text style={style.bold}>{dateText}</Text></Text>
+      <Text style={style.sectionSubHeaderText}>Waiting Location Confirmation</Text>
+      <Text style={style.sectionBodyText}>Date: <Text style={style.bold}>Awaiting Confirmation</Text></Text>
       <Text style={style.sectionBodyText}>Vaccine: <Text style={style.bold}>{props.manufacturer}, {nth(props.doseSequence)} dose</Text></Text>
       
       <View style={style.cardBottomContainer}>
@@ -65,7 +67,7 @@ const VaccineCard: FunctionComponent = (props) => {
             height={Iconography.xSmall}
         />
         <Text style={style.sectionBodyText}>   </Text>
-        <Text style={style.sectionBodyText}>Appointment has been confirmed</Text>
+        <Text style={style.sectionBodyText}>Eligibility Code has been verified</Text>
       </View>
       <SectionButton text={t("appointment_card.record_vaccination")} />
     </TouchableOpacity>

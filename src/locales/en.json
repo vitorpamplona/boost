@@ -498,8 +498,8 @@
       "what_happens_header": "What happens when I submit my code?"
     },
     "eligibility_completed": {
-      "complete_body": "Prepare for the vaccination procedure by allowing yourself a day off. Some symptoms are slighly uncomfortable.",
-      "complete_title": "You have an appointment!"
+      "complete_body": "Prepare for the vaccine by allowing yourself a day off after vaccination. Some symptoms are slightly uncomfortable.",
+      "complete_title": "Your code was verified!"
     },
     "eligibility_intro": {
       "body1": "If you have recieved a vaccine eligibility code from {{healthAuthorityName}} for a positive COVID-19 test, you can submit the verification code on the following screen.",

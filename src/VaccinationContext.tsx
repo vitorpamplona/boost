@@ -69,7 +69,7 @@ export const VaccinationContextProvider: FunctionComponent = ({
   const fetchEntries = async () => {
     determineVaccines()
     .then((result) => {
-      setVaccines(result);
+      setVaccines(result.sort((a, b) => b.scanDate - a.scanDate));
     });
     determineAppointments()
     .then((result) => {

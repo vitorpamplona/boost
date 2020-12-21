@@ -56,7 +56,7 @@ const Home: FunctionComponent = () => {
         <Text style={style.headerText}>{t("screen_titles.home")}</Text>
         <NotificationsOff />
         {enableExposureNotification && <ExposureDetectionStatusCard />} 
-        {displayVaccinationHistory && vaccines.sort((a, b) => b.scanDate - a.scanDate).map((entry, i) => {
+        {displayVaccinationHistory && vaccines && vaccines.map((entry, i) => {
           return <VaccineCard key={i} 
               name={entry.name}
               manufacturer={entry.manufacturer} 
@@ -69,7 +69,7 @@ const Home: FunctionComponent = () => {
               requiredDoses={entry.requiredDoses} />
         })}
 
-        {displayVaccinationHistory && appointments.map((entry, i) => {
+        {displayVaccinationHistory && appointments && appointments.map((entry, i) => {
           return <AppointmentCard key={i} 
                   manufacturer={entry.manufacturer} 
                   doseSequence={entry.doseSequence} 
@@ -79,7 +79,11 @@ const Home: FunctionComponent = () => {
         })}
 
         {displayCovidData && <CovidDataCard />}
-        {displayVaccinationHistory && vaccines.length === 0 && appointments.length === 0 && <NewEligibilityCode />}
+        {displayVaccinationHistory 
+          && (!vaccines || vaccines.length === 0) 
+          && (!appointments || appointments.length === 0) 
+          && <NewEligibilityCode />
+        }
         {enableExposureNotification && 
           ( verificationStrategy === "Simple" ? (
               <SimpleVerificationFlowButton />

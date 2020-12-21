@@ -55,9 +55,9 @@ const VaccinationHistory: FunctionComponent = () => {
           {t("vaccination_history.subtitle")}
         </Text>
         
-        {vaccines.length === 0 && appointments.length === 0 && <NoVaccines /> }
+        {(!vaccines || vaccines.length === 0) && (!appointments || appointments.length === 0) && <NoVaccines /> }
 
-        {vaccines.sort((a, b) => b.scanDate - a.scanDate).map((entry, i) => {
+        {vaccines && vaccines.map((entry, i) => {
           return <VaccineCard 
                   key={i} 
                   name={entry.name} 
@@ -71,7 +71,7 @@ const VaccinationHistory: FunctionComponent = () => {
                   requiredDoses={entry.requiredDoses} />
         })}
 
-        {appointments.map((entry, i) => {
+        {appointments && appointments.map((entry, i) => {
           return <AppointmentCard key={i} 
                 manufacturer={entry.manufacturer} 
                 doseSequence={entry.doseSequence} 
@@ -81,7 +81,7 @@ const VaccinationHistory: FunctionComponent = () => {
         })}
 
       </ScrollView>
-      {vaccines.length === 0 && appointments.length === 0 && 
+      {(!vaccines || vaccines.length === 0) && (!appointments || appointments.length === 0) && 
         <TouchableOpacity
           style={style.shareButton}
           onPress={handleOnPressNewEligibilityCode}

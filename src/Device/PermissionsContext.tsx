@@ -13,6 +13,7 @@ import { Platform } from "react-native"
 
 import * as GaenNativeModule from "../gaen/nativeModule"
 import * as DeviceInfoModule from "../Device/nativeModule"
+import env from "react-native-config"
 
 import useOnAppStateChange from "./useOnAppStateChange"
 
@@ -147,7 +148,10 @@ const useENPermissions = () => {
     ENPermissionStatus
   >("Unknown")
 
+  console.log("useENPermissions");
+
   const checkENPermission = () => {
+    if (env.ENABLE_EXPOSURE_NOTIFICATION) return;
     const handleNativeResponse = (status: ENPermissionStatus) => {
       setEnPermissionStatus(status)
     }
@@ -155,6 +159,8 @@ const useENPermissions = () => {
   }
 
   useEffect(() => {
+    if (env.ENABLE_EXPOSURE_NOTIFICATION) return;
+    
     checkENPermission()
   }, [])
 
@@ -165,7 +171,7 @@ const useENPermissions = () => {
       (status: ENPermissionStatus) => {
         setEnPermissionStatus(status)
       },
-    )
+    );
 
     return () => {
       subscription?.remove()

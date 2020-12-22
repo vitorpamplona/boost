@@ -38,13 +38,39 @@ end
 
 ########################## HELPERS START #######################################
 
+def add_value_on_plist(file_path:, key:, type:, value:)
+  _output, error, status = Open3.capture3(
+    "/usr/libexec/PlistBuddy -c \"Add :#{key} #{type} #{value}\" \"#{file_path}\""
+  )
+  return true if status.success?
+  failure_message message: "Could not add #{key} as #{value} on plist file #{file_path} with error: #{error}"
+  return false
+end
+
 def update_value_on_plist(file_path:, key:, value:)
   _output, error, status = Open3.capture3(
     "/usr/libexec/PlistBuddy -c \"Set :#{key} #{value}\" \"#{file_path}\""
   )
   return true if status.success?
-  failure_message "Could not update #{key} to #{value} on plist file #{file_path} with error: #{error}"
+  failure_message message: "Could not update #{key} to #{value} on plist file #{file_path} with error: #{error}"
   return false
+end
+
+def delete_value_on_plist(file_path:, key:)
+  output, error, status = Open3.capture3(
+    "/usr/libexec/PlistBuddy -c \"Print :#{key}\" \"#{file_path}\""
+  )
+  if (status.success?) 
+    _output, error, status = Open3.capture3(
+      "/usr/libexec/PlistBuddy -c \"Delete :#{key}\" \"#{file_path}\""
+    )
+    return true if status.success?
+    failure_message message: "Could not delete #{key} on plist file #{file_path} with error: #{error}"
+    return false
+  else
+    ## Key already not existant. 
+    return true;
+  end
 end
 
 def read_value_from_plist(file_path:, key:)
@@ -52,8 +78,19 @@ def read_value_from_plist(file_path:, key:)
     "/usr/libexec/PlistBuddy -c \"Print :#{key}\" \"#{file_path}\""
   )
   return output.gsub(/\R+/, "") if status.success?
-  failure_message "Could not read #{key} on plist file #{file_path}"
+  failure_message message: "Could not read #{key} on plist file #{file_path}"
   return nil
+end
+
+def add_or_update_value_on_plist(file_path:, key:, type:, value:) 
+  output, error, status = Open3.capture3(
+    "/usr/libexec/PlistBuddy -c \"Print :#{key}\" \"#{file_path}\""
+  )
+  if status.success? 
+    return update_value_on_plist(file_path: file_path, key: key, value: value)
+  else
+    return add_value_on_plist(file_path: file_path, key: key, type: type, value: value)
+  end
 end
 
 def read_value_from_xml(file_path:, xpath:)
@@ -61,7 +98,7 @@ def read_value_from_xml(file_path:, xpath:)
     "xmllint --xpath \"#{xpath}\" #{file_path}"
   )
   return output if status.success?
-  failure_message "Could not read #{xpath} on xml file #{file_path} with error:
+  failure_message message: "Could not read #{xpath} on xml file #{file_path} with error:
   #{error}"
   return nil
 end
@@ -75,7 +112,7 @@ save
 EOF
 ")
   return true if status.success?
-  failure_message "Could not update #{xpath} to #{value} on xml file #{file_path} with error: #{error}"
+  failure_message message: "Could not update #{xpath} to #{value} on xml file #{file_path} with error: #{error}"
   return false
 end
 
@@ -85,7 +122,7 @@ def replace_string_in_file(file_path:, regex:, value:)
   if new_contents.match(value).size > 0
     File.open(file_path, 'w') { |f| f.write new_contents }
   else
-    failure_message "Couldn't match anything with #{regex} on #{file_path}"
+    failure_message message: "Couldn't match anything with #{regex} on #{file_path}"
   end
 end
 
@@ -139,7 +176,7 @@ def update_application_display_name
     update_android_display_name(display_name)
     return true
   else
-    failure_message "#{DISPLAY_NAME_KEY} not provided on #{ENV_FILE}"
+    failure_message message: "#{DISPLAY_NAME_KEY} not provided on #{ENV_FILE}"
     exit 1
   end
 end
@@ -173,7 +210,7 @@ def update_bundle_identifiers
     update_ios_bundle_identifier(ios_bundle_identifier)
     update_android_application_id(android_application_id)
   else
-    failure_message "Both ios bundle identifier and android id are required"
+    failure_message message: "Both ios bundle identifier and android id are required"
     exit 1
   end
 end
@@ -186,15 +223,25 @@ def get_current_ios_en_api_version
     key: 'ENAPIVersion'
   )
   return output if output
-  exit 1
+  return nil
 end
 
 def update_ios_en_api_version(new_en_api_version)
   puts "Updating ios en api version from #{get_current_ios_en_api_version} to #{new_en_api_version}"
-  return if update_value_on_plist(
+  return if add_or_update_value_on_plist(
     file_path: PLIST_PATH,
     key: 'ENAPIVersion',
+    type: 'integer',
     value: new_en_api_version
+  )
+  exit 1
+end
+
+def delete_ios_en_api_version()
+  puts "Deleting Exposure Notification API Version on ios"
+  return if delete_value_on_plist(
+    file_path: PLIST_PATH,
+    key: 'ENAPIVersion'
   )
   exit 1
 end
@@ -205,15 +252,25 @@ def get_current_ios_en_region
     key: 'ENDeveloperRegion'
   )
   return output if output
-  exit 1
+  return nil
 end
 
 def update_ios_en_region(new_en_region)
   puts "Updating ios en region from #{get_current_ios_en_region} to #{new_en_region}"
-  return if update_value_on_plist(
+  return if add_or_update_value_on_plist(
     file_path: PLIST_PATH,
     key: 'ENDeveloperRegion',
+    type: 'string',
     value: new_en_region
+  )
+  exit 1
+end
+
+def delete_ios_en_region()
+  puts "Deleting Exposure Notification Region on ios"
+  return if delete_value_on_plist(
+    file_path: PLIST_PATH,
+    key: 'ENDeveloperRegion'
   )
   exit 1
 end
@@ -226,12 +283,12 @@ def update_ios_configuration
   ios_en_region = environment.fetch(IOS_EN_REGION_KEY, false)
   ios_en_version = environment.fetch(IOS_EN_API_VERSION_KEY, 1)
 
-  update_ios_en_api_version(ios_en_version)
   if ios_en_region
+    update_ios_en_api_version(ios_en_version)
     update_ios_en_region(ios_en_region)
   else
-    failure_message "EN region is required"
-    exit 1
+    delete_ios_en_region()
+    delete_ios_en_api_version()
   end
 end
 
@@ -244,6 +301,6 @@ if File.exist?(ENV_FILE)
   update_ios_configuration
   puts "✅ iOS Configuration Updated"
 else
-  failure_message "#{ENV_FILE} not found on the root folder, environment file is needed"
+  failure_message message: "#{ENV_FILE} not found on the root folder, environment file is needed"
   exit 1
 end

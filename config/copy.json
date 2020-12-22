@@ -1,9 +1,9 @@
 {
   "en": {
     "welcomeMessage": "Welcome To",
-    "about": "The PathCheck GAEN Mobile application is brought to you by PathCheck (this copy is customizable)",
-    "legal": "PathCheck GAEN Mobile Legal Policies: (this copy is customizable)",
-    "healthAuthorityName": "Health Authority"
+    "about": "The PathCheck Boost Mobile application is brought to you by PathCheck",
+    "legal": "PathCheck Boost Mobile Legal Policies",
+    "healthAuthorityName": "None"
   },
   "es_PR": {
     "welcomeMessage": "Bienvenido a",

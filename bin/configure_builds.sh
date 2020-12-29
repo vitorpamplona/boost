@@ -27,6 +27,8 @@ require 'open3'
 # Constants
 ENV_FILE = ARGV[0] || ".env.bt.release"
 PLIST_PATH = "./ios/BT/Info.plist"
+DEV_ENT_PATH = "./ios/BT/BT-Development.entitlements"
+PROD_ENT_PATH = "./ios/BT/BT-Production.entitlements"
 ANDROID_STRINGS_PATH="./android/app/src/main/res/values/strings.xml"
 SEPARATOR = "##################################################################"
 
@@ -78,7 +80,6 @@ def read_value_from_plist(file_path:, key:)
     "/usr/libexec/PlistBuddy -c \"Print :#{key}\" \"#{file_path}\""
   )
   return output.gsub(/\R+/, "") if status.success?
-  failure_message message: "Could not read #{key} on plist file #{file_path}"
   return nil
 end
 
@@ -275,6 +276,35 @@ def delete_ios_en_region()
   exit 1
 end
 
+ENT_ASSOC_KEY = "com.apple.developer.associated-domains"
+ENT_EN_KEY = "com.apple.developer.exposure-notification"
+
+def delete_en_entitlements()
+  puts "Deleting Exposure Notification Entitlements for iOS"
+  delete_value_on_plist(file_path: DEV_ENT_PATH, key: ENT_ASSOC_KEY)
+  delete_value_on_plist(file_path: DEV_ENT_PATH, key: ENT_EN_KEY)
+  delete_value_on_plist(file_path: PROD_ENT_PATH, key: ENT_ASSOC_KEY)
+  delete_value_on_plist(file_path: PROD_ENT_PATH, key: ENT_EN_KEY)
+  return true
+end
+
+def add_en_entitlements()
+  puts "Adding Exposure Notification Entitlements for iOS"
+  delete_value_on_plist(file_path: DEV_ENT_PATH, key: ENT_ASSOC_KEY)
+  delete_value_on_plist(file_path: DEV_ENT_PATH, key: ENT_EN_KEY)
+  delete_value_on_plist(file_path: PROD_ENT_PATH, key: ENT_ASSOC_KEY)
+  delete_value_on_plist(file_path: PROD_ENT_PATH, key: ENT_EN_KEY)
+
+  add_or_update_value_on_plist(file_path: DEV_ENT_PATH, key: ENT_ASSOC_KEY, type:'array', value:'')
+  add_or_update_value_on_plist(file_path: DEV_ENT_PATH, key: ENT_ASSOC_KEY+":0", type:'string', value:'applinks:*.en.express')
+  add_or_update_value_on_plist(file_path: DEV_ENT_PATH, key: ENT_EN_KEY, type:'bool', value: true)
+
+  add_or_update_value_on_plist(file_path: PROD_ENT_PATH, key: ENT_ASSOC_KEY, type:'array', value:'')
+  add_or_update_value_on_plist(file_path: PROD_ENT_PATH, key: ENT_ASSOC_KEY+":0", type:'string', value:'applinks:*.en.express')
+  add_or_update_value_on_plist(file_path: PROD_ENT_PATH, key: ENT_EN_KEY, type:'bool', value: true)
+  return true
+end
+
 IOS_EN_REGION_KEY = "EN_DEVELOPER_REGION"
 IOS_EN_API_VERSION_KEY = "EN_API_VERSION"
 
@@ -286,9 +316,11 @@ def update_ios_configuration
   if ios_en_region
     update_ios_en_api_version(ios_en_version)
     update_ios_en_region(ios_en_region)
+    add_en_entitlements()
   else
     delete_ios_en_region()
     delete_ios_en_api_version()
+    delete_en_entitlements()
   end
 end
 

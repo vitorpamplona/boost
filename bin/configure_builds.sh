@@ -307,13 +307,15 @@ end
 
 IOS_EN_REGION_KEY = "EN_DEVELOPER_REGION"
 IOS_EN_API_VERSION_KEY = "EN_API_VERSION"
+ENABLE_EXPOSURE_NOTIFICATION = "ENABLE_EXPOSURE_NOTIFICATION"
 
 def update_ios_configuration
   environment = Dotenv.parse(File.open(ENV_FILE))
   ios_en_region = environment.fetch(IOS_EN_REGION_KEY, false)
   ios_en_version = environment.fetch(IOS_EN_API_VERSION_KEY, 1)
+  use_exposure_notification = environment.fetch(ENABLE_EXPOSURE_NOTIFICATION, "true")
 
-  if ios_en_region
+  if ios_en_region && ios_en_version && use_exposure_notification == "true"
     update_ios_en_api_version(ios_en_version)
     update_ios_en_region(ios_en_region)
     add_en_entitlements()

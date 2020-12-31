@@ -7,7 +7,8 @@ def shared_pods
   use_react_native!(path: config["reactNativePath"])
 
   permissions_path = "../node_modules/react-native-permissions/ios"
-  pod "Permission-Notifications", path: "#{permissions_path}/Notifications.podspec"
+  pod "Permission-Notifications", path: "#{permissions_path}/Notifications/Permission-Notifications.podspec"
+  pod 'Permission-Camera', :path => "#{permissions_path}/Camera/Permission-Camera.podspec"
 
   pod "Realm", "~> 10.1.1", modular_headers: true
   pod "RealmSwift","~> 10.1.1", modular_headers: true

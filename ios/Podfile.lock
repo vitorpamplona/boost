@@ -77,7 +77,9 @@ PODS:
   - OpenSSL-Universal (1.0.2.20):
     - OpenSSL-Universal/Static (= 1.0.2.20)
   - OpenSSL-Universal/Static (1.0.2.20)
-  - Permission-Notifications (2.1.4):
+  - Permission-Camera (3.0.0):
+    - RNPermissions
+  - Permission-Notifications (3.0.0):
     - RNPermissions
   - PromisesObjC (1.2.11)
   - PromisesSwift (1.2.11):
@@ -346,8 +348,8 @@ PODS:
     - React-Core
   - RNGestureHandler (1.6.1):
     - React
-  - RNPermissions (2.1.4):
-    - React
+  - RNPermissions (3.0.0):
+    - React-Core
   - RNScreens (2.8.0):
     - React
   - RNStaticSafeAreaInsets (2.1.1):
@@ -387,7 +389,8 @@ DEPENDENCIES:
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - KeychainAccess (~> 4.2.0)
-  - Permission-Notifications (from `../node_modules/react-native-permissions/ios/Notifications.podspec`)
+  - Permission-Camera (from `../node_modules/react-native-permissions/ios/Camera/Permission-Camera.podspec`)
+  - Permission-Notifications (from `../node_modules/react-native-permissions/ios/Notifications/Permission-Notifications.podspec`)
   - PromisesObjC
   - PromisesSwift
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
@@ -470,8 +473,10 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/third-party-podspecs/Folly.podspec"
   glog:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
+  Permission-Camera:
+    :path: "../node_modules/react-native-permissions/ios/Camera/Permission-Camera.podspec"
   Permission-Notifications:
-    :path: "../node_modules/react-native-permissions/ios/Notifications.podspec"
+    :path: "../node_modules/react-native-permissions/ios/Notifications/Permission-Notifications.podspec"
   RCTRequired:
     :path: "../node_modules/react-native/Libraries/RCTRequired"
   RCTTypeSafety:
@@ -570,7 +575,8 @@ SPEC CHECKSUMS:
   KeychainAccess: 9b07f665298d13c3a85881bd3171f6f49b8151c1
   MatomoTracker: c51a9abb4df0b94959d2c1bf67833079cb90a18a
   OpenSSL-Universal: ff34003318d5e1163e9529b08470708e389ffcdd
-  Permission-Notifications: d437cafc026900006d35981d35a2d694f883f44e
+  Permission-Camera: 119b01de97a5b3edb637999e38476b68143b9d17
+  Permission-Notifications: 5c69bf2f6c1e30345af4f25e2981dc1c8dafbc22
   PromisesObjC: 8c196f5a328c2cba3e74624585467a557dcb482f
   PromisesSwift: fed4eb6f7a29846a22624d1b86b77e1dedb88724
   RCTRequired: f13f25e7b12f925f1f6a6a8c69d929a03c0129fe
@@ -608,7 +614,7 @@ SPEC CHECKSUMS:
   RNCPushNotificationIOS: dc1c0c6aa18a128df123598149f42e848d26a4ac
   RNDateTimePicker: 8eba76de1afd556bc00c874f4d0c0616e30e32f1
   RNGestureHandler: 8f09cd560f8d533eb36da5a6c5a843af9f056b38
-  RNPermissions: 3635b407c15f2fe591bd2101c8f20aa0912caba8
+  RNPermissions: 99dd8d4a30ff13509b949ca63cd1f69edc461775
   RNScreens: 62211832af51e0aebcf6e8c36bcf7dd65592f244
   RNStaticSafeAreaInsets: 6103cf09647fa427186d30f67b0f5163c1ae8252
   RNSVG: ce9d996113475209013317e48b05c21ee988d42e
@@ -616,6 +622,6 @@ SPEC CHECKSUMS:
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
   ZIPFoundation: b1f0de4eed33e74a676f76e12559ab6b75990197
 
-PODFILE CHECKSUM: f3749e456c940a622016e5d54f5557980441e2e1
+PODFILE CHECKSUM: 9439a43e2f3a8f894b8cf16a7c57cb990c39cb0a
 
 COCOAPODS: 1.10.0

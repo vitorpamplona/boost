@@ -55,8 +55,8 @@ const VaccineCard: FunctionComponent = (props) => {
         />
       </View>
       
-      <Text style={style.sectionSubHeaderText}>Waiting Location Confirmation</Text>
-      <Text style={style.sectionBodyText}>Date: <Text style={style.bold}>Awaiting Confirmation</Text></Text>
+      <Text style={style.sectionSubHeaderText}>{props.location}<Text style={style.sectionBodyTextSmall}>, to be confirmed</Text></Text>
+      <Text style={style.sectionBodyText}>Date: <Text style={style.bold}>{dateText}</Text><Text style={style.sectionBodyTextSmall}>, to be conf</Text></Text>
       <Text style={style.sectionBodyText}>Vaccine: <Text style={style.bold}>{props.manufacturer}, {nth(props.doseSequence)} dose</Text></Text>
       
       <View style={style.cardBottomContainer}>
@@ -116,6 +116,10 @@ const style = StyleSheet.create({
     lineHeight: Typography.lineHeight.x40,
     color: Colors.neutral.shade100,
     marginBottom: Spacing.xxxSmall,
+  }, 
+  sectionBodyTextSmall: {
+    ...Typography.header.x10,
+    ...Typography.style.normal,
   }, 
   bold: {
     fontWeight: "bold"

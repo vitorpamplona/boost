@@ -65,8 +65,8 @@ const VaccineCard: FunctionComponent = (props) => {
             fill={Colors.primary.shade125}
             width={Iconography.xSmall}
             height={Iconography.xSmall}
+            style={style.sameLineSpacer}
         />
-        <Text style={style.sectionBodyText}>   </Text>
         <Text style={style.sectionBodyText}>Eligibility Code has been verified</Text>
       </View>
       <SectionButton text={t("appointment_card.record_vaccination")} />
@@ -90,6 +90,9 @@ const style = StyleSheet.create({
     marginTop: Spacing.xSmall,
     marginBottom: Spacing.xSmall,
     alignItems: "center",
+  },
+  sameLineSpacer: {
+    marginRight: Spacing.xSmall,
   },
   image: {
     resizeMode: "contain",

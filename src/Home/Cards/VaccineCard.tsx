@@ -66,8 +66,8 @@ const VaccineCard: FunctionComponent = (props) => {
             fill={Colors.primary.shade125}
             width={Iconography.xSmall}
             height={Iconography.xSmall}
+            style={style.sameLineSpacer}
         />
-        <Text style={style.sectionBodyText}>   </Text>
         <Text style={style.sectionBodyText}>{t("vaccine_card.fda_approved")}</Text>
       </View>
     </TouchableOpacity>
@@ -89,6 +89,9 @@ const style = StyleSheet.create({
     flexDirection: "row",
     marginTop: Spacing.xSmall,
     alignItems: "center",
+  },
+  sameLineSpacer: {
+    marginRight: Spacing.xSmall,
   },
   image: {
     resizeMode: "contain",

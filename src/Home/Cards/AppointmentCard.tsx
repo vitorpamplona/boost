@@ -46,7 +46,7 @@ const VaccineCard: FunctionComponent = (props) => {
       style={style.floatingContainer}
     >
       <View style={style.cardTopContainer}>
-        <Text style={style.sectionHeaderText}>Vaccine Elegibility</Text>
+        <Text style={style.sectionHeaderText}>Vaccine Coupon</Text>
         <SvgXml
             xml={Icons.DoctorAppointment}
             fill={Colors.primary.shade125}

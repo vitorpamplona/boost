@@ -16,7 +16,7 @@ import Pen from "../../assets/svgs/pen"
 const Options: FunctionComponent<{text:string,func:Function}> = ({text,func})=>{
 
     return(
-         <TouchableOpacity style={styles.optioncontainer} onPress={func}>
+         <TouchableOpacity  testID="myButton"  style={styles.optioncontainer} onPress={func}>
              <Text>{text}</Text>
          </TouchableOpacity>
     );

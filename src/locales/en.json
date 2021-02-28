@@ -545,5 +545,12 @@
     "network_connection_title": "No Internet Connection",
     "unknown_body": "An unexpected error occurred. Please try again.",
     "unknown_title": "Something Went Wrong"
-  }
+  },
+  "phase_card": {
+    "front_line_worker": "I am a frontline essential worker",
+    "seventy_five_or_older": "I am of age 75 years or older",
+    "sixty_five_to_seventy_four": "I am 65—74 years old",
+    "medical_conditions": "I am 16—64 years old with underlying medical conditions",
+    "none": "None of the above"
+    }
 }

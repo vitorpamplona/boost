@@ -1,10 +1,12 @@
-import React, { FunctionComponent, createContext, useContext } from "react"
+import React, { FunctionComponent, createContext, useContext, useState, useEffect } from "react"
 import { Platform } from "react-native"
 import env from "react-native-config"
+import AsyncStorage from "@react-native-community/async-storage"
 
 type MeasurementSystem = "Imperial" | "Metric"
 
 export interface Configuration {
+  
   appDownloadUrl: string | null
   appPackageName: string
   displayAcceptTermsOfService: boolean
@@ -137,8 +139,9 @@ const ConfigurationProvider: FunctionComponent = ({ children }) => {
 
   const verificationStrategy: VerificationStrategy = toVerificationStrategy(
     env.VERIFICATION_STRATEGY,
-  )
-
+    
+    )
+    
   return (
     <ConfigurationContext.Provider
       value={{

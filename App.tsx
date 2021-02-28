@@ -23,6 +23,8 @@ import {
 import { SymptomHistoryProvider } from "./src/SymptomHistory/SymptomHistoryContext"
 import { CovidDataContextProvider } from "./src/CovidData/Context"
 import { VaccinationContextProvider } from "./src/VaccinationContext"
+import { View , Text } from "react-native"
+
 
 Logger.start()
 
@@ -112,6 +114,9 @@ const App: FunctionComponent = () => {
       ) : null}
     </>
   )
+  
+
+
 }
 
 export default App

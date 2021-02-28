@@ -1,6 +1,6 @@
 const {
   RESULTS,
-} = require('react-native-permissions/lib/commonjs/constants.js');
+} = require('react-native-permissions/dist/commonjs/results.js')
 
 export { RESULTS };
 

@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#ffffff",
+      "borderRadius": 16,
+      "elevation": 20,
+      "marginBottom": 24,
+      "paddingHorizontal": 24,
+      "paddingVertical": 24,
+      "shadowColor": "#3c475b",
+      "shadowOffset": Object {
+        "height": 8,
+        "width": 0,
+      },
+      "shadowOpacity": 0.2,
+      "shadowRadius": 13.16,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#000000",
+          "fontFamily": "IBMPlexSans-SemiBold",
+          "fontSize": 16,
+          "fontWeight": "600",
+          "letterSpacing": 0.25,
+          "lineHeight": 24,
+        }
+      }
+    >
+      your vaccination Phase: 
+      random words to prevent it from rendering
+    </Text>
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+    >
+      <Svg
+        height={25}
+        viewBox="0 0 18 18"
+        width={25}
+      >
+        <G
+          fill="none"
+          fillRule="evenodd"
+        >
+          <Path
+            d="M-3-3h24v24H-3z"
+          />
+          <Path
+            d="M0 14.46v3.04c0 .28.22.5.5.5h3.04c.13 0 .26-.05.35-.15L14.81 6.94l-3.75-3.75L.15 14.1c-.1.1-.15.22-.15.36zM17.71 4.04a.996.996 0 000-1.41L15.37.29a.996.996 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
+            fill="#1D1D1D"
+          />
+        </G>
+      </Svg>
+    </View>
+  </View>
+  <View>
+    <Text
+      style={
+        Object {
+          "color": "#000000",
+          "fontFamily": "IBMPlexSans-SemiBold",
+          "fontSize": 16,
+          "fontWeight": "600",
+          "letterSpacing": 0.25,
+          "lineHeight": 24,
+        }
+      }
+    >
+      you choose: 
+    </Text>
+  </View>
+</View>
+`;

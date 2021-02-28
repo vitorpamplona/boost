@@ -38,6 +38,7 @@ import Mask from "./mask"
 import Phone from "./phone"
 import Plus from "./plus"
 import Publish from "./publish"
+import Pen from "./pen"
 import QuestionMark from "./questionMark"
 import QuestionMarkInCircle from "./questionMarkInCircle"
 import RadioSelected from "./radioSelected"
@@ -56,7 +57,6 @@ import WashHands from "./WashHands"
 import Wrench from "./wrench"
 import X from "./x"
 import XInCircle from "./xInCircle"
-
 export const Icons = {
   AlertCircle,
   AnonymizedData,
@@ -98,6 +98,7 @@ export const Icons = {
   Phone,
   Plus,
   Publish,
+  Pen,
   QuestionMark,
   QuestionMarkInCircle,
   RadioSelected,

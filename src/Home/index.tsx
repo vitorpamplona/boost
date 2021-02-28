@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from "react"
-import { View, ScrollView, StyleSheet } from "react-native"
-
+import { View, ScrollView, StyleSheet, Button, Alert, } from "react-native"
+import AsyncStorage from "@react-native-community/async-storage"
 import { useTranslation } from "react-i18next"
 import { useNavigation } from "@react-navigation/native"
 import { SvgXml } from "react-native-svg"
@@ -25,6 +25,8 @@ import AppointmentCard from "./Cards/AppointmentCard"
 import NotificationsOff from "./Cards/NotificationsOff"
 
 import { Outlines, Spacing, Colors, Typography } from "../styles"
+import PhaseCard from "./Cards/PhaseCard"
+import { getAppointments } from "src/utils/storage"
 
 const Home: FunctionComponent = () => {
   useStatusBarEffect("dark-content", Colors.background.primaryLight)
@@ -52,9 +54,9 @@ const Home: FunctionComponent = () => {
         style={style.container}
         contentContainerStyle={style.contentContainer}
       >
-
         <Text style={style.headerText}>{t("screen_titles.home")}</Text>
         <NotificationsOff />
+        <PhaseCard/>
         {enableExposureNotification && <ExposureDetectionStatusCard />} 
         {displayVaccinationHistory && vaccines && vaccines.map((entry, i) => {
           return <VaccineCard key={i} 
@@ -129,5 +131,6 @@ const style = StyleSheet.create({
     paddingTop: Spacing.large,
   },
 })
+
 
 export default Home

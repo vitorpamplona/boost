@@ -1,12 +1,13 @@
 import AsyncStorage from "@react-native-community/async-storage"
 
-type StorageKey = "LANG_OVERRIDE" | "ONBOARDING_COMPLETE" | "ANALYTICS_CONSENT" | "VACCINES" | "APPOINTMENTS"
+type StorageKey = "LANG_OVERRIDE" | "ONBOARDING_COMPLETE" | "ANALYTICS_CONSENT" | "VACCINES" | "APPOINTMENTS"|"PHASE"|"PHASE_MESSAGE"
 
 const LANG_OVERRIDE: StorageKey = "LANG_OVERRIDE"
 const ONBOARDING_COMPLETE: StorageKey = "ONBOARDING_COMPLETE"
 const ANALYTICS_CONSENT: StorageKey = "ANALYTICS_CONSENT"
 const VACCINES: StorageKey = "VACCINES"
 const APPOINTMENTS: StorageKey = "APPOINTMENTS"
+
 
 async function getStoreData(key: StorageKey): Promise<string | null> {
   try {
@@ -16,7 +17,6 @@ async function getStoreData(key: StorageKey): Promise<string | null> {
     return null
   }
 }
-
 async function setStoreData(key: StorageKey, item: string): Promise<void> {
   try {
     return await AsyncStorage.setItem(key, item)
@@ -57,6 +57,7 @@ export const removeAll = async (): Promise<void> => {
   removeAnalyticsConsent()
   removeVaccines()
   removeAppointments()
+  removePhase()
 }
 
 // Language Override
@@ -159,4 +160,20 @@ const booleanToConsent = (bool: boolean): string => {
     case false:
       return USER_NOT_CONSENTED
   }
+}
+//remove the vaccination phase data
+export async function removePhase():Promise<void> {
+   removeStoreData("PHASE");
+}
+export async function getPhase():Promise <string|null|undefined> {
+return getStoreData("PHASE")
+}
+export async function setLocalPhase(value:string): Promise<void>{
+   setStoreData("PHASE",value)
+}
+export async function setPhaseMessage(value:string):Promise<void>{
+  setStoreData("PHASE_MESSAGE",value)
+}
+export async function getPhaseMessage():Promise<string|null|undefined>{
+  return getStoreData("PHASE_MESSAGE");
 }

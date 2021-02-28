@@ -1,5 +1,6 @@
 import React, { FunctionComponent, useEffect, useState } from "react"
 import { View , StyleSheet, Text,TouchableOpacity} from "react-native"
+import { useTranslation } from "react-i18next"
 
 
 import {
@@ -16,8 +17,8 @@ import Pen from "../../assets/svgs/pen"
 const Options: FunctionComponent<{text:string,func:Function}> = ({text,func})=>{
 
     return(
-         <TouchableOpacity   style={styles.optioncontainer} onPress={func}>
-             <Text>{text}</Text>
+         <TouchableOpacity onPress={func}>
+             <Text style={styles.optioncontainer}>{text}</Text>
          </TouchableOpacity>
     );
 }
@@ -25,6 +26,7 @@ const Options: FunctionComponent<{text:string,func:Function}> = ({text,func})=>{
 const PhaseCard: FunctionComponent  = ()=>{
   const [Phase, setPhase]= useState<string|null>("random words to prevent it from rendering");
   const [Message, setMessage]= useState<string|null>(null);
+  const { t } = useTranslation();
 
   const setPhaseLocal=(item:string,message:string)=>{
      setLocalPhase(item);
@@ -43,7 +45,7 @@ const PhaseCard: FunctionComponent  = ()=>{
   }
 
   useEffect(()=>{
-    getPhaseData()
+    getPhaseData()  
   },[Phase])
 
   const editClicked =()=>{
@@ -57,19 +59,19 @@ const PhaseCard: FunctionComponent  = ()=>{
   return(
         <View style={styles.container}>
           <Text style={styles.header}>Choose whichever is applicable</Text>
-            <Options text="I am a Frontline essential worker" func={()=>{setPhaseLocal("1b","I am a Frontline essential worker")}} />
-            <Options text=" I am aged 75 years and older" func={()=>{setPhaseLocal("1b","I am aged 75 years and older")}} />
-            <Options text="I am 65—74 years old" func={()=>{setPhaseLocal("1c","I am 65—74 years old")}} />
-            <Options text="I am 16—64 years with underlying medical conditions" func={()=>{setPhaseLocal("1c","I am 16—64 years with underlying medical conditions")}}  /> 
-            <Options text="None of the above"  func={()=>{setPhaseLocal("normal","None of the above")}}  /> 
-             </View> 
+            <Options text={t("phase_card.front_line_worker")} func={()=>{setPhaseLocal("1b", t("phase_card.front_line_worker"))}} />
+            <Options text={t("phase_card.seventy_five_or_older")} func={()=>{setPhaseLocal("1b", t("phase_card.seventy_five_or_older"))}} />
+            <Options text={t("phase_card.sixty_five_to_seventy_four")} func={()=>{setPhaseLocal("1c", t("phase_card.sixty_five_to_seventy_four"))}} />
+            <Options text={t("phase_card.medical_conditions")} func={()=>{setPhaseLocal("1c",t("phase_card.medical_conditions"))}}  /> 
+            <Options text={t("phase_card.none")} func={()=>{setPhaseLocal("normal",t("phase_card.none"))}}  />
+        </View> 
         
     );
   }
   else{
     return <View style={styles.container}>
       <View style={{flexDirection:"row", justifyContent:"space-between"}}>
-       <Text style={styles.headerVacc}>your vaccination Phase: {Phase}</Text>
+       <Text style={styles.headerVacc}>Your vaccination phase: {Phase}</Text>
        <TouchableOpacity onPress={()=>{editClicked()}}>
        <Pen/>
        </TouchableOpacity>
@@ -77,7 +79,7 @@ const PhaseCard: FunctionComponent  = ()=>{
       </View>
 
     <View>
-      <Text style={styles.headerVacc}>you choose: {Message}</Text>
+      <Text style={styles.headerVacc}>You chose: {Message}</Text>
     </View>
        </View>;
   }
@@ -91,21 +93,20 @@ const styles= StyleSheet.create({
         
     },
     header:{
-            ...Typography.header.x40,
-            color: Colors.neutral.black,
+      ...Typography.header.x40,
+      color: Colors.neutral.black,
     },
     headerVacc:{
       ...Typography.header.x20,
       color: Colors.neutral.black,
     },
-  optioncontainer:{
-    padding:10,
-    marginVertical:10,
-    backgroundColor: "#C186FC",
-    borderRadius:10,
-    alignItems:"center"
-
-
-  }
+    optioncontainer:{
+      padding:10,
+      marginVertical:10,
+      backgroundColor: "#C186FC",
+      borderRadius:10,
+      color: Colors.neutral.black,
+      textAlign: "center"
+    } 
 })
 export default PhaseCard;

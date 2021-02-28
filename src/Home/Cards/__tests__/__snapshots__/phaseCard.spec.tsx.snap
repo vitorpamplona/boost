@@ -40,7 +40,7 @@ exports[`renders correctly 1`] = `
         }
       }
     >
-      your vaccination Phase: 
+      Your vaccination phase: 
       random words to prevent it from rendering
     </Text>
     <View
@@ -92,7 +92,7 @@ exports[`renders correctly 1`] = `
         }
       }
     >
-      you choose: 
+      You chose: 
     </Text>
   </View>
 </View>

@@ -68,7 +68,7 @@ const HealthGuidelineItem: FunctionComponent<HealthGuidelineItemProps> = ({
     <View style={style.listItem}>
       <View style={style.listItemIconContainer}>
         <SvgXml xml={icon} fill={Colors.primary.shade125} />
-      </View>
+        </View>
       <Text style={style.listItemText}>{text}</Text>
     </View>
   )
@@ -128,6 +128,7 @@ const style = StyleSheet.create({
   },
   listItemText: {
     ...Typography.body.x20,
+    fontSize: 15
   },
 })
 

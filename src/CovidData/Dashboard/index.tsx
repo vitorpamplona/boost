@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   ScrollView,
   StyleSheet,
+
 } from "react-native"
 import { useTranslation } from "react-i18next"
 import StaticSafeAreaInsets from "react-native-static-safe-area-insets"
@@ -41,6 +42,7 @@ const CovidDataDashboard: FunctionComponent = () => {
         contentContainerStyle={style.contentContainer}
         alwaysBounceVertical={false}
       >
+        
         <StateData data={data} />
       </ScrollView>
 

@@ -94,6 +94,16 @@ export const ExposureHistoryStackScreens: {
   MoreInfo: "MoreInfo",
 }
 
+export type CovidReportStackScreen = "CovidReport" | "MoreInfo"
+
+export const CovidReportStackScreens: {
+  [key in CovidReportStackScreen ]: CovidReportStackScreen
+} = {
+  CovidReport: "CovidReport",
+  MoreInfo: "MoreInfo",
+}
+
+
 export type VaccinationHistoryStackScreen =
   | "VaccinationHistory"
   | "VaccineEligibilityFlow"

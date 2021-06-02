@@ -48,6 +48,7 @@ const VaccinationHistory: FunctionComponent = () => {
         contentContainerStyle={style.contentContainer}
         alwaysBounceVertical={false}
       >
+        
         <Text style={style.headerText}>
           {t("vaccination_history.vaccination_history")}
         </Text>
@@ -70,6 +71,8 @@ const VaccinationHistory: FunctionComponent = () => {
                   nextDose={entry.nextDose}
                   requiredDoses={entry.requiredDoses} />
         })}
+        
+       
 
         {appointments && appointments.map((entry, i) => {
           return <AppointmentCard key={i} 

@@ -1,6 +1,5 @@
-import { JsonDecoder } from "ts.data.json"
+import { JsonDecoder } from "ts-data-json"
 import env from "react-native-config"
-
 import Logger from "../../logger"
 import * as CovidData from "../covidData"
 

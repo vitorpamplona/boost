@@ -17,7 +17,7 @@ const Options: FunctionComponent<{text:string,func:Function}> = ({text,func})=>{
 
     return(
          <TouchableOpacity   style={styles.optioncontainer} onPress={func}>
-             <Text>{text}</Text>
+             <Text style={{textAlign:"center"}}>{text}</Text>
          </TouchableOpacity>
     );
 }
@@ -103,9 +103,6 @@ const styles= StyleSheet.create({
     marginVertical:10,
     backgroundColor: "#C186FC",
     borderRadius:10,
-    alignItems:"center"
-
-
-  }
+    alignItems:"center", }
 })
 export default PhaseCard;

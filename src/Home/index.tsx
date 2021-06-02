@@ -27,6 +27,7 @@ import NotificationsOff from "./Cards/NotificationsOff"
 import { Outlines, Spacing, Colors, Typography } from "../styles"
 import PhaseCard from "./Cards/PhaseCard"
 import { getAppointments } from "src/utils/storage"
+import CovidResultsCard from "./CovidResults/CovidResultsCard"
 
 const Home: FunctionComponent = () => {
   useStatusBarEffect("dark-content", Colors.background.primaryLight)
@@ -55,6 +56,7 @@ const Home: FunctionComponent = () => {
         contentContainerStyle={style.contentContainer}
       >
         <Text style={style.headerText}>{t("screen_titles.home")}</Text>
+        <CovidResultsCard/>
         <NotificationsOff />
         <PhaseCard/>
         {enableExposureNotification && <ExposureDetectionStatusCard />} 

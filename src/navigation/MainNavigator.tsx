@@ -16,7 +16,7 @@ import { useTranslation } from "react-i18next"
 import { useOnboardingContext } from "../OnboardingContext"
 import { useProductAnalyticsContext } from "../ProductAnalytics/Context"
 
-import { ModalStackScreens, HomeStackScreens } from "./index"
+import { ModalStackScreens, HomeStackScreens, CovidReportStackScreens } from "./index"
 import { OnboardingRoutes, Stacks } from "./index"
 import MainTabNavigator from "./MainTabNavigator"
 import HowItWorksStack from "./HowItWorksStack"
@@ -42,6 +42,7 @@ import { applyModalHeader } from "./ModalHeader"
 import { applyHeaderLeftBackButton } from "../navigation/HeaderLeftBackButton"
 
 import { Headers } from "../styles"
+import CovidResultsPage from "../Home/CovidResults/CovidResultsPage"
 
 const Stack = createStackNavigator()
 
@@ -116,6 +117,18 @@ const MainNavigator: FunctionComponent = () => {
                 gestureEnabled: false,
               }}
             />
+            <Stack.Screen
+             name={CovidReportStackScreens.CovidReport}
+             component={CovidResultsPage}
+             options={{
+              ...Headers.headerMinimalOptions,
+              headerLeft: applyHeaderLeftBackButton(),
+              gestureEnabled: false,
+            }}
+            
+            />
+
+            
             <Stack.Screen
               name={Stacks.Settings}
               component={SettingsStack}
@@ -268,6 +281,7 @@ const MainNavigator: FunctionComponent = () => {
             headerLeft: applyHeaderLeftBackButton(),
           }}
         />
+
       </Stack.Navigator>
     </NavigationContainer>
   )

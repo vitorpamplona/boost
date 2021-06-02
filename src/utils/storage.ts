@@ -1,12 +1,14 @@
 import AsyncStorage from "@react-native-community/async-storage"
+import { ImageOrVideo } from "react-native-image-crop-picker"
 
-type StorageKey = "LANG_OVERRIDE" | "ONBOARDING_COMPLETE" | "ANALYTICS_CONSENT" | "VACCINES" | "APPOINTMENTS"|"PHASE"|"PHASE_MESSAGE"
+type StorageKey = "LANG_OVERRIDE" | "ONBOARDING_COMPLETE" | "ANALYTICS_CONSENT" | "VACCINES" | "APPOINTMENTS" | "PHASE" | "PHASE_MESSAGE" | "COVID_REPORT"
 
 const LANG_OVERRIDE: StorageKey = "LANG_OVERRIDE"
 const ONBOARDING_COMPLETE: StorageKey = "ONBOARDING_COMPLETE"
 const ANALYTICS_CONSENT: StorageKey = "ANALYTICS_CONSENT"
 const VACCINES: StorageKey = "VACCINES"
 const APPOINTMENTS: StorageKey = "APPOINTMENTS"
+const COVID_REPORT: StorageKey = "COVID_REPORT"
 
 
 async function getStoreData(key: StorageKey): Promise<string | null> {
@@ -58,6 +60,7 @@ export const removeAll = async (): Promise<void> => {
   removeVaccines()
   removeAppointments()
   removePhase()
+  removeCovidReport()
 }
 
 // Language Override
@@ -112,7 +115,7 @@ export async function addAppointment(appt): Promise<Array> {
 
 export async function removeAppt(eligibilityCode): Promise<void> {
   let appts = await getAppointments()
-  noAppt = appts.filter(entry => entry.eligibilityCode!==eligibilityCode);
+  noAppt = appts.filter(entry => entry.eligibilityCode !== eligibilityCode);
   await setStoreJSON(APPOINTMENTS, noAppt);
   return await getAppointments();
 }
@@ -162,18 +165,34 @@ const booleanToConsent = (bool: boolean): string => {
   }
 }
 //remove the vaccination phase data
-export async function removePhase():Promise<void> {
-   removeStoreData("PHASE");
+export async function removePhase(): Promise<void> {
+  removeStoreData("PHASE");
 }
-export async function getPhase():Promise <string|null|undefined> {
-return getStoreData("PHASE")
+export async function getPhase(): Promise<string | null | undefined> {
+  return getStoreData("PHASE")
 }
-export async function setLocalPhase(value:string): Promise<void>{
-   setStoreData("PHASE",value)
+export async function setLocalPhase(value: string): Promise<void> {
+  setStoreData("PHASE", value)
 }
-export async function setPhaseMessage(value:string):Promise<void>{
-  setStoreData("PHASE_MESSAGE",value)
+export async function setPhaseMessage(value: string): Promise<void> {
+  setStoreData("PHASE_MESSAGE", value)
 }
-export async function getPhaseMessage():Promise<string|null|undefined>{
+export async function getPhaseMessage(): Promise<string | null | undefined> {
   return getStoreData("PHASE_MESSAGE");
+}
+
+export async function getCovidReport(): Promise<string | null | undefined> {
+  return getStoreData(COVID_REPORT)
+}
+
+
+
+
+
+export async function setCovidReport(value: ImageOrVideo): Promise<void> {
+  setStoreData(COVID_REPORT, JSON.stringify(value))
+}
+
+export async function removeCovidReport(): Promise<void> {
+  removeStoreData(COVID_REPORT);
 }
